@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vehicle Yard Management - Dashboard</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <div class="logo-icon">🚗</div>
+
+            <div>
+                <strong>Vehicle Yard</strong>
+                <small>Management System</small>
+            </div>
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html" class="active">
+                <span>🏠</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="vehicles.html">
+                <span>🚗</span>
+                <span>Vehicles</span>
+            </a>
+
+            <a href="parking.html">
+                <span>🅿️</span>
+                <span>Parking Areas</span>
+            </a>
+
+            <a href="movements.html">
+                <span>🔄</span>
+                <span>Movements</span>
+            </a>
+
+            <a href="rfid.html">
+                <span>📡</span>
+                <span>RFID</span>
+            </a>
+
+            <a href="events.html">
+                <span>📋</span>
+                <span>Events</span>
+            </a>
+
+            <a href="drivers.html">
+                <span>👤</span>
+                <span>Drivers</span>
+            </a>
+
+            <a href="reports.html">
+                <span>📊</span>
+                <span>Reports</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="system-status">
+                <span class="status-dot"></span>
+
+                <div>
+                    <strong>System Online</strong>
+                    <small>Frontend Demo</small>
+                </div>
+            </div>
+
+
+            <a href="../index.html" class="logout-link">
+                <span>🚪</span>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div class="page-title">
+
+                <h1>Dashboard</h1>
+
+                <p>
+                    Vehicle Yard Management System
+                </p>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="connection-status">
+                    <span class="status-dot"></span>
+                    System Online
+                </div>
+
+
+                <div class="user-info">
+
+                    <div class="user-avatar">
+                        A
+                    </div>
+
+                    <div>
+                        <strong>Admin</strong>
+                        <small>Administrator</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             PROJECT OVERVIEW
+        ========================== -->
+
+        <section class="welcome-panel">
+
+            <div>
+
+                <span class="section-label">
+                    YARD OVERVIEW
+                </span>
+
+                <h2>
+                    Vehicle Yard Management
+                </h2>
+
+                <p>
+                    Track vehicle movements, parking locations,
+                    RFID transactions and yard inventory.
+                </p>
+
+            </div>
+
+
+            <div class="overview-info">
+
+                <div>
+                    <strong>8</strong>
+                    <span>Vehicle Classes</span>
+                </div>
+
+                <div>
+                    <strong>10</strong>
+                    <span>Parking Areas</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SUMMARY CARDS
+        ========================== -->
+
+        <section class="dashboard-cards">
+
+
+            <div class="dashboard-card">
+
+                <div class="card-icon blue">
+                    🚗
+                </div>
+
+                <div class="card-content">
+
+                    <span class="card-label">
+                        Vehicle Classes
+                    </span>
+
+                    <h2>8</h2>
+
+                    <small>
+                        Configured in project
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <div class="card-icon green">
+                    🅿️
+                </div>
+
+                <div class="card-content">
+
+                    <span class="card-label">
+                        Parking Areas
+                    </span>
+
+                    <h2>10</h2>
+
+                    <small>
+                        Scattered yard locations
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <div class="card-icon orange">
+                    📡
+                </div>
+
+                <div class="card-content">
+
+                    <span class="card-label">
+                        RFID Gates
+                    </span>
+
+                    <h2>2</h2>
+
+                    <small>
+                        Entry & Exit
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <div class="card-icon purple">
+                    📱
+                </div>
+
+                <div class="card-content">
+
+                    <span class="card-label">
+                        Driver App
+                    </span>
+
+                    <h2>Active</h2>
+
+                    <small>
+                        Location updates
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MAIN GRID
+        ========================== -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- PARKING AREAS -->
+
+            <div class="dashboard-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            YARD
+                        </span>
+
+                        <h2>
+                            Parking Areas
+                        </h2>
+
+                    </div>
+
+                    <a href="parking.html"
+                       class="view-link">
+                        View All →
+                    </a>
+
+                </div>
+
+
+                <div class="area-list">
+
+
+                    <div class="area-row">
+                        <span>Parking Area 1</span>
+                        <span class="area-badge">
+                            Area 1
+                        </span>
+                    </div>
+
+
+                    <div class="area-row">
+                        <span>Parking Area 2</span>
+                        <span class="area-badge">
+                            Area 2
+                        </span>
+                    </div>
+
+
+                    <div class="area-row">
+                        <span>Parking Area 3</span>
+                        <span class="area-badge">
+                            Area 3
+                        </span>
+                    </div>
+
+
+                    <div class="area-row">
+                        <span>Parking Area 4</span>
+                        <span class="area-badge">
+                            Area 4
+                        </span>
+                    </div>
+
+
+                    <div class="area-row">
+                        <span>Parking Area 5</span>
+                        <span class="area-badge">
+                            Area 5
+                        </span>
+                    </div>
+
+
+                    <div class="area-row">
+                        <span>Parking Area 6</span>
+                        <span class="area-badge highlighted">
+                            Area 6
+                        </span>
+                    </div>
+
+
+                    <div class="area-row">
+                        <span>Parking Area 7</span>
+                        <span class="area-badge">
+                            Area 7
+                        </span>
+                    </div>
+
+
+                    <div class="area-row">
+                        <span>Parking Area 8</span>
+                        <span class="area-badge">
+                            Area 8
+                        </span>
+                    </div>
+
+
+                    <div class="area-row">
+                        <span>Parking Area 9</span>
+                        <span class="area-badge">
+                            Area 9
+                        </span>
+                    </div>
+
+
+                    <div class="area-row">
+                        <span>Parking Area 10</span>
+                        <span class="area-badge">
+                            Area 10
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECENT ACTIVITY -->
+
+            <div class="dashboard-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            ACTIVITY
+                        </span>
+
+                        <h2>
+                            Recent Vehicle Activity
+                        </h2>
+
+                    </div>
+
+                    <a href="movements.html"
+                       class="view-link">
+                        View All →
+                    </a>
+
+                </div>
+
+
+                <div class="activity-table">
+
+                    <div class="table-header">
+
+                        <span>Vehicle ID</span>
+                        <span>Class</span>
+                        <span>Location</span>
+                        <span>Status</span>
+
+                    </div>
+
+
+                    <!-- Exact example from project -->
+
+                    <div class="table-row">
+
+                        <span class="vehicle-id">
+                            V1025
+                        </span>
+
+                        <span>
+                            Trailer
+                        </span>
+
+                        <span>
+                            Area 6
+                        </span>
+
+                        <span>
+                            <span class="status-badge pending">
+                                Sync Pending
+                            </span>
+                        </span>
+
+                    </div>
+
+
+                    <div class="no-data-row">
+
+                        <span>
+                            Additional vehicle records will appear
+                            here when backend data is connected.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             RFID + BUSINESS EVENTS
+        ========================== -->
+
+        <section class="bottom-grid">
+
+
+            <!-- RFID -->
+
+            <div class="dashboard-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            RFID
+                        </span>
+
+                        <h2>
+                            RFID Infrastructure
+                        </h2>
+
+                    </div>
+
+                    <a href="rfid.html"
+                       class="view-link">
+                        Details →
+                    </a>
+
+                </div>
+
+
+                <div class="rfid-status-list">
+
+
+                    <div class="rfid-status-item">
+
+                        <div class="rfid-icon">
+                            📥
+                        </div>
+
+                        <div class="rfid-info">
+
+                            <strong>
+                                Entry Gate Reader
+                            </strong>
+
+                            <span>
+                                Vehicle arrival detection
+                            </span>
+
+                        </div>
+
+                        <span class="active-badge">
+                            Active
+                        </span>
+
+                    </div>
+
+
+                    <div class="rfid-status-item">
+
+                        <div class="rfid-icon">
+                            📤
+                        </div>
+
+                        <div class="rfid-info">
+
+                            <strong>
+                                Exit Gate Reader
+                            </strong>
+
+                            <span>
+                                Vehicle exit detection
+                            </span>
+
+                        </div>
+
+                        <span class="active-badge">
+                            Active
+                        </span>
+
+                    </div>
+
+
+                    <div class="rfid-status-item">
+
+                        <div class="rfid-icon">
+                            📱
+                        </div>
+
+                        <div class="rfid-info">
+
+                            <strong>
+                                Driver Handheld Reader
+                            </strong>
+
+                            <span>
+                                RFID scanning by driver
+                            </span>
+
+                        </div>
+
+                        <span class="active-badge">
+                            Available
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUSINESS EVENTS -->
+
+            <div class="dashboard-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            BUSINESS EVENTS
+                        </span>
+
+                        <h2>
+                            Event Processing
+                        </h2>
+
+                    </div>
+
+                    <a href="events.html"
+                       class="view-link">
+                        View Events →
+                    </a>
+
+                </div>
+
+
+                <div class="event-list">
+
+
+                    <div class="event-item">
+
+                        <div class="event-number">
+                            01
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Vehicle Entered Yard
+                            </strong>
+
+                            <span>
+                                RFID Entry Event
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="event-item">
+
+                        <div class="event-number">
+                            02
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Vehicle Assigned to Parking Area
+                            </strong>
+
+                            <span>
+                                Driver Mobile Application
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="event-item">
+
+                        <div class="event-number">
+                            03
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Vehicle Relocated
+                            </strong>
+
+                            <span>
+                                Parking location updated
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="event-item">
+
+                        <div class="event-number">
+                            04
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Vehicle Ready for Dispatch
+                            </strong>
+
+                            <span>
+                                Business event
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="event-item">
+
+                        <div class="event-number">
+                            05
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Vehicle Exited Yard
+                            </strong>
+
+                            <span>
+                                RFID Exit Event
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             DATA FLOW
+        ========================== -->
+
+        <section class="dashboard-panel data-flow-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="section-label">
+                        SYSTEM FLOW
+                    </span>
+
+                    <h2>
+                        Vehicle Tracking Data Flow
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="data-flow">
+
+
+                <div class="flow-step">
+
+                    <div class="flow-icon">
+                        🚗
+                    </div>
+
+                    <strong>
+                        Vehicle Arrival
+                    </strong>
+
+                </div>
+
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+
+                <div class="flow-step">
+
+                    <div class="flow-icon">
+                        📡
+                    </div>
+
+                    <strong>
+                        RFID Entry
+                    </strong>
+
+                </div>
+
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+
+                <div class="flow-step">
+
+                    <div class="flow-icon">
+                        📱
+                    </div>
+
+                    <strong>
+                        Driver Update
+                    </strong>
+
+                </div>
+
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+
+                <div class="flow-step">
+
+                    <div class="flow-icon">
+                        🅿️
+                    </div>
+
+                    <strong>
+                        Parking Location
+                    </strong>
+
+                </div>
+
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+
+                <div class="flow-step">
+
+                    <div class="flow-icon">
+                        📋
+                    </div>
+
+                    <strong>
+                        Business Event
+                    </strong>
+
+                </div>
+
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+
+                <div class="flow-step">
+
+                    <div class="flow-icon">
+                        SAP
+                    </div>
+
+                    <strong>
+                        SAP Integration
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer class="footer">
+
+            <p>
+                Vehicle Yard Management System
+            </p>
+
+            <span>
+                Frontend Demo • Backend Integration Pending
+            </span>
+
+        </footer>
+
+
+    </main>
+
+</body>
+
+</html>

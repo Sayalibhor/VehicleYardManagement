@@ -1,0 +1,927 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Drivers - Vehicle Yard Management System</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            🚗
+            <div>
+                <h2>Vehicle Yard</h2>
+                <span>Management System</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html">
+                <span>📊</span>
+                Dashboard
+            </a>
+
+            <a href="vehicles.html">
+                <span>🚘</span>
+                Vehicles
+            </a>
+
+            <a href="parking.html">
+                <span>🅿️</span>
+                Parking Areas
+            </a>
+
+            <a href="movements.html">
+                <span>🔄</span>
+                Movements
+            </a>
+
+            <a href="rfid.html">
+                <span>📡</span>
+                RFID
+            </a>
+
+            <a href="events.html">
+                <span>⚡</span>
+                Events
+            </a>
+
+            <a href="drivers.html" class="active">
+                <span>👨‍✈️</span>
+                Drivers
+            </a>
+
+            <a href="reports.html">
+                <span>📈</span>
+                Reports
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="system-status">
+                <span class="status-dot"></span>
+                System Online
+            </div>
+
+            <div class="admin-info">
+                <strong>Admin</strong>
+                <span>Administrator</span>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+        <!-- HEADER -->
+
+        <header class="top-header">
+
+            <div>
+                <h1>Drivers</h1>
+                <p>Driver Mobile Application Management</p>
+            </div>
+
+            <div class="header-right">
+
+                <span class="demo-badge">
+                    Frontend Demo
+                </span>
+
+                <a href="../index.html" class="logout-btn">
+                    Logout
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= BACKEND NOTE ================= -->
+
+        <div class="backend-note">
+
+            <strong>ℹ️ Backend Integration Pending</strong>
+
+            <p>
+                Driver records and mobile application activity
+                will be loaded from the backend when API integration
+                is available.
+            </p>
+
+        </div>
+
+
+        <!-- ================= SUMMARY CARDS ================= -->
+
+        <section class="summary-grid">
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    👨‍✈️
+                </div>
+
+                <div>
+                    <span class="summary-label">
+                        Total Drivers
+                    </span>
+
+                    <h2>
+                        Backend Pending
+                    </h2>
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    📱
+                </div>
+
+                <div>
+                    <span class="summary-label">
+                        Mobile App Status
+                    </span>
+
+                    <h2>
+                        Active
+                    </h2>
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    📍
+                </div>
+
+                <div>
+                    <span class="summary-label">
+                        Location Updates
+                    </span>
+
+                    <h2>
+                        Backend Pending
+                    </h2>
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    🔄
+                </div>
+
+                <div>
+                    <span class="summary-label">
+                        Movement Updates
+                    </span>
+
+                    <h2>
+                        Backend Pending
+                    </h2>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DRIVER APP ================= -->
+
+        <section class="content-panel">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Driver Mobile Application</h2>
+
+                    <p>
+                        Primary source for current vehicle parking location
+                    </p>
+                </div>
+
+                <span class="status-badge active">
+                    Active
+                </span>
+
+            </div>
+
+
+            <div class="driver-feature-grid">
+
+                <div class="driver-feature-card">
+
+                    <div class="feature-icon">
+                        🚘
+                    </div>
+
+                    <h3>Vehicle Identification</h3>
+
+                    <p>
+                        Driver provides or scans the Vehicle ID
+                        associated with the vehicle movement.
+                    </p>
+
+                </div>
+
+
+                <div class="driver-feature-card">
+
+                    <div class="feature-icon">
+                        👨‍✈️
+                    </div>
+
+                    <h3>Driver Identification</h3>
+
+                    <p>
+                        Driver ID is associated with the
+                        vehicle movement update.
+                    </p>
+
+                </div>
+
+
+                <div class="driver-feature-card">
+
+                    <div class="feature-icon">
+                        🅿️
+                    </div>
+
+                    <h3>Parking Area Selection</h3>
+
+                    <p>
+                        Driver selects or scans the parking
+                        area where the vehicle is parked.
+                    </p>
+
+                </div>
+
+
+                <div class="driver-feature-card">
+
+                    <div class="feature-icon">
+                        📍
+                    </div>
+
+                    <h3>GPS Coordinates</h3>
+
+                    <p>
+                        GPS coordinates can optionally be
+                        included with the movement update.
+                    </p>
+
+                </div>
+
+
+                <div class="driver-feature-card">
+
+                    <div class="feature-icon">
+                        🕐
+                    </div>
+
+                    <h3>Timestamp</h3>
+
+                    <p>
+                        Every driver movement update contains
+                        the update timestamp.
+                    </p>
+
+                </div>
+
+
+                <div class="driver-feature-card">
+
+                    <div class="feature-icon">
+                        🔄
+                    </div>
+
+                    <h3>Movement Type</h3>
+
+                    <p>
+                        Movement type can indicate Parked,
+                        Shifted, Ready for Dispatch or Exited Yard.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DRIVER DATA ================= -->
+
+        <section class="content-panel">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Driver Records</h2>
+
+                    <p>
+                        Driver master data will be displayed here
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Driver ID</th>
+                            <th>Vehicle ID</th>
+                            <th>Parking Area</th>
+                            <th>Movement Type</th>
+                            <th>Timestamp</th>
+                            <th>GPS</th>
+                            <th>Status</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+
+                            <td colspan="7">
+
+                                <div class="empty-driver">
+
+                                    <div class="empty-icon">
+                                        👨‍✈️
+                                    </div>
+
+                                    <h3>
+                                        Driver data not available
+                                    </h3>
+
+                                    <p>
+                                        Driver records will appear
+                                        here after backend API integration.
+                                    </p>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DRIVER DATA FLOW ================= -->
+
+        <section class="content-panel">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Driver Location Update Flow</h2>
+
+                    <p>
+                        How driver mobile updates are processed
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="driver-flow">
+
+                <div class="flow-step">
+
+                    <div class="flow-number">
+                        1
+                    </div>
+
+                    <h3>Driver</h3>
+
+                    <p>
+                        Driver uses mobile application
+                    </p>
+
+                </div>
+
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+
+                <div class="flow-step">
+
+                    <div class="flow-number">
+                        2
+                    </div>
+
+                    <h3>Vehicle ID</h3>
+
+                    <p>
+                        Vehicle is identified
+                    </p>
+
+                </div>
+
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+
+                <div class="flow-step">
+
+                    <div class="flow-number">
+                        3
+                    </div>
+
+                    <h3>Parking Area</h3>
+
+                    <p>
+                        Driver selects parking area
+                    </p>
+
+                </div>
+
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+
+                <div class="flow-step">
+
+                    <div class="flow-number">
+                        4
+                    </div>
+
+                    <h3>Backend</h3>
+
+                    <p>
+                        Current location updated
+                    </p>
+
+                </div>
+
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+
+                <div class="flow-step">
+
+                    <div class="flow-number">
+                        5
+                    </div>
+
+                    <h3>Business Event</h3>
+
+                    <p>
+                        Event generated for processing
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DATA SENT ================= -->
+
+        <section class="content-panel">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Driver Application Data</h2>
+
+                    <p>
+                        Information sent by the driver mobile application
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="driver-data-grid">
+
+                <div class="data-item">
+                    <span>Vehicle ID</span>
+                    <strong>Required</strong>
+                </div>
+
+                <div class="data-item">
+                    <span>Driver ID</span>
+                    <strong>Required</strong>
+                </div>
+
+                <div class="data-item">
+                    <span>Parking Area</span>
+                    <strong>Area 1 – Area 10</strong>
+                </div>
+
+                <div class="data-item">
+                    <span>Timestamp</span>
+                    <strong>Required</strong>
+                </div>
+
+                <div class="data-item">
+                    <span>GPS Coordinates</span>
+                    <strong>Optional</strong>
+                </div>
+
+                <div class="data-item">
+                    <span>Movement Type</span>
+                    <strong>Required</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer class="page-footer">
+
+            Frontend Demo • Driver Mobile Application • Backend Integration Pending
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+<!-- ================= PAGE CSS ================= -->
+
+<style>
+
+.driver-feature-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+
+    margin-top: 20px;
+}
+
+
+.driver-feature-card {
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    padding: 20px;
+
+    min-height: 170px;
+
+}
+
+
+.feature-icon {
+
+    width: 45px;
+
+    height: 45px;
+
+    border-radius: 10px;
+
+    background: #f1f5f9;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 22px;
+
+    margin-bottom: 14px;
+
+}
+
+
+.driver-feature-card h3 {
+
+    margin: 0 0 8px;
+
+    font-size: 15px;
+
+    color: #1e293b;
+
+}
+
+
+.driver-feature-card p {
+
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+}
+
+
+.status-badge {
+
+    padding: 7px 13px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+}
+
+
+.status-badge.active {
+
+    background: #dcfce7;
+
+    color: #166534;
+
+}
+
+
+.empty-driver {
+
+    text-align: center;
+
+    padding: 45px 20px;
+
+}
+
+
+.empty-icon {
+
+    font-size: 38px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.empty-driver h3 {
+
+    margin: 0 0 7px;
+
+    color: #334155;
+
+    font-size: 15px;
+
+}
+
+
+.empty-driver p {
+
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+}
+
+
+.driver-flow {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    margin-top: 25px;
+
+}
+
+
+.flow-step {
+
+    width: 145px;
+
+    min-height: 120px;
+
+    padding: 16px;
+
+    text-align: center;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 12px;
+
+}
+
+
+.flow-number {
+
+    width: 32px;
+
+    height: 32px;
+
+    margin: 0 auto 10px;
+
+    border-radius: 50%;
+
+    background: #e2e8f0;
+
+    color: #334155;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+.flow-step h3 {
+
+    margin: 0 0 6px;
+
+    font-size: 13px;
+
+    color: #1e293b;
+
+}
+
+
+.flow-step p {
+
+    margin: 0;
+
+    font-size: 11px;
+
+    color: #64748b;
+
+    line-height: 1.4;
+
+}
+
+
+.flow-arrow {
+
+    font-size: 24px;
+
+    color: #94a3b8;
+
+}
+
+
+.driver-data-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 20px;
+
+}
+
+
+.data-item {
+
+    padding: 17px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+}
+
+
+.data-item span {
+
+    display: block;
+
+    font-size: 11px;
+
+    color: #64748b;
+
+    margin-bottom: 7px;
+
+}
+
+
+.data-item strong {
+
+    font-size: 13px;
+
+    color: #334155;
+
+}
+
+
+@media (max-width: 1000px) {
+
+    .driver-feature-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+    .driver-data-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .driver-feature-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .driver-data-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .flow-arrow {
+
+        transform: rotate(90deg);
+
+    }
+
+}
+
+</style>
+
+</body>
+
+</html>

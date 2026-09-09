@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vehicles - Vehicle Yard Management</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">🚗</div>
+
+            <div>
+                <strong>Vehicle Yard</strong>
+                <small>Management System</small>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html">
+                <span>🏠</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="vehicles.html" class="active">
+                <span>🚗</span>
+                <span>Vehicles</span>
+            </a>
+
+            <a href="parking.html">
+                <span>🅿️</span>
+                <span>Parking Areas</span>
+            </a>
+
+            <a href="movements.html">
+                <span>🔄</span>
+                <span>Movements</span>
+            </a>
+
+            <a href="rfid.html">
+                <span>📡</span>
+                <span>RFID</span>
+            </a>
+
+            <a href="events.html">
+                <span>📋</span>
+                <span>Events</span>
+            </a>
+
+            <a href="drivers.html">
+                <span>👤</span>
+                <span>Drivers</span>
+            </a>
+
+            <a href="reports.html">
+                <span>📊</span>
+                <span>Reports</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="system-status">
+
+                <span class="status-dot"></span>
+
+                <div>
+                    <strong>System Online</strong>
+                    <small>Frontend Demo</small>
+                </div>
+
+            </div>
+
+
+            <a href="../index.html" class="logout-link">
+
+                <span>🚪</span>
+                <span>Logout</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+        <header class="topbar">
+
+            <div class="page-title">
+
+                <h1>Vehicles</h1>
+
+                <p>
+                    Vehicle Master & Current Status
+                </p>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="connection-status">
+
+                    <span class="status-dot"></span>
+
+                    System Online
+
+                </div>
+
+
+                <div class="user-info">
+
+                    <div class="user-avatar">
+                        A
+                    </div>
+
+                    <div>
+
+                        <strong>Admin</strong>
+
+                        <small>Administrator</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PAGE INTRO -->
+        <section class="welcome-panel">
+
+            <div>
+
+                <span class="section-label">
+                    VEHICLE MASTER
+                </span>
+
+                <h2>
+                    Vehicle Records
+                </h2>
+
+                <p>
+                    Vehicle ID, RFID tag, vehicle class,
+                    current location and status.
+                </p>
+
+            </div>
+
+
+            <div class="overview-info">
+
+                <div>
+
+                    <strong>8</strong>
+
+                    <span>
+                        Vehicle Classes
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>10</strong>
+
+                    <span>
+                        Parking Areas
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SEARCH / FILTER -->
+        <section class="dashboard-panel vehicle-controls">
+
+            <div class="vehicle-search">
+
+                <label for="vehicleSearch">
+                    Search Vehicle
+                </label>
+
+                <input
+                    type="text"
+                    id="vehicleSearch"
+                    placeholder="Search by Vehicle ID or RFID Tag"
+                    onkeyup="searchVehicles()">
+
+            </div>
+
+
+            <div class="vehicle-filter">
+
+                <label for="classFilter">
+                    Vehicle Class
+                </label>
+
+                <select
+                    id="classFilter"
+                    onchange="filterVehicles()">
+
+                    <option value="all">
+                        All Vehicle Classes
+                    </option>
+
+                    <option value="class1">
+                        Vehicle Class 1
+                    </option>
+
+                    <option value="class2">
+                        Vehicle Class 2
+                    </option>
+
+                    <option value="class3">
+                        Vehicle Class 3
+                    </option>
+
+                    <option value="class4">
+                        Vehicle Class 4
+                    </option>
+
+                    <option value="class5">
+                        Vehicle Class 5
+                    </option>
+
+                    <option value="class6">
+                        Vehicle Class 6
+                    </option>
+
+                    <option value="class7">
+                        Vehicle Class 7
+                    </option>
+
+                    <option value="class8">
+                        Vehicle Class 8
+                    </option>
+
+                </select>
+
+            </div>
+
+        </section>
+
+
+        <!-- VEHICLE TABLE -->
+        <section class="dashboard-panel vehicle-table-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="section-label">
+                        VEHICLE MASTER
+                    </span>
+
+                    <h2>
+                        Vehicle List
+                    </h2>
+
+                </div>
+
+                <span class="backend-note">
+                    Backend integration pending
+                </span>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table id="vehicleTable">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Vehicle ID
+                            </th>
+
+                            <th>
+                                RFID Tag
+                            </th>
+
+                            <th>
+                                Vehicle Class
+                            </th>
+
+                            <th>
+                                Current Location
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Data Source
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        <!-- PROJECT EXAMPLE -->
+
+                        <tr>
+
+                            <td>
+                                <strong class="vehicle-id">
+                                    V1025
+                                </strong>
+                            </td>
+
+
+                            <td>
+                                RFID1025
+                            </td>
+
+
+                            <td>
+                                Trailer
+                            </td>
+
+
+                            <td>
+                                <span class="location-badge">
+                                    Area 6
+                                </span>
+                            </td>
+
+
+                            <td>
+
+                                <span class="vehicle-status parked">
+                                    Parked
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="data-source">
+                                    Project Example
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- EMPTY BACKEND DATA MESSAGE -->
+
+                        <tr class="backend-row">
+
+                            <td colspan="6">
+
+                                <div class="empty-vehicle">
+
+                                    <div class="empty-icon">
+                                        🚗
+                                    </div>
+
+                                    <strong>
+                                        More vehicle records will appear here
+                                    </strong>
+
+                                    <p>
+                                        Vehicle data will be loaded from
+                                        the backend when API integration
+                                        is completed.
+                                    </p>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- VEHICLE CLASS INFORMATION -->
+        <section class="dashboard-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="section-label">
+                        CONFIGURATION
+                    </span>
+
+                    <h2>
+                        Vehicle Classes
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="class-grid">
+
+
+                <div class="class-card">
+
+                    <span>01</span>
+
+                    <strong>
+                        Vehicle Class 1
+                    </strong>
+
+                    <small>
+                        Class name pending backend/master data
+                    </small>
+
+                </div>
+
+
+                <div class="class-card">
+
+                    <span>02</span>
+
+                    <strong>
+                        Vehicle Class 2
+                    </strong>
+
+                    <small>
+                        Class name pending backend/master data
+                    </small>
+
+                </div>
+
+
+                <div class="class-card">
+
+                    <span>03</span>
+
+                    <strong>
+                        Vehicle Class 3
+                    </strong>
+
+                    <small>
+                        Class name pending backend/master data
+                    </small>
+
+                </div>
+
+
+                <div class="class-card">
+
+                    <span>04</span>
+
+                    <strong>
+                        Vehicle Class 4
+                    </strong>
+
+                    <small>
+                        Class name pending backend/master data
+                    </small>
+
+                </div>
+
+
+                <div class="class-card">
+
+                    <span>05</span>
+
+                    <strong>
+                        Vehicle Class 5
+                    </strong>
+
+                    <small>
+                        Class name pending backend/master data
+                    </small>
+
+                </div>
+
+
+                <div class="class-card">
+
+                    <span>06</span>
+
+                    <strong>
+                        Vehicle Class 6
+                    </strong>
+
+                    <small>
+                        Class name pending backend/master data
+                    </small>
+
+                </div>
+
+
+                <div class="class-card">
+
+                    <span>07</span>
+
+                    <strong>
+                        Vehicle Class 7
+                    </strong>
+
+                    <small>
+                        Class name pending backend/master data
+                    </small>
+
+                </div>
+
+
+                <div class="class-card">
+
+                    <span>08</span>
+
+                    <strong>
+                        Vehicle Class 8
+                    </strong>
+
+                    <small>
+                        Class name pending backend/master data
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer class="footer">
+
+            <p>
+                Vehicle Yard Management System
+            </p>
+
+            <span>
+                Frontend Demo • Backend Integration Pending
+            </span>
+
+        </footer>
+
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        function searchVehicles() {
+
+            const input =
+                document
+                    .getElementById("vehicleSearch")
+                    .value
+                    .toLowerCase();
+
+            const rows =
+                document
+                    .querySelectorAll(
+                        "#vehicleTable tbody tr"
+                    );
+
+
+            rows.forEach(function(row) {
+
+                const text =
+                    row.innerText.toLowerCase();
+
+
+                if (
+                    row.classList.contains(
+                        "backend-row"
+                    )
+                ) {
+
+                    return;
+
+                }
+
+
+                if (
+                    text.includes(input)
+                ) {
+
+                    row.style.display = "";
+
+                }
+
+                else {
+
+                    row.style.display = "none";
+
+                }
+
+            });
+
+        }
+
+
+        function filterVehicles() {
+
+            const filter =
+                document
+                    .getElementById("classFilter")
+                    .value;
+
+            const rows =
+                document
+                    .querySelectorAll(
+                        "#vehicleTable tbody tr"
+                    );
+
+
+            rows.forEach(function(row) {
+
+                if (
+                    row.classList.contains(
+                        "backend-row"
+                    )
+                ) {
+
+                    return;
+
+                }
+
+
+                const classText =
+                    row
+                        .cells[2]
+                        .innerText
+                        .toLowerCase();
+
+
+                if (
+                    filter === "all"
+                ) {
+
+                    row.style.display = "";
+
+                    return;
+
+                }
+
+
+                /*
+                   At present the actual names of
+                   all 8 classes are not available.
+                   Therefore only "All" can show
+                   the exact project example safely.
+                */
+
+                if (
+                    filter === "all"
+                ) {
+
+                    row.style.display = "";
+
+                }
+
+                else {
+
+                    row.style.display = "none";
+
+                }
+
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFID | Vehicle Yard Management System</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+```
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+        🚗
+        <span>Vehicle Yard<br>Management System</span>
+    </div>
+
+    <nav class="sidebar-menu">
+
+        <a href="dashboard.html">🏠 Dashboard</a>
+
+        <a href="vehicles.html">🚗 Vehicles</a>
+
+        <a href="parking.html">🅿️ Parking Areas</a>
+
+        <a href="movements.html">🔄 Movements</a>
+
+        <a href="rfid.html" class="active">📡 RFID</a>
+
+        <a href="events.html">📋 Events</a>
+
+        <a href="drivers.html">👤 Drivers</a>
+
+        <a href="reports.html">📊 Reports</a>
+
+    </nav>
+
+    <div class="sidebar-footer">
+        Vehicle Yard Management System
+    </div>
+
+</aside>
+
+
+<!-- MAIN CONTENT -->
+<main class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+
+        <div>
+            <h2>RFID</h2>
+            <p>RFID gate and handheld reader monitoring</p>
+        </div>
+
+        <div class="topbar-right">
+
+            <span class="system-status">
+                ● System Online
+            </span>
+
+            <div class="admin-profile">
+
+                <div class="admin-avatar">
+                    A
+                </div>
+
+                <div>
+                    <strong>Admin</strong>
+                    <small>Administrator</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- PAGE CONTENT -->
+    <section class="page-content">
+
+        <!-- HEADER -->
+        <div class="page-header">
+
+            <div>
+
+                <span class="section-label">
+                    RFID INFRASTRUCTURE
+                </span>
+
+                <h1>RFID Management</h1>
+
+                <p>
+                    Monitor RFID transactions recorded at vehicle
+                    entry and exit gates and RFID scanning performed
+                    by the driver.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SUMMARY CARDS -->
+        <div class="dashboard-cards">
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    📥
+                </div>
+
+                <div>
+                    <span>Entry Gate Reader</span>
+                    <h2>Active</h2>
+                    <small>Vehicle arrival detection</small>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    📤
+                </div>
+
+                <div>
+                    <span>Exit Gate Reader</span>
+                    <h2>Active</h2>
+                    <small>Vehicle exit detection</small>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    📱
+                </div>
+
+                <div>
+                    <span>Driver Handheld Reader</span>
+                    <h2>Available</h2>
+                    <small>Parking area scanning</small>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    📡
+                </div>
+
+                <div>
+                    <span>RFID Transactions</span>
+                    <h2>—</h2>
+                    <small>Backend pending</small>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BACKEND NOTE -->
+        <div class="backend-note">
+
+            <strong>Backend integration pending</strong>
+
+            <p>
+                RFID transaction records will be loaded from the
+                backend when RFID reader integration and API
+                connectivity are completed.
+            </p>
+
+        </div>
+
+
+        <!-- RFID READERS -->
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="section-label">
+                        RFID DEVICES
+                    </span>
+
+                    <h2>Reader Infrastructure</h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="rfid-reader-grid">
+
+
+                <!-- ENTRY -->
+                <div class="rfid-reader-card">
+
+                    <div class="rfid-reader-icon">
+                        📥
+                    </div>
+
+                    <div class="rfid-reader-content">
+
+                        <span class="section-label">
+                            ENTRY
+                        </span>
+
+                        <h3>Entry Gate Reader</h3>
+
+                        <p>
+                            Detects RFID tags when vehicles
+                            enter the yard.
+                        </p>
+
+                        <span class="reader-status active">
+                            ● Active
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EXIT -->
+                <div class="rfid-reader-card">
+
+                    <div class="rfid-reader-icon">
+                        📤
+                    </div>
+
+                    <div class="rfid-reader-content">
+
+                        <span class="section-label">
+                            EXIT
+                        </span>
+
+                        <h3>Exit Gate Reader</h3>
+
+                        <p>
+                            Detects RFID tags when vehicles
+                            leave the yard.
+                        </p>
+
+                        <span class="reader-status active">
+                            ● Active
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HANDHELD -->
+                <div class="rfid-reader-card">
+
+                    <div class="rfid-reader-icon">
+                        📱
+                    </div>
+
+                    <div class="rfid-reader-content">
+
+                        <span class="section-label">
+                            DRIVER
+                        </span>
+
+                        <h3>Driver Handheld Reader</h3>
+
+                        <p>
+                            Used by the driver to scan or identify
+                            the vehicle during parking and relocation.
+                        </p>
+
+                        <span class="reader-status available">
+                            ● Available
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RFID TRANSACTIONS -->
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="section-label">
+                        RFID TRANSACTIONS
+                    </span>
+
+                    <h2>Recent RFID Activity</h2>
+
+                </div>
+
+                <span class="area-count">
+                    Backend Data
+                </span>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table class="vehicle-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Vehicle ID</th>
+
+                            <th>RFID Tag</th>
+
+                            <th>Reader</th>
+
+                            <th>Event</th>
+
+                            <th>Timestamp</th>
+
+                            <th>Data Source</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <!-- PROJECT EXAMPLE -->
+
+                        <tr>
+
+                            <td>
+                                <strong>V1025</strong>
+                            </td>
+
+                            <td>
+                                —
+                            </td>
+
+                            <td>
+                                Entry / Exit Reader
+                            </td>
+
+                            <td>
+                                RFID Transaction
+                            </td>
+
+                            <td>
+                                —
+                            </td>
+
+                            <td>
+                                Project Example
+                            </td>
+
+                        </tr>
+
+
+                        <!-- BACKEND PLACEHOLDER -->
+
+                        <tr class="empty-vehicle">
+
+                            <td colspan="6">
+
+                                📡 RFID transactions will appear
+                                here when backend data is connected.
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- RFID PROCESS -->
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="section-label">
+                        RFID PROCESS
+                    </span>
+
+                    <h2>RFID Vehicle Tracking Flow</h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="location-flow">
+
+                <div class="flow-step">
+
+                    <div class="flow-icon">
+                        🚗
+                    </div>
+
+                    <strong>Vehicle</strong>
+
+                    <span>
+                        RFID Tagged
+                    </span>
+
+                </div>
+
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+
+                <div class="flow-step">
+
+                    <div class="flow-icon">
+                        📡
+                    </div>
+
+                    <strong>RFID Gate</strong>
+
+                    <span>
+                        Entry / Exit Read
+                    </span>
+
+                </div>
+
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+
+                <div class="flow-step">
+
+                    <div class="flow-icon">
+                        🗄️
+                    </div>
+
+                    <strong>Backend</strong>
+
+                    <span>
+                        Transaction Processing
+                    </span>
+
+                </div>
+
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+
+                <div class="flow-step">
+
+                    <div class="flow-icon">
+                        ⚡
+                    </div>
+
+                    <strong>Business Event</strong>
+
+                    <span>
+                        Validated Event
+                    </span>
+
+                </div>
+
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+
+                <div class="flow-step">
+
+                    <div class="flow-icon">
+                        SAP
+                    </div>
+
+                    <strong>SAP</strong>
+
+                    <span>
+                        Event Integration
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- IMPORTANT NOTE -->
+        <div class="backend-note">
+
+            <strong>RFID and SAP Integration</strong>
+
+            <p>
+                Raw RFID reads are processed by the tracking and
+                business logic layer. Only validated business
+                events are sent to the SAP system.
+            </p>
+
+        </div>
+
+
+        <!-- FOOTER -->
+        <footer class="page-footer">
+
+            <strong>
+                Vehicle Yard Management System
+            </strong>
+
+            <span>
+                Frontend Demo • Backend Integration Pending
+            </span>
+
+        </footer>
+
+    </section>
+
+</main>
+```
+
+</body>
+
+</html>

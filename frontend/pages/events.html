@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Events | Vehicle Yard Management System</title>
+
+<link rel="stylesheet" href="../css/style.css">
+```
+
+</head>
+
+<body>
+
+```
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+        🚗
+        <span>
+            Vehicle Yard<br>
+            Management System
+        </span>
+    </div>
+
+    <nav class="sidebar-menu">
+
+        <a href="dashboard.html">
+            🏠 Dashboard
+        </a>
+
+        <a href="vehicles.html">
+            🚗 Vehicles
+        </a>
+
+        <a href="parking.html">
+            🅿️ Parking Areas
+        </a>
+
+        <a href="movements.html">
+            🔄 Movements
+        </a>
+
+        <a href="rfid.html">
+            📡 RFID
+        </a>
+
+        <a href="events.html" class="active">
+            📋 Events
+        </a>
+
+        <a href="drivers.html">
+            👤 Drivers
+        </a>
+
+        <a href="reports.html">
+            📊 Reports
+        </a>
+
+    </nav>
+
+    <div class="sidebar-footer">
+        Vehicle Yard Management System
+    </div>
+
+</aside>
+
+
+<!-- MAIN -->
+<main class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+
+        <div>
+            <h2>Events</h2>
+
+            <p>
+                Business event processing and SAP integration
+            </p>
+        </div>
+
+
+        <div class="topbar-right">
+
+            <span class="system-status">
+                ● System Online
+            </span>
+
+
+            <div class="admin-profile">
+
+                <div class="admin-avatar">
+                    A
+                </div>
+
+                <div>
+                    <strong>Admin</strong>
+
+                    <small>
+                        Administrator
+                    </small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- PAGE -->
+    <section class="page-content">
+
+
+        <!-- PAGE HEADER -->
+        <div class="page-header">
+
+            <div>
+
+                <span class="section-label">
+                    BUSINESS EVENT PROCESSING
+                </span>
+
+                <h1>
+                    Business Events
+                </h1>
+
+                <p>
+                    Monitor validated business events generated
+                    from vehicle yard activities.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SUMMARY -->
+        <div class="dashboard-cards">
+
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    ⚡
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Events
+                    </span>
+
+                    <h2>
+                        —
+                    </h2>
+
+                    <small>
+                        Backend pending
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    ⏳
+                </div>
+
+                <div>
+
+                    <span>
+                        Pending SAP Sync
+                    </span>
+
+                    <h2>
+                        —
+                    </h2>
+
+                    <small>
+                        Backend pending
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>
+                        Synced Events
+                    </span>
+
+                    <h2>
+                        —
+                    </h2>
+
+                    <small>
+                        Backend pending
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    ⚠️
+                </div>
+
+                <div>
+
+                    <span>
+                        Mismatch Alerts
+                    </span>
+
+                    <h2>
+                        —
+                    </h2>
+
+                    <small>
+                        Backend pending
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- NOTE -->
+        <div class="backend-note">
+
+            <strong>
+                Backend integration pending
+            </strong>
+
+            <p>
+                Business event records and SAP synchronization
+                status will be loaded from the backend after
+                API integration is completed.
+            </p>
+
+        </div>
+
+
+        <!-- EVENT TYPES -->
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="section-label">
+                        EVENT TYPES
+                    </span>
+
+                    <h2>
+                        Supported Business Events
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="event-type-grid">
+
+
+                <!-- EVENT 1 -->
+                <div class="event-type-card">
+
+                    <div class="event-number">
+                        01
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Vehicle Entered Yard
+                        </h3>
+
+                        <p>
+                            Generated from RFID entry event.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EVENT 2 -->
+                <div class="event-type-card">
+
+                    <div class="event-number">
+                        02
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Vehicle Assigned to Parking Area
+                        </h3>
+
+                        <p>
+                            Generated after driver parking update.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EVENT 3 -->
+                <div class="event-type-card">
+
+                    <div class="event-number">
+                        03
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Vehicle Relocated
+                        </h3>
+
+                        <p>
+                            Generated when vehicle parking location
+                            is changed.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EVENT 4 -->
+                <div class="event-type-card">
+
+                    <div class="event-number">
+                        04
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Vehicle Ready for Dispatch
+                        </h3>
+
+                        <p>
+                            Business event indicating vehicle
+                            readiness for dispatch.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EVENT 5 -->
+                <div class="event-type-card">
+
+                    <div class="event-number">
+                        05
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Vehicle Exited Yard
+                        </h3>
+
+                        <p>
+                            Generated from RFID exit event.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EVENT 6 -->
+                <div class="event-type-card">
+
+                    <div class="event-number">
+                        06
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Inventory Reconciliation
+                        </h3>
+
+                        <p>
+                            Used for vehicle inventory
+                            reconciliation.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EVENT 7 -->
+                <div class="event-type-card">
+
+                    <div class="event-number">
+                        07
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Inventory Mismatch Alert
+                        </h3>
+
+                        <p>
+                            Generated when inventory information
+                            does not match.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- EVENT LOG -->
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="section-label">
+                        EVENT LOG
+                    </span>
+
+                    <h2>
+                        Recent Business Events
+                    </h2>
+
+                </div>
+
+                <span class="area-count">
+                    Backend Data
+                </span>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table class="vehicle-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Vehicle ID
+                            </th>
+
+                            <th>
+                                Vehicle Class
+                            </th>
+
+                            <th>
+                                Event
+                            </th>
+
+                            <th>
+                                Parking Area
+                            </th>
+
+                            <th>
+                                Updated By
+                            </th>
+
+                            <th>
+                                Timestamp
+                            </th>
+
+                            <th>
+                                SAP Sync
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        <!-- PROJECT EXAMPLE -->
+                        <tr>
+
+                            <td>
+                                <strong>
+                                    V1025
+                                </strong>
+                            </td>
+
+                            <td>
+                                Trailer
+                            </td>
+
+                            <td>
+                                Parking Location Updated
+                            </td>
+
+                            <td>
+
+                                <span class="location-badge">
+                                    Area 6
+                                </span>
+
+                            </td>
+
+                            <td>
+                                Driver Mobile Application
+                            </td>
+
+                            <td>
+                                2026-07-28 10:42:00
+                            </td>
+
+                            <td>
+
+                                <span class="sync-status pending">
+                                    Pending
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- BACKEND -->
+                        <tr class="empty-vehicle">
+
+                            <td colspan="7">
+
+                                ⚡ More business events will appear
+                                here when backend data is connected.
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- SAP ARCHITECTURE -->
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="section-label">
+                        SAP INTEGRATION
+                    </span>
+
+                    <h2>
+                        Event Integration Architecture
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="location-flow">
+
+
+                <div class="flow-step">
+
+                    <div class="flow-icon">
+                        🗄️
+                    </div>
+
+                    <strong>
+                        Backend Database
+                    </strong>
+
+                    <span>
+                        Vehicle & location data
+                    </span>
+
+                </div>
+
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+
+                <div class="flow-step">
+
+                    <div class="flow-icon">
+                        ⚙️
+                    </div>
+
+                    <strong>
+                        Event Processing
+                    </strong>
+
+                    <span>
+                        Business logic
+                    </span>
+
+                </div>
+
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+
+                <div class="flow-step">
+
+                    <div class="flow-icon">
+                        📤
+                    </div>
+
+                    <strong>
+                        Outbound Event Queue
+                    </strong>
+
+                    <span>
+                        Validated events
+                    </span>
+
+                </div>
+
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+
+                <div class="flow-step">
+
+                    <div class="flow-icon">
+                        🔗
+                    </div>
+
+                    <strong>
+                        Integration Service
+                    </strong>
+
+                    <span>
+                        REST / OData / SAP middleware
+                    </span>
+
+                </div>
+
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+
+                <div class="flow-step">
+
+                    <div class="flow-icon">
+                        SAP
+                    </div>
+
+                    <strong>
+                        SAP ERP
+                    </strong>
+
+                    <span>
+                        ECC / S/4HANA
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- IMPORTANT RULE -->
+        <div class="backend-note">
+
+            <strong>
+                Important Integration Rule
+            </strong>
+
+            <p>
+                Raw RFID reads and camera detections are not sent
+                directly to SAP. Only validated business events
+                generated by the event processing layer are
+                synchronized with SAP.
+            </p>
+
+        </div>
+
+
+        <!-- FOOTER -->
+        <footer class="page-footer">
+
+            <strong>
+                Vehicle Yard Management System
+            </strong>
+
+            <span>
+                Frontend Demo • Backend Integration Pending
+            </span>
+
+        </footer>
+
+
+    </section>
+
+</main>
+```
+
+</body>
+
+</html>

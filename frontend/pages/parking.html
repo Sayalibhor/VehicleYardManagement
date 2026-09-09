@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Parking Areas | Vehicle Yard Management System</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            🚗
+            <span>Vehicle Yard</span>
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <a href="dashboard.html">
+                📊 Dashboard
+            </a>
+
+            <a href="vehicles.html">
+                🚗 Vehicles
+            </a>
+
+            <a href="parking.html" class="active">
+                🅿️ Parking Areas
+            </a>
+
+            <a href="movements.html">
+                🔄 Movements
+            </a>
+
+            <a href="rfid.html">
+                📡 RFID
+            </a>
+
+            <a href="events.html">
+                ⚡ Events
+            </a>
+
+            <a href="drivers.html">
+                👤 Drivers
+            </a>
+
+            <a href="reports.html">
+                📑 Reports
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            Vehicle Yard Management System
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div>
+                <h2>Parking Areas</h2>
+                <p>Vehicle parking location management</p>
+            </div>
+
+            <div class="topbar-right">
+
+                <span class="system-status">
+                    ● System Online
+                </span>
+
+                <div class="admin-profile">
+                    <div class="admin-avatar">
+                        A
+                    </div>
+
+                    <div>
+                        <strong>Admin</strong>
+                        <small>Administrator</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PAGE CONTENT -->
+        <section class="page-content">
+
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+
+                <div>
+                    <span class="section-label">
+                        PARKING MANAGEMENT
+                    </span>
+
+                    <h1>Parking Areas</h1>
+
+                    <p>
+                        Manage the ten scattered parking areas
+                        used for vehicle parking and relocation.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="dashboard-cards">
+
+                <div class="dashboard-card">
+
+                    <div class="card-icon">
+                        🅿️
+                    </div>
+
+                    <div>
+                        <span>Total Parking Areas</span>
+                        <h2>10</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="card-icon">
+                        🚗
+                    </div>
+
+                    <div>
+                        <span>Current Occupancy</span>
+                        <h2>—</h2>
+                        <small>Backend pending</small>
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="card-icon">
+                        📦
+                    </div>
+
+                    <div>
+                        <span>Available Capacity</span>
+                        <h2>—</h2>
+                        <small>Backend pending</small>
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="card-icon">
+                        📍
+                    </div>
+
+                    <div>
+                        <span>Location Updates</span>
+                        <h2>—</h2>
+                        <small>Backend pending</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BACKEND NOTE -->
+            <div class="backend-note">
+
+                <strong>Backend integration pending</strong>
+
+                <p>
+                    Parking area capacity, occupancy and current
+                    vehicle location will be loaded from the backend
+                    when API integration is completed.
+                </p>
+
+            </div>
+
+
+            <!-- PARKING AREAS -->
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <span class="section-label">
+                            PARKING CONFIGURATION
+                        </span>
+
+                        <h2>Parking Area List</h2>
+                    </div>
+
+                    <span class="area-count">
+                        10 Areas
+                    </span>
+
+                </div>
+
+
+                <div class="parking-grid">
+
+                    <!-- AREA 1 -->
+                    <div class="parking-card">
+
+                        <div class="parking-card-header">
+
+                            <div class="parking-number">
+                                01
+                            </div>
+
+                            <span class="parking-status pending">
+                                Data Pending
+                            </span>
+
+                        </div>
+
+                        <h3>Parking Area 1</h3>
+
+                        <div class="parking-info">
+
+                            <div>
+                                <span>Area ID</span>
+                                <strong>Area 1</strong>
+                            </div>
+
+                            <div>
+                                <span>Capacity</span>
+                                <strong>Backend Pending</strong>
+                            </div>
+
+                            <div>
+                                <span>Occupancy</span>
+                                <strong>Backend Pending</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- AREA 2 -->
+                    <div class="parking-card">
+
+                        <div class="parking-card-header">
+
+                            <div class="parking-number">
+                                02
+                            </div>
+
+                            <span class="parking-status pending">
+                                Data Pending
+                            </span>
+
+                        </div>
+
+                        <h3>Parking Area 2</h3>
+
+                        <div class="parking-info">
+
+                            <div>
+                                <span>Area ID</span>
+                                <strong>Area 2</strong>
+                            </div>
+
+                            <div>
+                                <span>Capacity</span>
+                                <strong>Backend Pending</strong>
+                            </div>
+
+                            <div>
+                                <span>Occupancy</span>
+                                <strong>Backend Pending</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- AREA 3 -->
+                    <div class="parking-card">
+
+                        <div class="parking-card-header">
+
+                            <div class="parking-number">
+                                03
+                            </div>
+
+                            <span class="parking-status pending">
+                                Data Pending
+                            </span>
+
+                        </div>
+
+                        <h3>Parking Area 3</h3>
+
+                        <div class="parking-info">
+
+                            <div>
+                                <span>Area ID</span>
+                                <strong>Area 3</strong>
+                            </div>
+
+                            <div>
+                                <span>Capacity</span>
+                                <strong>Backend Pending</strong>
+                            </div>
+
+                            <div>
+                                <span>Occupancy</span>
+                                <strong>Backend Pending</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- AREA 4 -->
+                    <div class="parking-card">
+
+                        <div class="parking-card-header">
+
+                            <div class="parking-number">
+                                04
+                            </div>
+
+                            <span class="parking-status pending">
+                                Data Pending
+                            </span>
+
+                        </div>
+
+                        <h3>Parking Area 4</h3>
+
+                        <div class="parking-info">
+
+                            <div>
+                                <span>Area ID</span>
+                                <strong>Area 4</strong>
+                            </div>
+
+                            <div>
+                                <span>Capacity</span>
+                                <strong>Backend Pending</strong>
+                            </div>
+
+                            <div>
+                                <span>Occupancy</span>
+                                <strong>Backend Pending</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- AREA 5 -->
+                    <div class="parking-card">
+
+                        <div class="parking-card-header">
+
+                            <div class="parking-number">
+                                05
+                            </div>
+
+                            <span class="parking-status pending">
+                                Data Pending
+                            </span>
+
+                        </div>
+
+                        <h3>Parking Area 5</h3>
+
+                        <div class="parking-info">
+
+                            <div>
+                                <span>Area ID</span>
+                                <strong>Area 5</strong>
+                            </div>
+
+                            <div>
+                                <span>Capacity</span>
+                                <strong>Backend Pending</strong>
+                            </div>
+
+                            <div>
+                                <span>Occupancy</span>
+                                <strong>Backend Pending</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- AREA 6 -->
+                    <div class="parking-card">
+
+                        <div class="parking-card-header">
+
+                            <div class="parking-number">
+                                06
+                            </div>
+
+                            <span class="parking-status example">
+                                Example Data
+                            </span>
+
+                        </div>
+
+                        <h3>Parking Area 6</h3>
+
+                        <div class="parking-info">
+
+                            <div>
+                                <span>Area ID</span>
+                                <strong>Area 6</strong>
+                            </div>
+
+                            <div>
+                                <span>Capacity</span>
+                                <strong>Backend Pending</strong>
+                            </div>
+
+                            <div>
+                                <span>Vehicle Example</span>
+                                <strong>V1025</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- AREA 7 -->
+                    <div class="parking-card">
+
+                        <div class="parking-card-header">
+
+                            <div class="parking-number">
+                                07
+                            </div>
+
+                            <span class="parking-status pending">
+                                Data Pending
+                            </span>
+
+                        </div>
+
+                        <h3>Parking Area 7</h3>
+
+                        <div class="parking-info">
+
+                            <div>
+                                <span>Area ID</span>
+                                <strong>Area 7</strong>
+                            </div>
+
+                            <div>
+                                <span>Capacity</span>
+                                <strong>Backend Pending</strong>
+                            </div>
+
+                            <div>
+                                <span>Occupancy</span>
+                                <strong>Backend Pending</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- AREA 8 -->
+                    <div class="parking-card">
+
+                        <div class="parking-card-header">
+
+                            <div class="parking-number">
+                                08
+                            </div>
+
+                            <span class="parking-status pending">
+                                Data Pending
+                            </span>
+
+                        </div>
+
+                        <h3>Parking Area 8</h3>
+
+                        <div class="parking-info">
+
+                            <div>
+                                <span>Area ID</span>
+                                <strong>Area 8</strong>
+                            </div>
+
+                            <div>
+                                <span>Capacity</span>
+                                <strong>Backend Pending</strong>
+                            </div>
+
+                            <div>
+                                <span>Occupancy</span>
+                                <strong>Backend Pending</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- AREA 9 -->
+                    <div class="parking-card">
+
+                        <div class="parking-card-header">
+
+                            <div class="parking-number">
+                                09
+                            </div>
+
+                            <span class="parking-status pending">
+                                Data Pending
+                            </span>
+
+                        </div>
+
+                        <h3>Parking Area 9</h3>
+
+                        <div class="parking-info">
+
+                            <div>
+                                <span>Area ID</span>
+                                <strong>Area 9</strong>
+                            </div>
+
+                            <div>
+                                <span>Capacity</span>
+                                <strong>Backend Pending</strong>
+                            </div>
+
+                            <div>
+                                <span>Occupancy</span>
+                                <strong>Backend Pending</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- AREA 10 -->
+                    <div class="parking-card">
+
+                        <div class="parking-card-header">
+
+                            <div class="parking-number">
+                                10
+                            </div>
+
+                            <span class="parking-status pending">
+                                Data Pending
+                            </span>
+
+                        </div>
+
+                        <h3>Parking Area 10</h3>
+
+                        <div class="parking-info">
+
+                            <div>
+                                <span>Area ID</span>
+                                <strong>Area 10</strong>
+                            </div>
+
+                            <div>
+                                <span>Capacity</span>
+                                <strong>Backend Pending</strong>
+                            </div>
+
+                            <div>
+                                <span>Occupancy</span>
+                                <strong>Backend Pending</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LOCATION UPDATE FLOW -->
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <span class="section-label">
+                            LOCATION MANAGEMENT
+                        </span>
+
+                        <h2>Parking Location Update</h2>
+                    </div>
+
+                </div>
+
+                <div class="location-flow">
+
+                    <div class="flow-step">
+                        <div class="flow-icon">🚗</div>
+                        <strong>Vehicle</strong>
+                        <span>Arrives / Relocates</span>
+                    </div>
+
+                    <div class="flow-arrow">
+                        →
+                    </div>
+
+                    <div class="flow-step">
+                        <div class="flow-icon">📱</div>
+                        <strong>Driver Mobile App</strong>
+                        <span>Select / Scan Area</span>
+                    </div>
+
+                    <div class="flow-arrow">
+                        →
+                    </div>
+
+                    <div class="flow-step">
+                        <div class="flow-icon">📍</div>
+                        <strong>Parking Area</strong>
+                        <span>Current Location</span>
+                    </div>
+
+                    <div class="flow-arrow">
+                        →
+                    </div>
+
+                    <div class="flow-step">
+                        <div class="flow-icon">⚡</div>
+                        <strong>Business Event</strong>
+                        <span>Location Updated</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FOOTER -->
+            <footer class="page-footer">
+
+                <strong>
+                    Vehicle Yard Management System
+                </strong>
+
+                <span>
+                    Frontend Demo • Backend Integration Pending
+                </span>
+
+            </footer>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
