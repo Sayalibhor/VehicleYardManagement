@@ -21,13 +21,11 @@
 
         <div class="sidebar-logo">
             🚗
-
             <div>
                 <h2>Vehicle Yard</h2>
                 <span>Management System</span>
             </div>
         </div>
-
 
         <nav class="sidebar-nav">
 
@@ -73,7 +71,6 @@
 
         </nav>
 
-
         <div class="sidebar-bottom">
 
             <div class="system-status">
@@ -107,11 +104,10 @@
                 </p>
             </div>
 
-
             <div class="header-right">
 
-                <span class="demo-badge">
-                    Frontend Demo
+                <span class="demo-badge" id="connectionBadge">
+                    Connecting...
                 </span>
 
                 <a href="../index.html" class="logout-btn">
@@ -125,13 +121,13 @@
 
         <!-- ================= BACKEND NOTE ================= -->
 
-        <div class="backend-note">
+        <div class="backend-note" id="backendNote">
 
-            <strong>ℹ️ Backend Integration Pending</strong>
+            <strong>⏳ Connecting to Backend</strong>
 
             <p>
-                Live vehicle, movement, RFID and event statistics
-                will be displayed here after backend API integration.
+                Loading live vehicle, parking, RFID,
+                movement and business event statistics.
             </p>
 
         </div>
@@ -152,9 +148,10 @@
                         Vehicle Classes
                     </span>
 
-                    <h2>
-                        8
+                    <h2 id="vehicleClasses">
+                        —
                     </h2>
+
                 </div>
 
             </div>
@@ -171,9 +168,10 @@
                         Parking Areas
                     </span>
 
-                    <h2>
-                        10
+                    <h2 id="parkingAreas">
+                        —
                     </h2>
+
                 </div>
 
             </div>
@@ -197,6 +195,7 @@
                     <small>
                         Entry & Exit
                     </small>
+
                 </div>
 
             </div>
@@ -213,9 +212,10 @@
                         Driver App
                     </span>
 
-                    <h2>
-                        Active
+                    <h2 id="driverAppStatus">
+                        —
                     </h2>
+
                 </div>
 
             </div>
@@ -241,8 +241,8 @@
 
                 </div>
 
-                <span class="report-status">
-                    Backend Pending
+                <span class="report-status connected">
+                    Backend Connected
                 </span>
 
             </div>
@@ -260,8 +260,8 @@
                         Total Vehicles
                     </span>
 
-                    <strong>
-                        Backend Pending
+                    <strong id="totalVehicles">
+                        —
                     </strong>
 
                 </div>
@@ -277,8 +277,8 @@
                         Vehicles Parked
                     </span>
 
-                    <strong>
-                        Backend Pending
+                    <strong id="parkedVehicles">
+                        —
                     </strong>
 
                 </div>
@@ -294,8 +294,8 @@
                         Vehicles Relocated
                     </span>
 
-                    <strong>
-                        Backend Pending
+                    <strong id="relocatedVehicles">
+                        —
                     </strong>
 
                 </div>
@@ -311,8 +311,8 @@
                         Vehicles Exited
                     </span>
 
-                    <strong>
-                        Backend Pending
+                    <strong id="exitedVehicles">
+                        —
                     </strong>
 
                 </div>
@@ -335,7 +335,7 @@
                     </h2>
 
                     <p>
-                        Vehicle distribution across ten parking areas
+                        Live vehicle distribution across ten parking areas
                     </p>
 
                 </div>
@@ -343,56 +343,12 @@
             </div>
 
 
-            <div class="area-report-grid">
+            <div
+                class="area-report-grid"
+                id="areaReportGrid">
 
-                <div class="area-report-card">
-                    <span>Area 1</span>
-                    <strong>Backend Pending</strong>
-                </div>
-
-                <div class="area-report-card">
-                    <span>Area 2</span>
-                    <strong>Backend Pending</strong>
-                </div>
-
-                <div class="area-report-card">
-                    <span>Area 3</span>
-                    <strong>Backend Pending</strong>
-                </div>
-
-                <div class="area-report-card">
-                    <span>Area 4</span>
-                    <strong>Backend Pending</strong>
-                </div>
-
-                <div class="area-report-card">
-                    <span>Area 5</span>
-                    <strong>Backend Pending</strong>
-                </div>
-
-                <div class="area-report-card example-area">
-                    <span>Area 6</span>
-                    <strong>V1025 Example</strong>
-                </div>
-
-                <div class="area-report-card">
-                    <span>Area 7</span>
-                    <strong>Backend Pending</strong>
-                </div>
-
-                <div class="area-report-card">
-                    <span>Area 8</span>
-                    <strong>Backend Pending</strong>
-                </div>
-
-                <div class="area-report-card">
-                    <span>Area 9</span>
-                    <strong>Backend Pending</strong>
-                </div>
-
-                <div class="area-report-card">
-                    <span>Area 10</span>
-                    <strong>Backend Pending</strong>
+                <div class="loading-box">
+                    Loading parking areas...
                 </div>
 
             </div>
@@ -484,8 +440,8 @@
                         RFID Transactions
                     </span>
 
-                    <strong>
-                        Backend Pending
+                    <strong id="rfidTransactions">
+                        —
                     </strong>
 
                 </div>
@@ -516,180 +472,12 @@
             </div>
 
 
-            <div class="event-report-list">
+            <div
+                class="event-report-list"
+                id="eventReportList">
 
-                <div class="event-report-item">
-
-                    <span class="event-report-number">
-                        01
-                    </span>
-
-                    <div>
-
-                        <strong>
-                            Vehicle Entered Yard
-                        </strong>
-
-                        <p>
-                            Generated from RFID entry event
-                        </p>
-
-                    </div>
-
-                    <span class="event-pending">
-                        Backend Pending
-                    </span>
-
-                </div>
-
-
-                <div class="event-report-item">
-
-                    <span class="event-report-number">
-                        02
-                    </span>
-
-                    <div>
-
-                        <strong>
-                            Vehicle Assigned to Parking Area
-                        </strong>
-
-                        <p>
-                            Generated after driver parking update
-                        </p>
-
-                    </div>
-
-                    <span class="event-pending">
-                        Backend Pending
-                    </span>
-
-                </div>
-
-
-                <div class="event-report-item">
-
-                    <span class="event-report-number">
-                        03
-                    </span>
-
-                    <div>
-
-                        <strong>
-                            Vehicle Relocated
-                        </strong>
-
-                        <p>
-                            Generated when parking location changes
-                        </p>
-
-                    </div>
-
-                    <span class="event-pending">
-                        Backend Pending
-                    </span>
-
-                </div>
-
-
-                <div class="event-report-item">
-
-                    <span class="event-report-number">
-                        04
-                    </span>
-
-                    <div>
-
-                        <strong>
-                            Vehicle Ready for Dispatch
-                        </strong>
-
-                        <p>
-                            Business event indicating vehicle readiness
-                        </p>
-
-                    </div>
-
-                    <span class="event-pending">
-                        Backend Pending
-                    </span>
-
-                </div>
-
-
-                <div class="event-report-item">
-
-                    <span class="event-report-number">
-                        05
-                    </span>
-
-                    <div>
-
-                        <strong>
-                            Vehicle Exited Yard
-                        </strong>
-
-                        <p>
-                            Generated from RFID exit event
-                        </p>
-
-                    </div>
-
-                    <span class="event-pending">
-                        Backend Pending
-                    </span>
-
-                </div>
-
-
-                <div class="event-report-item">
-
-                    <span class="event-report-number">
-                        06
-                    </span>
-
-                    <div>
-
-                        <strong>
-                            Inventory Reconciliation
-                        </strong>
-
-                        <p>
-                            Used for vehicle inventory reconciliation
-                        </p>
-
-                    </div>
-
-                    <span class="event-pending">
-                        Backend Pending
-                    </span>
-
-                </div>
-
-
-                <div class="event-report-item">
-
-                    <span class="event-report-number">
-                        07
-                    </span>
-
-                    <div>
-
-                        <strong>
-                            Inventory Mismatch Alert
-                        </strong>
-
-                        <p>
-                            Generated when inventory information does not match
-                        </p>
-
-                    </div>
-
-                    <span class="event-pending">
-                        Backend Pending
-                    </span>
-
+                <div class="loading-box">
+                    Loading business events...
                 </div>
 
             </div>
@@ -712,6 +500,62 @@
                     <p>
                         Business event synchronization with SAP
                     </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="sap-summary-grid">
+
+                <div class="sap-summary-card">
+
+                    <span>
+                        Total Events
+                    </span>
+
+                    <strong id="sapTotal">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="sap-summary-card">
+
+                    <span>
+                        Pending SAP Sync
+                    </span>
+
+                    <strong id="sapPending">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="sap-summary-card">
+
+                    <span>
+                        Synced Events
+                    </span>
+
+                    <strong id="sapSynced">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="sap-summary-card">
+
+                    <span>
+                        Mismatch Alerts
+                    </span>
+
+                    <strong id="sapMismatch">
+                        —
+                    </strong>
 
                 </div>
 
@@ -770,7 +614,7 @@
 
                 Raw RFID reads and camera detections are not
                 sent directly to SAP. Only validated business
-                events are synchronized with SAP.
+                events are synchronized with the SAP system.
 
             </div>
 
@@ -790,8 +634,7 @@
                     </h2>
 
                     <p>
-                        Report export functionality will be connected
-                        with backend APIs.
+                        Generate a live summary using backend data.
                     </p>
 
                 </div>
@@ -803,7 +646,7 @@
 
                 <button
                     class="primary-btn"
-                    onclick="showReportMessage()">
+                    onclick="generateReport()">
 
                     📊 Generate Report
 
@@ -812,7 +655,7 @@
 
                 <button
                     class="secondary-btn"
-                    onclick="showReportMessage()">
+                    onclick="exportReport()">
 
                     📥 Export Report
 
@@ -831,9 +674,11 @@
 
         <!-- ================= FOOTER ================= -->
 
-        <footer class="page-footer">
+        <footer
+            class="page-footer"
+            id="pageFooter">
 
-            Frontend Demo • Reports & Analytics • Backend Integration Pending
+            Frontend • Reports & Analytics • Connecting to Backend
 
         </footer>
 
@@ -859,6 +704,14 @@
     font-size: 11px;
 
     font-weight: 600;
+}
+
+
+.report-status.connected {
+
+    background: #dcfce7;
+
+    color: #166534;
 }
 
 
@@ -970,23 +823,63 @@
 
 .area-report-card strong {
 
-    font-size: 11px;
+    display: block;
+
+    font-size: 13px;
+
+    color: #475569;
+}
+
+
+.area-report-card small {
+
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 10px;
 
     color: #64748b;
 }
 
 
-.area-report-card.example-area {
+.area-status {
 
-    background: #f8fafc;
+    display: inline-block;
 
-    border-color: #cbd5e1;
+    margin-top: 9px;
+
+    padding: 4px 8px;
+
+    border-radius: 12px;
+
+    font-size: 10px;
+
+    font-weight: 600;
 }
 
 
-.area-report-card.example-area strong {
+.area-status.available {
 
-    color: #475569;
+    background: #dcfce7;
+
+    color: #166534;
+}
+
+
+.area-status.occupied {
+
+    background: #fef3c7;
+
+    color: #92400e;
+}
+
+
+.area-status.full {
+
+    background: #fee2e2;
+
+    color: #991b1b;
 }
 
 
@@ -1080,13 +973,66 @@
 
     border-radius: 15px;
 
-    background: #f8fafc;
+    background: #fef3c7;
 
-    color: #64748b;
+    color: #92400e;
 
     font-size: 10px;
 
     font-weight: 600;
+}
+
+
+.event-synced {
+
+    background: #dcfce7;
+
+    color: #166534;
+}
+
+
+.sap-summary-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+
+.sap-summary-card {
+
+    padding: 18px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+}
+
+
+.sap-summary-card span {
+
+    display: block;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    margin-bottom: 8px;
+}
+
+
+.sap-summary-card strong {
+
+    color: #334155;
+
+    font-size: 22px;
 }
 
 
@@ -1178,6 +1124,19 @@
 }
 
 
+.loading-box {
+
+    padding: 30px;
+
+    text-align: center;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+}
+
+
 .report-actions {
 
     display: flex;
@@ -1198,8 +1157,6 @@
 }
 
 
-/* ================= RESPONSIVE ================= */
-
 @media (max-width: 1100px) {
 
     .report-grid {
@@ -1212,6 +1169,12 @@
 
         grid-template-columns:
             repeat(3, 1fr);
+    }
+
+    .sap-summary-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
 }
@@ -1228,6 +1191,11 @@
 
         grid-template-columns:
             repeat(2, 1fr);
+    }
+
+    .sap-summary-grid {
+
+        grid-template-columns: 1fr;
     }
 
     .event-report-item {
@@ -1262,22 +1230,830 @@
 </style>
 
 
-<!-- ================= PAGE JAVASCRIPT ================= -->
+<!-- ================= BACKEND JAVASCRIPT ================= -->
 
 <script>
 
-function showReportMessage() {
+const API_BASE_URL = "http://127.0.0.1:5000";
 
-    const message =
-        document.getElementById("reportMessage");
 
-    message.innerHTML =
-        "Report generation will be connected after backend API integration.";
+let vehicles = [];
+
+let parkingAreas = [];
+
+let movements = [];
+
+let rfidTransactions = [];
+
+let sapEvents = [];
+
+let drivers = [];
+
+
+/* ================= HTML ESCAPE ================= */
+
+function escapeHTML(value) {
+
+    if (value === null || value === undefined) {
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
 }
 
-</script>
 
+/* ================= FETCH HELPER ================= */
+
+async function fetchJSON(url) {
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+
+        throw new Error(
+            `API request failed: ${response.status}`
+        );
+
+    }
+
+    return await response.json();
+
+}
+
+
+/* ================= LOAD VEHICLES ================= */
+
+async function loadVehicles() {
+
+    vehicles = await fetchJSON(
+        `${API_BASE_URL}/api/driver/vehicles`
+    );
+
+}
+
+
+/* ================= LOAD PARKING ================= */
+
+async function loadParkingAreas() {
+
+    parkingAreas = await fetchJSON(
+        `${API_BASE_URL}/api/driver/parking-areas`
+    );
+
+}
+
+
+/* ================= LOAD MOVEMENTS ================= */
+
+async function loadMovements() {
+
+    movements = await fetchJSON(
+        `${API_BASE_URL}/api/driver/movements?limit=500`
+    );
+
+}
+
+
+/* ================= LOAD RFID ================= */
+
+async function loadRFID() {
+
+    rfidTransactions = await fetchJSON(
+        `${API_BASE_URL}/api/rfid/transactions?limit=500`
+    );
+
+}
+
+
+/* ================= LOAD SAP EVENTS ================= */
+
+async function loadSAPEvents() {
+
+    sapEvents = await fetchJSON(
+        `${API_BASE_URL}/api/sap/events`
+    );
+
+}
+
+
+/* ================= LOAD DRIVERS ================= */
+
+async function loadDrivers() {
+
+    drivers = await fetchJSON(
+        `${API_BASE_URL}/api/driver/drivers`
+    );
+
+}
+
+
+/* ================= DATE FORMAT ================= */
+
+function formatDateTime(value) {
+
+    if (!value) {
+        return "—";
+    }
+
+    const date = new Date(value);
+
+    if (Number.isNaN(date.getTime())) {
+        return escapeHTML(value);
+    }
+
+    return date.toLocaleString("en-IN", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+    });
+
+}
+
+
+/* ================= UPDATE OVERVIEW ================= */
+
+function updateOverview() {
+
+    const classes = new Set(
+        vehicles
+            .map(vehicle => vehicle.vehicle_class)
+            .filter(Boolean)
+    );
+
+    document.getElementById(
+        "vehicleClasses"
+    ).textContent = classes.size;
+
+
+    document.getElementById(
+        "parkingAreas"
+    ).textContent = parkingAreas.length;
+
+
+    document.getElementById(
+        "driverAppStatus"
+    ).textContent =
+        drivers.some(driver => driver.is_active)
+            ? "Active"
+            : "Inactive";
+
+}
+
+
+/* ================= VEHICLE REPORT ================= */
+
+function updateVehicleReport() {
+
+    const total = vehicles.length;
+
+
+    const parked = vehicles.filter(
+        vehicle =>
+            vehicle.current_status === "PARKED" ||
+            vehicle.current_status === "READY_FOR_DISPATCH"
+    ).length;
+
+
+    const exited = vehicles.filter(
+        vehicle =>
+            vehicle.current_status === "EXITED"
+    ).length;
+
+
+    const relocated = movements.filter(
+        movement =>
+            movement.movement_type === "SHIFTED"
+    ).length;
+
+
+    document.getElementById(
+        "totalVehicles"
+    ).textContent = total;
+
+
+    document.getElementById(
+        "parkedVehicles"
+    ).textContent = parked;
+
+
+    document.getElementById(
+        "relocatedVehicles"
+    ).textContent = relocated;
+
+
+    document.getElementById(
+        "exitedVehicles"
+    ).textContent = exited;
+
+}
+
+
+/* ================= PARKING REPORT ================= */
+
+function renderParkingReport() {
+
+    const container =
+        document.getElementById(
+            "areaReportGrid"
+        );
+
+
+    if (!parkingAreas.length) {
+
+        container.innerHTML = `
+            <div class="loading-box">
+                No parking areas found.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML =
+        parkingAreas.map(area => {
+
+            let status = "Available";
+
+            let statusClass = "available";
+
+
+            if (
+                area.current_occupancy >=
+                area.capacity
+            ) {
+
+                status = "Full";
+
+                statusClass = "full";
+
+            }
+            else if (
+                area.current_occupancy > 0
+            ) {
+
+                status = "Occupied";
+
+                statusClass = "occupied";
+
+            }
+
+
+            return `
+                <div class="area-report-card">
+
+                    <span>
+                        ${escapeHTML(area.name)}
+                    </span>
+
+                    <strong>
+                        ${area.current_occupancy}
+                        / ${area.capacity}
+                        Occupied
+                    </strong>
+
+                    <small>
+                        ${area.available_slots}
+                        slots available
+                    </small>
+
+                    <span class="area-status ${statusClass}">
+                        ${status}
+                    </span>
+
+                </div>
+            `;
+
+        }).join("");
+
+}
+
+
+/* ================= RFID REPORT ================= */
+
+function updateRFIDReport() {
+
+    document.getElementById(
+        "rfidTransactions"
+    ).textContent =
+        rfidTransactions.length;
+
+}
+
+
+/* ================= EVENT NAME ================= */
+
+function eventName(eventType) {
+
+    const names = {
+
+        "VEHICLE_ENTERED_YARD":
+            "Vehicle Entered Yard",
+
+        "VEHICLE_ASSIGNED_TO_PARKING":
+            "Vehicle Assigned to Parking Area",
+
+        "VEHICLE_RELOCATED":
+            "Vehicle Relocated",
+
+        "VEHICLE_READY_FOR_DISPATCH":
+            "Vehicle Ready for Dispatch",
+
+        "VEHICLE_EXITED_YARD":
+            "Vehicle Exited Yard",
+
+        "INVENTORY_RECONCILIATION":
+            "Inventory Reconciliation",
+
+        "INVENTORY_MISMATCH_ALERT":
+            "Inventory Mismatch Alert"
+
+    };
+
+
+    return names[eventType] ||
+        String(eventType || "")
+            .replace(/_/g, " ")
+            .replace(
+                /\b\w/g,
+                char => char.toUpperCase()
+            );
+
+}
+
+
+/* ================= EVENT REPORT ================= */
+
+function renderEventReport() {
+
+    const container =
+        document.getElementById(
+            "eventReportList"
+        );
+
+
+    const supportedEvents = [
+
+        {
+            number: "01",
+            type: "VEHICLE_ENTERED_YARD",
+            description:
+                "Generated from RFID entry event"
+        },
+
+        {
+            number: "02",
+            type: "VEHICLE_ASSIGNED_TO_PARKING",
+            description:
+                "Generated after driver parking update"
+        },
+
+        {
+            number: "03",
+            type: "VEHICLE_RELOCATED",
+            description:
+                "Generated when parking location changes"
+        },
+
+        {
+            number: "04",
+            type: "VEHICLE_READY_FOR_DISPATCH",
+            description:
+                "Business event indicating vehicle readiness"
+        },
+
+        {
+            number: "05",
+            type: "VEHICLE_EXITED_YARD",
+            description:
+                "Generated from RFID exit event"
+        },
+
+        {
+            number: "06",
+            type: "INVENTORY_RECONCILIATION",
+            description:
+                "Used for vehicle inventory reconciliation"
+        },
+
+        {
+            number: "07",
+            type: "INVENTORY_MISMATCH_ALERT",
+            description:
+                "Generated when inventory information does not match"
+        }
+
+    ];
+
+
+    container.innerHTML =
+        supportedEvents.map(item => {
+
+            const count =
+                sapEvents.filter(
+                    event =>
+                        event.event_type === item.type
+                ).length;
+
+
+            const synced =
+                sapEvents.filter(
+                    event =>
+                        event.event_type === item.type &&
+                        (
+                            event.sync_status === "SYNCED" ||
+                            event.sync_status === "SUCCESS"
+                        )
+                ).length;
+
+
+            let statusText =
+                count === 0
+                    ? "No Records"
+                    : `${count} Record${count > 1 ? "s" : ""}`;
+
+
+            let statusClass =
+                count === 0
+                    ? "event-pending"
+                    : "event-pending";
+
+
+            if (synced > 0) {
+
+                statusText +=
+                    ` • ${synced} Synced`;
+
+                statusClass +=
+                    " event-synced";
+
+            }
+
+
+            return `
+                <div class="event-report-item">
+
+                    <span class="event-report-number">
+                        ${item.number}
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            ${escapeHTML(
+                                eventName(item.type)
+                            )}
+                        </strong>
+
+                        <p>
+                            ${escapeHTML(
+                                item.description
+                            )}
+                        </p>
+
+                    </div>
+
+                    <span class="${statusClass}">
+                        ${escapeHTML(statusText)}
+                    </span>
+
+                </div>
+            `;
+
+        }).join("");
+
+}
+
+
+/* ================= SAP REPORT ================= */
+
+function updateSAPReport() {
+
+    const total =
+        sapEvents.length;
+
+
+    const pending =
+        sapEvents.filter(
+            event =>
+                event.sync_status === "PENDING"
+        ).length;
+
+
+    const synced =
+        sapEvents.filter(
+            event =>
+                event.sync_status === "SYNCED" ||
+                event.sync_status === "SUCCESS"
+        ).length;
+
+
+    const mismatch =
+        sapEvents.filter(
+            event =>
+                event.event_type ===
+                    "INVENTORY_MISMATCH_ALERT" ||
+                event.sync_status ===
+                    "MISMATCH"
+        ).length;
+
+
+    document.getElementById(
+        "sapTotal"
+    ).textContent = total;
+
+
+    document.getElementById(
+        "sapPending"
+    ).textContent = pending;
+
+
+    document.getElementById(
+        "sapSynced"
+    ).textContent = synced;
+
+
+    document.getElementById(
+        "sapMismatch"
+    ).textContent = mismatch;
+
+}
+
+
+/* ================= BACKEND CONNECTED ================= */
+
+function showConnected() {
+
+    document.getElementById(
+        "connectionBadge"
+    ).textContent =
+        "Backend Connected";
+
+
+    document.getElementById(
+        "backendNote"
+    ).innerHTML = `
+
+        <strong>
+            ✅ Backend integration active
+        </strong>
+
+        <p>
+            Live vehicle, parking, movement, RFID,
+            driver and business event statistics are
+            being received from the Vehicle Yard Management backend.
+        </p>
+
+    `;
+
+
+    document.getElementById(
+        "pageFooter"
+    ).textContent =
+        "Frontend • Reports & Analytics • Backend Connected";
+
+}
+
+
+/* ================= BACKEND ERROR ================= */
+
+function showBackendError(error) {
+
+    console.error(error);
+
+
+    document.getElementById(
+        "connectionBadge"
+    ).textContent =
+        "Backend Error";
+
+
+    document.getElementById(
+        "backendNote"
+    ).innerHTML = `
+
+        <strong>
+            ⚠️ Backend connection failed
+        </strong>
+
+        <p>
+            Unable to load report data.
+            Please make sure the Flask backend
+            is running on port 5000.
+        </p>
+
+    `;
+
+
+    document.getElementById(
+        "pageFooter"
+    ).textContent =
+        "Frontend • Reports & Analytics • Backend Connection Error";
+
+}
+
+
+/* ================= LOAD REPORT ================= */
+
+async function loadReport() {
+
+    try {
+
+        await Promise.all([
+
+            loadVehicles(),
+
+            loadParkingAreas(),
+
+            loadMovements(),
+
+            loadRFID(),
+
+            loadSAPEvents(),
+
+            loadDrivers()
+
+        ]);
+
+
+        updateOverview();
+
+        updateVehicleReport();
+
+        renderParkingReport();
+
+        updateRFIDReport();
+
+        renderEventReport();
+
+        updateSAPReport();
+
+        showConnected();
+
+    }
+    catch (error) {
+
+        showBackendError(error);
+
+    }
+
+}
+
+
+/* ================= GENERATE REPORT ================= */
+
+function generateReport() {
+
+    const message =
+        document.getElementById(
+            "reportMessage"
+        );
+
+
+    message.textContent =
+        `Live report generated successfully. ` +
+        `${vehicles.length} vehicles, ` +
+        `${parkingAreas.length} parking areas, ` +
+        `${rfidTransactions.length} RFID transactions ` +
+        `and ${sapEvents.length} business events loaded from backend.`;
+
+}
+
+
+/* ================= EXPORT REPORT ================= */
+
+function exportReport() {
+
+    const report = {
+
+        generated_at:
+            new Date().toISOString(),
+
+        vehicle_classes:
+            new Set(
+                vehicles.map(
+                    vehicle =>
+                        vehicle.vehicle_class
+                )
+            ).size,
+
+        total_vehicles:
+            vehicles.length,
+
+        parked_vehicles:
+            vehicles.filter(
+                vehicle =>
+                    vehicle.current_status === "PARKED" ||
+                    vehicle.current_status === "READY_FOR_DISPATCH"
+            ).length,
+
+        exited_vehicles:
+            vehicles.filter(
+                vehicle =>
+                    vehicle.current_status === "EXITED"
+            ).length,
+
+        relocated_movements:
+            movements.filter(
+                movement =>
+                    movement.movement_type === "SHIFTED"
+            ).length,
+
+        parking_areas:
+            parkingAreas.length,
+
+        rfid_transactions:
+            rfidTransactions.length,
+
+        business_events:
+            sapEvents.length,
+
+        pending_sap_events:
+            sapEvents.filter(
+                event =>
+                    event.sync_status === "PENDING"
+            ).length,
+
+        synced_sap_events:
+            sapEvents.filter(
+                event =>
+                    event.sync_status === "SYNCED" ||
+                    event.sync_status === "SUCCESS"
+            ).length
+
+    };
+
+
+    const blob =
+        new Blob(
+            [
+                JSON.stringify(
+                    report,
+                    null,
+                    2
+                )
+            ],
+            {
+                type:
+                    "application/json"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const link =
+        document.createElement("a");
+
+
+    link.href = url;
+
+    link.download =
+        "vehicle_yard_report.json";
+
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+
+
+    document.getElementById(
+        "reportMessage"
+    ).textContent =
+        "Report exported successfully as JSON.";
+
+}
+
+
+/* ================= INITIAL LOAD ================= */
+
+loadReport();
+
+
+/* ================= AUTO REFRESH ================= */
+
+setInterval(() => {
+
+    loadReport();
+
+}, 10000);
+
+</script>
 
 </body>
 

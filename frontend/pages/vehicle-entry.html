@@ -1,0 +1,2369 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+    Vehicle Yard Management - Vehicle Entry / Exit
+</title>
+
+<link
+    rel="stylesheet"
+    href="../css/style.css"
+>
+
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+<style>
+
+    .entry-container {
+        max-width: 1200px;
+        margin: 30px auto;
+        padding: 0 20px;
+    }
+
+    .page-title {
+        margin-bottom: 8px;
+    }
+
+    .page-subtitle {
+        color: #666;
+        margin-bottom: 25px;
+    }
+
+    .entry-card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .entry-card h2 {
+        margin-top: 0;
+        margin-bottom: 8px;
+    }
+
+    .section-description {
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    /* =================================================
+       ACTION MODE
+    ================================================= */
+
+    .action-mode {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+
+    .mode-btn {
+        flex: 1;
+        padding: 14px 20px;
+        border-radius: 9px;
+        border: 2px solid #d1d5db;
+        background: #ffffff;
+        color: #374151;
+        font-weight: 700;
+        cursor: pointer;
+        font-size: 15px;
+    }
+
+    .mode-btn.entry-active {
+        background: #16a34a;
+        border-color: #16a34a;
+        color: white;
+    }
+
+    .mode-btn.exit-active {
+        background: #dc2626;
+        border-color: #dc2626;
+        color: white;
+    }
+
+    /* =================================================
+       QR
+    ================================================= */
+
+    .qr-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+    }
+
+    #qr-reader {
+        width: 100%;
+        max-width: 500px;
+        margin: auto;
+    }
+
+    .qr-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+        flex-wrap: wrap;
+    }
+
+    button {
+        border: none;
+        border-radius: 7px;
+        padding: 11px 18px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .btn-primary {
+        background: #2563eb;
+        color: white;
+    }
+
+    .btn-success {
+        background: #16a34a;
+        color: white;
+    }
+
+    .btn-danger {
+        background: #dc2626;
+        color: white;
+    }
+
+    .btn-secondary {
+        background: #64748b;
+        color: white;
+    }
+
+    button:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+    }
+
+    .lookup-row {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .lookup-row input {
+        flex: 1;
+    }
+
+    input,
+    select,
+    textarea {
+        width: 100%;
+        padding: 11px 12px;
+        border: 1px solid #d1d5db;
+        border-radius: 7px;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 90px;
+    }
+
+    label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 7px;
+    }
+
+    .form-group {
+        margin-bottom: 17px;
+    }
+
+    .vehicle-details {
+        display: none;
+    }
+
+    .details-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .detail-box {
+        background: #f8fafc;
+        padding: 13px;
+        border-radius: 8px;
+    }
+
+    .detail-label {
+        font-size: 12px;
+        color: #64748b;
+        margin-bottom: 5px;
+    }
+
+    .detail-value {
+        font-weight: 600;
+        color: #111827;
+        word-break: break-word;
+    }
+
+    .vin-info {
+        margin-top: 15px;
+        padding: 12px 15px;
+        border-radius: 8px;
+        background: #fff7ed;
+        border: 1px solid #fed7aa;
+        color: #9a3412;
+        font-size: 14px;
+    }
+
+    .status-message {
+        display: none;
+        padding: 13px 15px;
+        border-radius: 8px;
+        margin-bottom: 18px;
+    }
+
+    .status-success {
+        display: block;
+        background: #dcfce7;
+        color: #166534;
+        border: 1px solid #bbf7d0;
+    }
+
+    .status-error {
+        display: block;
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #fecaca;
+    }
+
+    .status-info {
+        display: block;
+        background: #dbeafe;
+        color: #1e40af;
+        border: 1px solid #bfdbfe;
+    }
+
+    .status-warning {
+        display: block;
+        background: #fef3c7;
+        color: #92400e;
+        border: 1px solid #fde68a;
+    }
+
+    /* =================================================
+       CONFIRM SECTION
+    ================================================= */
+
+    .confirm-section {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .confirm-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+    }
+
+    .full-width {
+        grid-column: 1 / -1;
+    }
+
+    .exit-info {
+        display: none;
+        padding: 15px;
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 8px;
+        color: #991b1b;
+        margin-bottom: 18px;
+    }
+
+    .entry-only {
+        display: block;
+    }
+
+    .exit-only {
+        display: none;
+    }
+
+    /* =================================================
+       RECENT TABLE
+    ================================================= */
+
+    .recent-table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 950px;
+        table-layout: auto;
+    }
+
+    th,
+    td {
+        padding: 12px 14px;
+        border-bottom: 1px solid #e5e7eb;
+        text-align: left;
+        white-space: nowrap;
+        vertical-align: middle;
+    }
+
+    th {
+        background: #f8fafc;
+        font-size: 13px;
+        font-weight: 700;
+        color: #374151;
+    }
+
+    td {
+        font-size: 13px;
+        color: #374151;
+    }
+
+    tbody tr:hover {
+        background: #f8fafc;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 30px;
+        color: #64748b;
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 4px 9px;
+        border-radius: 12px;
+        font-size: 11px;
+        font-weight: 700;
+    }
+
+    .badge-entry {
+        background: #dcfce7;
+        color: #166534;
+    }
+
+    .badge-exit {
+        background: #fee2e2;
+        color: #991b1b;
+    }
+
+    /* =================================================
+       DRIVER NOT AVAILABLE
+    ================================================= */
+
+    .not-available {
+        color: #64748b;
+        font-weight: 500;
+    }
+
+    /* =================================================
+       RESPONSIVE
+    ================================================= */
+
+    @media (max-width: 850px) {
+
+        .qr-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .details-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .confirm-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .lookup-row {
+            flex-direction: column;
+        }
+
+        .action-mode {
+            flex-direction: column;
+        }
+
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="entry-container">
+
+<h1 class="page-title">
+    🚗 Vehicle Entry / Exit
+</h1>
+
+<p class="page-subtitle">
+    Scan a vehicle QR code to record yard entry or vehicle exit.
+</p>
+
+<div
+    id="statusMessage"
+    class="status-message"
+></div>
+
+
+<!-- =================================================
+     ACTION MODE
+================================================= -->
+
+<div class="entry-card">
+
+    <h2>
+        Vehicle Movement
+    </h2>
+
+    <p class="section-description">
+        Select whether this QR scan is an Entry or Exit transaction.
+    </p>
+
+    <div class="action-mode">
+
+        <button
+            id="entryModeBtn"
+            class="mode-btn entry-active"
+            onclick="setActionMode('ENTRY')"
+        >
+            🚗 Vehicle Entry
+        </button>
+
+        <button
+            id="exitModeBtn"
+            class="mode-btn"
+            onclick="setActionMode('EXIT')"
+        >
+            🚪 Vehicle Exit
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     QR SCANNER
+================================================= -->
+
+<div class="entry-card">
+
+    <h2>
+        📱 QR Code Vehicle Scan
+    </h2>
+
+    <p class="section-description">
+
+        Scan the QR code containing the Vehicle ID.
+
+        Example:
+
+        <strong>V1001</strong>
+
+    </p>
+
+    <div class="qr-layout">
+
+        <div>
+
+            <div id="qr-reader"></div>
+
+            <div class="qr-buttons">
+
+                <button
+                    id="startScannerBtn"
+                    class="btn-primary"
+                    onclick="startQRScanner()"
+                >
+                    📷 Start QR Scanner
+                </button>
+
+                <button
+                    id="stopScannerBtn"
+                    class="btn-danger"
+                    onclick="stopQRScanner()"
+                    disabled
+                >
+                    ⛔ Stop Scanner
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Manual Vehicle Lookup
+            </h3>
+
+            <p class="section-description">
+
+                If QR scanning is unavailable,
+                enter the Vehicle ID manually.
+
+            </p>
+
+            <div class="lookup-row">
+
+                <input
+                    type="text"
+                    id="vehicleIdInput"
+                    placeholder="Example: V1001"
+                    autocomplete="off"
+                >
+
+                <button
+                    class="btn-secondary"
+                    onclick="lookupVehicle()"
+                >
+                    🔎 Lookup
+                </button>
+
+            </div>
+
+            <div style="margin-top:20px;">
+
+                <strong>
+                    QR Prototype:
+                </strong>
+
+                <p style="color:#64748b;">
+
+                    VIN is not required because the
+                    prototype operational data does not
+                    contain actual VIN information.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     VEHICLE DETAILS
+================================================= -->
+
+<div
+    id="vehicleDetails"
+    class="entry-card vehicle-details"
+>
+
+    <h2>
+        🚘 Vehicle Information
+    </h2>
+
+    <p class="section-description">
+        Vehicle information loaded from the Vehicle Master.
+    </p>
+
+    <div class="details-grid">
+
+        <div class="detail-box">
+            <div class="detail-label">Vehicle ID</div>
+            <div id="detailVehicleId" class="detail-value">-</div>
+        </div>
+
+        <div class="detail-box">
+            <div class="detail-label">RFID Tag</div>
+            <div id="detailRfid" class="detail-value">-</div>
+        </div>
+
+        <div class="detail-box">
+            <div class="detail-label">VIN</div>
+            <div id="detailVin" class="detail-value">Not Available</div>
+        </div>
+
+        <div class="detail-box">
+            <div class="detail-label">Vehicle Class</div>
+            <div id="detailClass" class="detail-value">-</div>
+        </div>
+
+        <div class="detail-box">
+            <div class="detail-label">Current Status</div>
+            <div id="detailStatus" class="detail-value">-</div>
+        </div>
+
+        <div class="detail-box">
+            <div class="detail-label">Current Parking Area</div>
+            <div id="detailArea" class="detail-value">Not Assigned</div>
+        </div>
+
+        <div class="detail-box">
+            <div class="detail-label">Driver ID</div>
+            <div id="detailDriverId" class="detail-value">-</div>
+        </div>
+
+        <div class="detail-box">
+            <div class="detail-label">Driver Name</div>
+            <div id="detailDriverName" class="detail-value">-</div>
+        </div>
+
+        <div class="detail-box">
+            <div class="detail-label">License Number</div>
+            <div id="detailLicense" class="detail-value">-</div>
+        </div>
+
+        <div class="detail-box">
+            <div class="detail-label">Last Updated</div>
+            <div id="detailUpdated" class="detail-value">-</div>
+        </div>
+
+    </div>
+
+
+    <div class="vin-info">
+
+        ℹ️ <strong>VIN information:</strong>
+
+        Actual VIN is not available in the current
+        prototype data.
+
+        <br><br>
+
+        No fake VIN will be generated or stored.
+
+    </div>
+
+
+    <!-- =================================================
+         CONFIRM SECTION
+    ================================================= -->
+
+    <div class="confirm-section">
+
+        <h3 id="actionTitle">
+            Confirm Yard Entry
+        </h3>
+
+        <div
+            id="exitInfo"
+            class="exit-info"
+        >
+
+            🚪
+
+            <strong>
+                Vehicle Exit
+            </strong>
+
+            <br><br>
+
+            This vehicle is currently assigned to:
+
+            <strong id="exitCurrentArea">
+                -
+            </strong>
+
+            <br><br>
+
+            Confirming exit will remove the vehicle
+            from the current parking area and mark
+            it as <strong>EXITED</strong>.
+
+        </div>
+
+
+        <div class="confirm-grid">
+
+            <div
+                id="parkingAreaGroup"
+                class="form-group entry-only"
+            >
+
+                <label for="parkingArea">
+                    Parking Area *
+                </label>
+
+                <select id="parkingArea">
+
+                    <option value="">
+                        Select Parking Area
+                    </option>
+
+                    <option value="AREA_01">Parking Zone 1</option>
+                    <option value="AREA_02">Parking Zone 2</option>
+                    <option value="AREA_03">Parking Zone 3</option>
+                    <option value="AREA_04">Parking Zone 4</option>
+                    <option value="AREA_05">Parking Zone 5</option>
+                    <option value="AREA_06">Parking Zone 6</option>
+                    <option value="AREA_07">Parking Zone 7</option>
+                    <option value="AREA_08">Parking Zone 8</option>
+                    <option value="AREA_09">Parking Zone 9</option>
+                    <option value="AREA_10">Parking Zone 10</option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                id="movementGroup"
+                class="form-group entry-only"
+            >
+
+                <label for="movement">
+                    Movement
+                </label>
+
+                <select id="movement">
+
+                    <option value="Parked">
+                        Parked
+                    </option>
+
+                    <option value="Shifted">
+                        Shifted
+                    </option>
+
+                    <option value="Ready for Dispatch">
+                        Ready for Dispatch
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    SAP Status
+                </label>
+
+                <input
+                    type="text"
+                    id="sapStatus"
+                    value="Pending"
+                    readonly
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="notes">
+                    Notes
+                </label>
+
+                <input
+                    type="text"
+                    id="notes"
+                    placeholder="Optional notes"
+                >
+
+            </div>
+
+
+            <div class="form-group full-width">
+
+                <button
+                    id="confirmEntryBtn"
+                    class="btn-success"
+                    onclick="confirmVehicleAction()"
+                    disabled
+                >
+                    ✅ Confirm Vehicle Entry
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     RECENT VEHICLE MOVEMENTS
+================================================= -->
+
+<div class="entry-card">
+
+    <h2>
+        📋 Recent Vehicle Movements
+    </h2>
+
+    <p class="section-description">
+        Latest QR and manual vehicle entry records.
+    </p>
+
+    <div class="recent-table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Vehicle ID</th>
+                    <th>RFID</th>
+                    <th>Vehicle Class</th>
+                    <th>Parking Area</th>
+                    <th>Source</th>
+                    <th>Movement</th>
+                    <th>Time</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="recentEntriesBody">
+
+                <tr>
+
+                    <td
+                        colspan="8"
+                        class="empty-state"
+                    >
+                        Loading records...
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</div>
+
+<script>
+
+    // ========================================================
+    // API
+    // ========================================================
+
+    const API_BASE_URL = "http://127.0.0.1:5000";
+
+
+    // ========================================================
+    // GLOBAL STATE
+    // ========================================================
+
+    let html5QrCode = null;
+    let scannerRunning = false;
+    let selectedVehicleId = null;
+    let lastLookupData = null;
+    let actionMode = "ENTRY";
+
+
+    // ========================================================
+    // STATUS MESSAGE
+    // ========================================================
+
+    function showMessage(message, type = "info") {
+
+        const box =
+            document.getElementById("statusMessage");
+
+        box.textContent = message;
+
+        box.className =
+            "status-message status-" + type;
+
+        box.style.display = "block";
+    }
+
+
+    function hideMessage() {
+
+        const box =
+            document.getElementById("statusMessage");
+
+        box.style.display = "none";
+    }
+
+
+    // ========================================================
+    // SET ENTRY / EXIT MODE
+    // ========================================================
+
+    function setActionMode(mode) {
+
+        actionMode = mode;
+
+        const entryBtn =
+            document.getElementById("entryModeBtn");
+
+        const exitBtn =
+            document.getElementById("exitModeBtn");
+
+        const actionTitle =
+            document.getElementById("actionTitle");
+
+        const confirmButton =
+            document.getElementById("confirmEntryBtn");
+
+        const parkingAreaGroup =
+            document.getElementById("parkingAreaGroup");
+
+        const movementGroup =
+            document.getElementById("movementGroup");
+
+        const exitInfo =
+            document.getElementById("exitInfo");
+
+
+        if (mode === "ENTRY") {
+
+            entryBtn.className =
+                "mode-btn entry-active";
+
+            exitBtn.className =
+                "mode-btn";
+
+            actionTitle.textContent =
+                "Confirm Yard Entry";
+
+            confirmButton.className =
+                "btn-success";
+
+            confirmButton.textContent =
+                "✅ Confirm Vehicle Entry";
+
+            parkingAreaGroup.style.display =
+                "block";
+
+            movementGroup.style.display =
+                "block";
+
+            exitInfo.style.display =
+                "none";
+
+            document.getElementById(
+                "sapStatus"
+            ).value = "Pending";
+
+
+            if (selectedVehicleId) {
+
+                showMessage(
+                    "Entry mode selected. Select a parking area.",
+                    "info"
+                );
+
+                if (lastLookupData) {
+                    displayVehicleDetails(lastLookupData);
+                }
+            }
+
+        } else {
+
+            entryBtn.className =
+                "mode-btn";
+
+            exitBtn.className =
+                "mode-btn exit-active";
+
+            actionTitle.textContent =
+                "Confirm Vehicle Exit";
+
+            confirmButton.className =
+                "btn-danger";
+
+            confirmButton.textContent =
+                "🚪 Confirm Vehicle Exit";
+
+            parkingAreaGroup.style.display =
+                "none";
+
+            movementGroup.style.display =
+                "none";
+
+            exitInfo.style.display =
+                "block";
+
+            document.getElementById(
+                "sapStatus"
+            ).value = "Pending";
+
+
+            if (selectedVehicleId) {
+
+                updateExitInformation();
+
+                if (lastLookupData) {
+                    displayVehicleDetails(lastLookupData);
+                }
+            }
+
+        }
+
+    }
+
+
+    // ========================================================
+    // QR SCANNER
+    // ========================================================
+
+    async function startQRScanner() {
+
+        if (scannerRunning) {
+            return;
+        }
+
+        try {
+
+            html5QrCode =
+                new Html5Qrcode("qr-reader");
+
+            const config = {
+
+                fps: 10,
+
+                qrbox: {
+                    width: 250,
+                    height: 250
+                }
+
+            };
+
+            await html5QrCode.start(
+
+                {
+                    facingMode: "environment"
+                },
+
+                config,
+
+                onQRCodeSuccess,
+
+                onQRCodeError
+
+            );
+
+            scannerRunning = true;
+
+            document.getElementById(
+                "startScannerBtn"
+            ).disabled = true;
+
+            document.getElementById(
+                "stopScannerBtn"
+            ).disabled = false;
+
+            showMessage(
+                "QR scanner started. Scan the vehicle QR code.",
+                "info"
+            );
+
+        } catch (error) {
+
+            console.error(
+                "QR scanner error:",
+                error
+            );
+
+            showMessage(
+                "Unable to start camera. Use Manual Vehicle Lookup.",
+                "error"
+            );
+
+        }
+
+    }
+
+
+    async function stopQRScanner() {
+
+        if (!html5QrCode || !scannerRunning) {
+            return;
+        }
+
+        try {
+
+            await html5QrCode.stop();
+
+            await html5QrCode.clear();
+
+        } catch (error) {
+
+            console.error(
+                "Scanner stop error:",
+                error
+            );
+
+        }
+
+        scannerRunning = false;
+
+        document.getElementById(
+            "startScannerBtn"
+        ).disabled = false;
+
+        document.getElementById(
+            "stopScannerBtn"
+        ).disabled = true;
+
+    }
+
+
+    function onQRCodeSuccess(decodedText) {
+
+        const vehicleId =
+            String(decodedText)
+                .trim()
+                .toUpperCase();
+
+        if (!/^V\d+$/i.test(vehicleId)) {
+
+            showMessage(
+                "Invalid QR code. QR must contain a Vehicle ID such as V1001.",
+                "error"
+            );
+
+            return;
+        }
+
+        document.getElementById(
+            "vehicleIdInput"
+        ).value = vehicleId;
+
+        lookupVehicle(vehicleId);
+
+        stopQRScanner();
+
+    }
+
+
+    function onQRCodeError(errorMessage) {
+
+        // Normal QR frames can produce decode errors.
+        // Ignore them.
+
+    }
+
+
+    // ========================================================
+    // VEHICLE LOOKUP
+    // ========================================================
+
+    async function lookupVehicle(providedVehicleId = null) {
+
+        const input =
+            document.getElementById(
+                "vehicleIdInput"
+            );
+
+        const vehicleId =
+            String(
+                providedVehicleId
+                || input.value
+                || ""
+            )
+            .trim()
+            .toUpperCase();
+
+
+        if (!vehicleId) {
+
+            showMessage(
+                "Please enter a Vehicle ID.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if (!/^V\d+$/i.test(vehicleId)) {
+
+            showMessage(
+                "Invalid Vehicle ID. Example: V1001",
+                "error"
+            );
+
+            return;
+        }
+
+
+        try {
+
+            showMessage(
+                "Loading vehicle information...",
+                "info"
+            );
+
+
+            const response =
+                await fetch(
+                    API_BASE_URL
+                    + "/api/entry/qr/vehicle/"
+                    + encodeURIComponent(vehicleId)
+                );
+
+
+            const result =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    result.message
+                    || "Vehicle lookup failed"
+                );
+
+            }
+
+
+            if (!result.vehicle) {
+
+                throw new Error(
+                    "Vehicle information was not returned."
+                );
+
+            }
+
+
+            selectedVehicleId =
+                result.vehicle.vehicle_id;
+
+            lastLookupData =
+                result;
+
+
+            displayVehicleDetails(result);
+
+
+            if (actionMode === "ENTRY") {
+
+                showMessage(
+                    "Vehicle found successfully. Ready for Entry.",
+                    "success"
+                );
+
+            } else {
+
+                updateExitInformation();
+
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "Lookup error:",
+                error
+            );
+
+            selectedVehicleId = null;
+            lastLookupData = null;
+
+
+            document.getElementById(
+                "vehicleDetails"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "confirmEntryBtn"
+            ).disabled = true;
+
+
+            showMessage(
+                error.message
+                || "Vehicle lookup failed.",
+                "error"
+            );
+
+        }
+
+    }
+
+
+    // ========================================================
+    // DISPLAY VEHICLE DETAILS
+    // ========================================================
+
+    function displayVehicleDetails(result) {
+
+        const vehicle =
+            result.vehicle || {};
+
+        const driver =
+            result.driver || {};
+
+        const parkingArea =
+            result.parking_area || {};
+
+
+        // ====================================================
+        // VEHICLE
+        // ====================================================
+
+        document.getElementById(
+            "detailVehicleId"
+        ).textContent =
+            safeDisplay(
+                vehicle.vehicle_id
+            );
+
+
+        document.getElementById(
+            "detailRfid"
+        ).textContent =
+            safeDisplay(
+                vehicle.rfid_tag
+            );
+
+
+        // ====================================================
+        // VIN
+        // ====================================================
+
+        const vin =
+            String(
+                vehicle.vin
+                || ""
+            ).trim();
+
+
+        const isPendingVin =
+            vin
+                .toUpperCase()
+                .startsWith("PENDING-");
+
+
+        const validVin =
+            /^[A-HJ-NPR-Z0-9]{17}$/.test(vin);
+
+
+        document.getElementById(
+            "detailVin"
+        ).textContent =
+            (
+                validVin
+                && !isPendingVin
+            )
+                ? vin
+                : "Not Available";
+
+
+        // ====================================================
+        // VEHICLE CLASS
+        // ====================================================
+
+        document.getElementById(
+            "detailClass"
+        ).textContent =
+            safeDisplay(
+                vehicle.vehicle_class
+            );
+
+
+        // ====================================================
+        // STATUS
+        // ====================================================
+
+        document.getElementById(
+            "detailStatus"
+        ).textContent =
+            safeDisplay(
+                vehicle.current_status
+            );
+
+
+        // ====================================================
+        // PARKING AREA
+        // ====================================================
+
+        document.getElementById(
+            "detailArea"
+        ).textContent =
+            safeDisplay(
+                parkingArea.name
+                || vehicle.current_area_id,
+                "Not Assigned"
+            );
+
+
+        // ====================================================
+        // DRIVER
+        //
+        // IMPORTANT:
+        // No fake driver data is generated.
+        // If backend provides actual data, display it.
+        // Otherwise show "-".
+        // ====================================================
+
+        const driverId =
+            driver.driver_id
+            || driver.full_name_id
+            || null;
+
+
+        const driverName =
+            driver.driver_name
+            || driver.full_name
+            || null;
+
+
+        const licenseNumber =
+            driver.license_number
+            || null;
+
+
+        document.getElementById(
+            "detailDriverId"
+        ).textContent =
+            safeDisplay(
+                driverId
+            );
+
+
+        document.getElementById(
+            "detailDriverName"
+        ).textContent =
+            safeDisplay(
+                driverName
+            );
+
+
+        document.getElementById(
+            "detailLicense"
+        ).textContent =
+            safeDisplay(
+                licenseNumber
+            );
+
+
+        // ====================================================
+        // LAST UPDATED
+        // ====================================================
+
+        document.getElementById(
+            "detailUpdated"
+        ).textContent =
+            formatDateTime(
+                vehicle.last_updated_at
+            );
+
+
+        // ====================================================
+        // SHOW DETAILS
+        // ====================================================
+
+        document.getElementById(
+            "vehicleDetails"
+        ).style.display =
+            "block";
+
+
+        // ====================================================
+        // ENTRY / EXIT VALIDATION
+        // ====================================================
+
+        const status =
+            String(
+                vehicle.current_status
+                || ""
+            ).toUpperCase();
+
+
+        const currentArea =
+            vehicle.current_area_id
+            || null;
+
+
+        if (actionMode === "ENTRY") {
+
+            if (
+                status === "INSIDE"
+                || currentArea
+            ) {
+
+                showMessage(
+                    "Vehicle is already inside the yard. Use Vehicle Exit if it needs to leave.",
+                    "warning"
+                );
+
+
+                document.getElementById(
+                    "confirmEntryBtn"
+                ).disabled = true;
+
+
+            } else {
+
+                document.getElementById(
+                    "confirmEntryBtn"
+                ).disabled = false;
+
+            }
+
+
+        } else {
+
+            if (
+                !currentArea
+                ||
+                status === "EXPECTED"
+                ||
+                status === "EXITED"
+            ) {
+
+                showMessage(
+                    "This vehicle is not currently parked inside the yard. Exit cannot be confirmed.",
+                    "error"
+                );
+
+
+                document.getElementById(
+                    "confirmEntryBtn"
+                ).disabled = true;
+
+
+            } else {
+
+                document.getElementById(
+                    "confirmEntryBtn"
+                ).disabled = false;
+
+            }
+
+        }
+
+
+        if (actionMode === "EXIT") {
+
+            updateExitInformation();
+
+        }
+
+    }
+
+
+    // ========================================================
+    // SAFE DISPLAY
+    // ========================================================
+
+    function safeDisplay(value, fallback = "-") {
+
+        if (
+            value === null
+            ||
+            value === undefined
+            ||
+            String(value).trim() === ""
+            ||
+            String(value).toLowerCase() === "null"
+            ||
+            String(value).toLowerCase() === "undefined"
+        ) {
+
+            return fallback;
+
+        }
+
+        return String(value);
+
+    }
+
+
+    // ========================================================
+    // EXIT INFORMATION
+    // ========================================================
+
+    function updateExitInformation() {
+
+        if (!lastLookupData) {
+            return;
+        }
+
+
+        const vehicle =
+            lastLookupData.vehicle || {};
+
+        const parkingArea =
+            lastLookupData.parking_area || {};
+
+
+        const currentArea =
+            parkingArea.name
+            || vehicle.current_area_id
+            || "Not Assigned";
+
+
+        document.getElementById(
+            "exitCurrentArea"
+        ).textContent =
+            currentArea;
+
+
+        const status =
+            String(
+                vehicle.current_status
+                || ""
+            ).toUpperCase();
+
+
+        if (
+            vehicle.current_area_id
+            &&
+            status !== "EXITED"
+        ) {
+
+            document.getElementById(
+                "confirmEntryBtn"
+            ).disabled = false;
+
+        } else {
+
+            document.getElementById(
+                "confirmEntryBtn"
+            ).disabled = true;
+
+        }
+
+    }
+
+
+    // ========================================================
+    // CONFIRM ENTRY / EXIT
+    // ========================================================
+
+    async function confirmVehicleAction() {
+
+        if (!selectedVehicleId) {
+
+            showMessage(
+                "Please scan or lookup a vehicle first.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (actionMode === "ENTRY") {
+
+            await confirmVehicleEntry();
+
+        } else {
+
+            await confirmVehicleExit();
+
+        }
+
+    }
+
+
+    // ========================================================
+    // CONFIRM ENTRY
+    // ========================================================
+
+    async function confirmVehicleEntry() {
+
+        const parkingArea =
+            document.getElementById(
+                "parkingArea"
+            ).value;
+
+
+        const movement =
+            document.getElementById(
+                "movement"
+            ).value;
+
+
+        const notes =
+            document.getElementById(
+                "notes"
+            ).value.trim();
+
+
+        if (!parkingArea) {
+
+            showMessage(
+                "Please select a Parking Area.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const button =
+            document.getElementById(
+                "confirmEntryBtn"
+            );
+
+
+        button.disabled = true;
+
+        button.textContent =
+            "Saving Entry...";
+
+
+        try {
+
+            const payload = {
+
+                vehicle_id:
+                    selectedVehicleId,
+
+                parking_area_id:
+                    parkingArea,
+
+                movement:
+                    movement,
+
+                notes:
+                    notes
+                    ||
+                    "Vehicle entry through QR Code scan"
+
+            };
+
+
+            const response =
+                await fetch(
+                    API_BASE_URL
+                    + "/api/entry/qr/entry",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify(payload)
+
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    result.message
+                    || "Vehicle entry failed"
+                );
+
+            }
+
+
+            showMessage(
+                result.message
+                || "Vehicle entry saved successfully.",
+                "success"
+            );
+
+
+            await lookupVehicle(
+                selectedVehicleId
+            );
+
+
+            document.getElementById(
+                "parkingArea"
+            ).value = "";
+
+
+            document.getElementById(
+                "movement"
+            ).value = "Parked";
+
+
+            document.getElementById(
+                "notes"
+            ).value = "";
+
+
+            await loadRecentEntries();
+
+
+        } catch (error) {
+
+            console.error(
+                "Entry save error:",
+                error
+            );
+
+
+            showMessage(
+                error.message
+                || "Vehicle entry failed.",
+                "error"
+            );
+
+        } finally {
+
+            if (
+                selectedVehicleId
+                &&
+                actionMode === "ENTRY"
+            ) {
+
+                button.disabled = true;
+
+
+                const vehicle =
+                    lastLookupData
+                    &&
+                    lastLookupData.vehicle;
+
+
+                if (
+                    vehicle
+                    &&
+                    !vehicle.current_area_id
+                ) {
+
+                    button.disabled = false;
+
+                }
+
+            }
+
+
+            button.textContent =
+                "✅ Confirm Vehicle Entry";
+
+        }
+
+    }
+
+
+    // ========================================================
+    // CONFIRM EXIT
+    // ========================================================
+
+    async function confirmVehicleExit() {
+
+        if (!selectedVehicleId) {
+
+            showMessage(
+                "Please scan or lookup a vehicle first.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const button =
+            document.getElementById(
+                "confirmEntryBtn"
+            );
+
+
+        const notes =
+            document.getElementById(
+                "notes"
+            ).value.trim();
+
+
+        button.disabled = true;
+
+        button.textContent =
+            "Processing Exit...";
+
+
+        try {
+
+            const payload = {
+
+                vehicle_id:
+                    selectedVehicleId,
+
+                notes:
+                    notes
+                    ||
+                    "Vehicle exit through QR Code scan"
+
+            };
+
+
+            const response =
+                await fetch(
+                    API_BASE_URL
+                    + "/api/entry/qr/exit",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify(payload)
+
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    result.message
+                    || "Vehicle exit failed"
+                );
+
+            }
+
+
+            showMessage(
+                result.message
+                || "Vehicle exited the yard successfully.",
+                "success"
+            );
+
+
+            await lookupVehicle(
+                selectedVehicleId
+            );
+
+
+            document.getElementById(
+                "notes"
+            ).value = "";
+
+
+            await loadRecentEntries();
+
+
+        } catch (error) {
+
+            console.error(
+                "Exit save error:",
+                error
+            );
+
+
+            showMessage(
+                error.message
+                || "Vehicle exit failed.",
+                "error"
+            );
+
+        } finally {
+
+            button.textContent =
+                "🚪 Confirm Vehicle Exit";
+
+            updateExitInformation();
+
+        }
+
+    }
+
+
+    // ========================================================
+    // RECENT ENTRIES
+    // ========================================================
+
+    async function loadRecentEntries() {
+
+        const tbody =
+            document.getElementById(
+                "recentEntriesBody"
+            );
+
+
+        try {
+
+            const response =
+                await fetch(
+                    API_BASE_URL
+                    + "/api/entry/recent?limit=50"
+                );
+
+
+            const result =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    result.message
+                    || "Unable to load recent entries"
+                );
+
+            }
+
+
+            const records =
+                result.records
+                || result.data
+                || [];
+
+
+            if (!records.length) {
+
+                tbody.innerHTML = `
+
+                    <tr>
+
+                        <td
+                            colspan="8"
+                            class="empty-state"
+                        >
+                            No vehicle movements found.
+                        </td>
+
+                    </tr>
+
+                `;
+
+                return;
+
+            }
+
+
+            tbody.innerHTML =
+                records.map(
+                    record => {
+
+
+                        const notes =
+                            String(
+                                record.notes
+                                || ""
+                            );
+
+
+                        let movement =
+                            "Entry";
+
+
+                        if (
+                            notes
+                                .toUpperCase()
+                                .includes("EXIT")
+                        ) {
+
+                            movement = "Exit";
+
+                        } else if (
+                            notes
+                                .toUpperCase()
+                                .includes("MOVEMENT:")
+                        ) {
+
+                            const match =
+                                notes.match(
+                                    /Movement:([^|]+)/i
+                                );
+
+
+                            if (match) {
+
+                                movement =
+                                    match[1].trim();
+
+                            }
+
+                        }
+
+
+                        const isExit =
+                            movement
+                                .toUpperCase()
+                                .includes("EXIT");
+
+
+                        const source =
+                            safeDisplay(
+                                record.entry_source
+                            );
+
+
+                        const parkingArea =
+                            record.parking_area_id
+                            || (
+                                isExit
+                                    ? "Yard Exit"
+                                    : "-"
+                            );
+
+
+                        return `
+
+                            <tr>
+
+                                <td>
+                                    ${escapeHtml(
+                                        safeDisplay(
+                                            record.entry_id
+                                        )
+                                    )}
+                                </td>
+
+                                <td>
+                                    ${escapeHtml(
+                                        safeDisplay(
+                                            record.vehicle_id
+                                        )
+                                    )}
+                                </td>
+
+                                <td>
+                                    ${escapeHtml(
+                                        safeDisplay(
+                                            record.rfid_tag
+                                        )
+                                    )}
+                                </td>
+
+                                <td>
+                                    ${escapeHtml(
+                                        safeDisplay(
+                                            record.vehicle_class
+                                        )
+                                    )}
+                                </td>
+
+                                <td>
+                                    ${escapeHtml(
+                                        parkingArea
+                                    )}
+                                </td>
+
+                                <td>
+
+                                    <span
+                                        class="badge ${
+                                            isExit
+                                                ? "badge-exit"
+                                                : "badge-entry"
+                                        }"
+                                    >
+                                        ${escapeHtml(
+                                            source
+                                        )}
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span
+                                        class="badge ${
+                                            isExit
+                                                ? "badge-exit"
+                                                : "badge-entry"
+                                        }"
+                                    >
+                                        ${escapeHtml(
+                                            movement
+                                        )}
+                                    </span>
+
+                                </td>
+
+                                <td>
+                                    ${escapeHtml(
+                                        formatDateTime(
+                                            record.entry_time
+                                        )
+                                    )}
+                                </td>
+
+                            </tr>
+
+                        `;
+
+                    }
+                ).join("");
+
+
+        } catch (error) {
+
+            console.error(
+                "Recent entries error:",
+                error
+            );
+
+
+            tbody.innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="8"
+                        class="empty-state"
+                    >
+                        Unable to load recent vehicle movements.
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+
+    }
+
+
+    // ========================================================
+    // DATE FORMAT
+    // ========================================================
+
+    function formatDateTime(value) {
+
+        if (!value) {
+            return "-";
+        }
+
+
+        try {
+
+            const date =
+                new Date(value);
+
+
+            if (
+                Number.isNaN(
+                    date.getTime()
+                )
+            ) {
+
+                return value;
+
+            }
+
+
+            return date.toLocaleString();
+
+        } catch (error) {
+
+            return value;
+
+        }
+
+    }
+
+
+    // ========================================================
+    // HTML ESCAPE
+    // ========================================================
+
+    function escapeHtml(value) {
+
+        if (
+            value === null
+            ||
+            value === undefined
+        ) {
+
+            return "";
+
+        }
+
+
+        return String(value)
+
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+
+            .replace(
+                /</g,
+                "&lt;"
+            )
+
+            .replace(
+                />/g,
+                "&gt;"
+            )
+
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+    }
+
+
+    // ========================================================
+    // ENTER KEY
+    // ========================================================
+
+    document
+        .getElementById("vehicleIdInput")
+        .addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Enter"
+                ) {
+
+                    lookupVehicle();
+
+                }
+
+            }
+        );
+
+
+    // ========================================================
+    // INITIAL LOAD
+    // ========================================================
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function() {
+
+            setActionMode("ENTRY");
+
+            loadRecentEntries();
+
+        }
+    );
+
+</script>
+
+</body>
+
+</html>

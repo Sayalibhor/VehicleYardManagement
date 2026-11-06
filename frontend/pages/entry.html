@@ -1,0 +1,2262 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vehicle Yard Management System - Vehicle Entry</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f9;
+            color: #222;
+        }
+
+        .page-container {
+            padding: 25px;
+        }
+
+        .page-title {
+            margin-bottom: 20px;
+        }
+
+        .page-title h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .page-title p {
+            margin-top: 7px;
+            color: #666;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 22px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 21px;
+        }
+
+        .card-description {
+            color: #666;
+            margin-bottom: 18px;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        button {
+            border: none;
+            border-radius: 7px;
+            padding: 11px 18px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-success {
+            background: #16a34a;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #15803d;
+        }
+
+        .btn-secondary {
+            background: #64748b;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #475569;
+        }
+
+        .btn-danger {
+            background: #dc2626;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #b91c1c;
+        }
+
+        /* =========================
+           FILE UPLOAD
+        ========================= */
+
+        .upload-area {
+            border: 2px dashed #cbd5e1;
+            border-radius: 10px;
+            padding: 25px;
+            background: #f8fafc;
+        }
+
+        .file-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            background: white;
+            margin-bottom: 15px;
+        }
+
+        .selected-file {
+            margin: 10px 0 15px;
+            color: #334155;
+            font-size: 14px;
+        }
+
+        .upload-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* =========================
+           ALERTS
+        ========================= */
+
+        .message {
+            display: none;
+            padding: 13px 16px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .message.success {
+            display: block;
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .message.error {
+            display: block;
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+
+        .message.info {
+            display: block;
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+        }
+
+        /* =========================
+           SUMMARY
+        ========================= */
+
+        .summary-box {
+            display: none;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .summary-item {
+            padding: 18px;
+            border-radius: 10px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+
+        .summary-item .label {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 7px;
+        }
+
+        .summary-item .value {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 18px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1200px;
+            background: white;
+        }
+
+        th {
+            background: #1e293b;
+            color: white;
+            padding: 12px 10px;
+            text-align: left;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 11px 10px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        .empty-row {
+            text-align: center;
+            padding: 30px;
+            color: #64748b;
+        }
+
+        /* =========================
+           STATUS BADGES
+        ========================= */
+
+        .badge {
+            display: inline-block;
+            padding: 5px 9px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .badge-synced {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-movement {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        /* =========================
+           MANUAL FORM
+        ========================= */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 17px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 7px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #2563eb;
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .manual-buttons {
+            margin-top: 18px;
+            display: flex;
+            gap: 10px;
+        }
+
+        /* =========================
+           LOADING
+        ========================= */
+
+        .loading {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            background: #f1f5f9;
+            border-radius: 7px;
+            color: #334155;
+            font-weight: 600;
+        }
+
+        /* =========================
+           SECTION HEADER
+        ========================= */
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .section-header h2 {
+            margin-bottom: 0;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+            .summary-box {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .page-container {
+                padding: 15px;
+            }
+
+            .summary-box,
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <!-- =====================================================
+         PAGE TITLE
+    ====================================================== -->
+
+    <div class="page-title">
+        <h1>🚗 Vehicle Entry</h1>
+        <p>Upload operational records or enter vehicle information manually.</p>
+    </div>
+
+
+    <!-- =====================================================
+         PDF / EXCEL UPLOAD
+    ====================================================== -->
+
+    <div class="card">
+
+        <h2>📄 Upload Vehicle Entry Records</h2>
+
+        <div class="card-description">
+            Upload a PDF, XLSX or XLS file containing operational vehicle records.
+        </div>
+
+        <div class="upload-area">
+
+            <input
+                type="file"
+                id="entryFile"
+                class="file-input"
+                accept=".pdf,.xlsx,.xls"
+            >
+
+            <div id="selectedFile" class="selected-file">
+                No file selected
+            </div>
+
+            <div class="upload-buttons">
+
+                <button
+                    type="button"
+                    class="btn-primary"
+                    id="uploadExtractBtn"
+                    onclick="uploadAndExtract()">
+                    📤 Upload & Extract
+                </button>
+
+                <button
+                    type="button"
+                    class="btn-secondary"
+                    onclick="clearUpload()">
+                    ✖ Clear
+                </button>
+
+            </div>
+
+            <div id="uploadLoading" class="loading">
+                ⏳ Uploading file and extracting records...
+            </div>
+
+            <div id="uploadMessage" class="message"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         EXTRACTION SUMMARY
+    ====================================================== -->
+
+    <div
+        class="card"
+        id="extractedSection"
+        style="display:none;">
+
+        <div class="section-header">
+
+            <div>
+                <h2>📋 Extracted Records</h2>
+                <div class="card-description">
+                    Review the records extracted from the uploaded file.
+                </div>
+            </div>
+
+            <!-- IMPORTANT:
+                 onclick MUST be saveAllRecords()
+            -->
+
+            <button
+                type="button"
+                class="btn-success"
+                id="saveAllBtn"
+                onclick="saveAllRecords()">
+                💾 Save All Records
+            </button>
+
+        </div>
+
+        <!-- Summary -->
+
+        <div
+            class="summary-box"
+            id="extractedSummary">
+
+            <div class="summary-item">
+                <div class="label">Total Records</div>
+                <div class="value" id="totalExtracted">0</div>
+            </div>
+
+            <div class="summary-item">
+                <div class="label">Ready to Save</div>
+                <div class="value" id="readyToSave">0</div>
+            </div>
+
+            <div class="summary-item">
+                <div class="label">Saved</div>
+                <div class="value" id="savedCount">0</div>
+            </div>
+
+            <div class="summary-item">
+                <div class="label">Failed</div>
+                <div class="value" id="failedCount">0</div>
+            </div>
+
+        </div>
+
+
+        <!-- Extracted Table -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Rec #</th>
+                        <th>Driver ID</th>
+                        <th>Vehicle ID</th>
+                        <th>RFID Tag</th>
+                        <th>Class</th>
+                        <th>Date</th>
+                        <th>Time (UTC)</th>
+                        <th>Parking Area</th>
+                        <th>Movement</th>
+                        <th>SAP</th>
+                    </tr>
+                </thead>
+
+                <tbody id="extractedTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div
+            id="saveMessage"
+            class="message">
+        </div>
+
+        <div
+            id="saveLoading"
+            class="loading">
+            ⏳ Saving records to database...
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         SAVED RECORDS
+    ====================================================== -->
+
+    <div class="card">
+
+        <div class="section-header">
+
+            <div>
+                <h2>💾 Saved Vehicle Entry Records</h2>
+                <div class="card-description">
+                    Records currently saved in the Vehicle Yard database.
+                </div>
+            </div>
+
+            <button
+                type="button"
+                class="btn-secondary"
+                onclick="loadSavedRecords()">
+                🔄 Refresh Records
+            </button>
+
+        </div>
+
+        <div
+            id="savedMessage"
+            class="message">
+        </div>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Entry ID</th>
+                        <th>Vehicle ID</th>
+                        <th>RFID Tag</th>
+                        <th>VIN</th>
+                        <th>Class</th>
+                        <th>Driver ID</th>
+                        <th>Driver Name</th>
+                        <th>License</th>
+                        <th>Parking Area</th>
+                        <th>Source</th>
+                        <th>Entry Time</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="savedTableBody">
+
+                    <tr>
+                        <td
+                            colspan="11"
+                            class="empty-row">
+                            Loading saved records...
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MANUAL VEHICLE ENTRY
+    ====================================================== -->
+
+    <div class="card">
+
+        <h2>✍️ Manual Vehicle Entry</h2>
+
+        <div class="card-description">
+            Enter vehicle information manually and save it to the database.
+        </div>
+
+        <form id="manualEntryForm">
+
+            <div class="form-grid">
+
+                <!-- Vehicle ID -->
+
+                <div class="form-group">
+                    <label for="vehicleId">
+                        Vehicle ID *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="vehicleId"
+                        name="vehicle_id"
+                        placeholder="Example: V1001"
+                        required>
+                </div>
+
+
+                <!-- RFID -->
+
+                <div class="form-group">
+                    <label for="rfidTag">
+                        RFID Tag *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="rfidTag"
+                        name="rfid_tag"
+                        placeholder="Example: RF-2824-B1"
+                        required>
+                </div>
+
+
+                <!-- VIN -->
+
+                <div class="form-group">
+                    <label for="vin">
+                        VIN *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="vin"
+                        name="vin"
+                        placeholder="Enter VIN"
+                        required>
+                </div>
+
+
+                <!-- Vehicle Class -->
+
+                <div class="form-group">
+                    <label for="vehicleClass">
+                        Vehicle Class *
+                    </label>
+
+                    <select
+                        id="vehicleClass"
+                        name="vehicle_class"
+                        required>
+
+                        <option value="">
+                            Select Vehicle Class
+                        </option>
+
+                        <option value="Container">
+                            Container
+                        </option>
+
+                        <option value="Tanker">
+                            Tanker
+                        </option>
+
+                        <option value="Flatbed">
+                            Flatbed
+                        </option>
+
+                        <option value="Box Truck">
+                            Box Truck
+                        </option>
+
+                        <option value="Van">
+                            Van
+                        </option>
+
+                        <option value="Chassis">
+                            Chassis
+                        </option>
+
+                        <option value="Heavy Rig">
+                            Heavy Rig
+                        </option>
+
+                        <option value="Trailer">
+                            Trailer
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Driver ID -->
+
+                <div class="form-group">
+                    <label for="driverId">
+                        Driver ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="driverId"
+                        name="driver_id"
+                        placeholder="Example: DRV-1041">
+                </div>
+
+
+                <!-- Driver Name -->
+
+                <div class="form-group">
+                    <label for="driverName">
+                        Driver Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="driverName"
+                        name="driver_name"
+                        placeholder="Enter driver name">
+                </div>
+
+
+                <!-- License -->
+
+                <div class="form-group">
+                    <label for="licenseNumber">
+                        License Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="licenseNumber"
+                        name="license_number"
+                        placeholder="Enter license number">
+                </div>
+
+
+                <!-- Parking Area -->
+
+                <div class="form-group">
+                    <label for="parkingArea">
+                        Parking Area
+                    </label>
+
+                    <select
+                        id="parkingArea"
+                        name="parking_area_id">
+
+                        <option value="">
+                            Select Parking Area
+                        </option>
+
+                        <option value="Area 1">
+                            Area 1
+                        </option>
+
+                        <option value="Area 2">
+                            Area 2
+                        </option>
+
+                        <option value="Area 3">
+                            Area 3
+                        </option>
+
+                        <option value="Area 4">
+                            Area 4
+                        </option>
+
+                        <option value="Area 5">
+                            Area 5
+                        </option>
+
+                        <option value="Area 6">
+                            Area 6
+                        </option>
+
+                        <option value="Area 7">
+                            Area 7
+                        </option>
+
+                        <option value="Area 8">
+                            Area 8
+                        </option>
+
+                        <option value="Area 9">
+                            Area 9
+                        </option>
+
+                        <option value="Area 10">
+                            Area 10
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Notes -->
+
+                <div class="form-group full-width">
+
+                    <label for="notes">
+                        Notes
+                    </label>
+
+                    <textarea
+                        id="notes"
+                        name="notes"
+                        placeholder="Enter notes if required"></textarea>
+
+                </div>
+
+            </div>
+
+
+            <div class="manual-buttons">
+
+                <button
+                    type="submit"
+                    class="btn-success"
+                    id="manualSaveBtn">
+                    💾 Save Vehicle Entry
+                </button>
+
+                <button
+                    type="button"
+                    class="btn-secondary"
+                    onclick="clearManualForm()">
+                    ✖ Clear Form
+                </button>
+
+            </div>
+
+            <div
+                id="manualLoading"
+                class="loading">
+                ⏳ Saving vehicle entry...
+            </div>
+
+            <div
+                id="manualMessage"
+                class="message">
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+    // =========================================================
+    // API CONFIG
+    // =========================================================
+
+    const API_BASE_URL = "http://127.0.0.1:5000";
+
+
+    // =========================================================
+    // GLOBAL DATA
+    // =========================================================
+
+    let extractedRecords = [];
+
+
+    // =========================================================
+    // DOM READY
+    // =========================================================
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const fileInput =
+            document.getElementById("entryFile");
+
+        fileInput.addEventListener(
+            "change",
+            function () {
+
+                const selectedFile =
+                    this.files[0];
+
+                const selectedFileText =
+                    document.getElementById("selectedFile");
+
+                if (selectedFile) {
+
+                    selectedFileText.textContent =
+                        "📄 Selected file: " +
+                        selectedFile.name;
+
+                } else {
+
+                    selectedFileText.textContent =
+                        "No file selected";
+                }
+
+            }
+        );
+
+        // Load already saved records
+        loadSavedRecords();
+
+        // Manual form submit
+        const manualForm =
+            document.getElementById("manualEntryForm");
+
+        manualForm.addEventListener(
+            "submit",
+            submitManualEntry
+        );
+
+    });
+
+
+    // =========================================================
+    // HELPER - SHOW MESSAGE
+    // =========================================================
+
+    function showMessage(
+        elementId,
+        message,
+        type
+    ) {
+
+        const element =
+            document.getElementById(elementId);
+
+        element.textContent = message;
+
+        element.className =
+            "message " + type;
+
+    }
+
+
+    // =========================================================
+    // HELPER - CLEAR MESSAGE
+    // =========================================================
+
+    function clearMessage(elementId) {
+
+        const element =
+            document.getElementById(elementId);
+
+        element.textContent = "";
+
+        element.className =
+            "message";
+
+    }
+
+
+    // =========================================================
+    // UPLOAD AND EXTRACT
+    // =========================================================
+
+    async function uploadAndExtract() {
+
+        const fileInput =
+            document.getElementById("entryFile");
+
+        const file =
+            fileInput.files[0];
+
+        if (!file) {
+
+            showMessage(
+                "uploadMessage",
+                "Please select a PDF or Excel file first.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        // Validate extension
+
+        const fileName =
+            file.name.toLowerCase();
+
+        const allowed =
+            fileName.endsWith(".pdf") ||
+            fileName.endsWith(".xlsx") ||
+            fileName.endsWith(".xls");
+
+        if (!allowed) {
+
+            showMessage(
+                "uploadMessage",
+                "Only PDF, XLSX or XLS files are allowed.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        // Clear previous data
+
+        extractedRecords = [];
+
+        document.getElementById(
+            "extractedSection"
+        ).style.display = "none";
+
+        clearMessage("saveMessage");
+
+
+        // FormData
+
+        const formData =
+            new FormData();
+
+        formData.append(
+            "file",
+            file
+        );
+
+
+        // Loading
+
+        const uploadButton =
+            document.getElementById(
+                "uploadExtractBtn"
+            );
+
+        uploadButton.disabled = true;
+
+        uploadButton.textContent =
+            "⏳ Processing...";
+
+        document.getElementById(
+            "uploadLoading"
+        ).style.display = "block";
+
+
+        clearMessage("uploadMessage");
+
+
+        try {
+
+            const response =
+                await fetch(
+                    API_BASE_URL +
+                    "/api/entry/pdf",
+                    {
+                        method: "POST",
+                        body: formData
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            console.log(
+                "Upload response:",
+                result
+            );
+
+
+            if (!response.ok ||
+                result.status !== "SUCCESS") {
+
+                throw new Error(
+                    result.error ||
+                    "File processing failed."
+                );
+
+            }
+
+
+            // =================================================
+            // SUCCESS
+            // =================================================
+
+            extractedRecords =
+                Array.isArray(result.data)
+                    ? result.data
+                    : [];
+
+
+            if (
+                extractedRecords.length === 0
+            ) {
+
+                throw new Error(
+                    "File uploaded, but no vehicle records were extracted."
+                );
+
+            }
+
+
+            showMessage(
+                "uploadMessage",
+                "✅ File uploaded successfully — " +
+                extractedRecords.length +
+                " records extracted.",
+                "success"
+            );
+
+
+            // Display section
+
+            document.getElementById(
+                "extractedSection"
+            ).style.display = "block";
+
+
+            document.getElementById(
+                "extractedSummary"
+            ).style.display = "grid";
+
+
+            document.getElementById(
+                "totalExtracted"
+            ).textContent =
+                extractedRecords.length;
+
+
+            document.getElementById(
+                "readyToSave"
+            ).textContent =
+                extractedRecords.length;
+
+
+            document.getElementById(
+                "savedCount"
+            ).textContent = "0";
+
+
+            document.getElementById(
+                "failedCount"
+            ).textContent = "0";
+
+
+            renderExtractedRecords();
+
+
+            // Scroll to extracted section
+
+            document.getElementById(
+                "extractedSection"
+            ).scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Upload error:",
+                error
+            );
+
+            showMessage(
+                "uploadMessage",
+                "❌ " + error.message,
+                "error"
+            );
+
+        }
+
+        finally {
+
+            uploadButton.disabled = false;
+
+            uploadButton.textContent =
+                "📤 Upload & Extract";
+
+            document.getElementById(
+                "uploadLoading"
+            ).style.display = "none";
+
+        }
+
+    }
+
+
+    // =========================================================
+    // RENDER EXTRACTED RECORDS
+    // =========================================================
+
+    function renderExtractedRecords() {
+
+        const tbody =
+            document.getElementById(
+                "extractedTableBody"
+            );
+
+        tbody.innerHTML = "";
+
+
+        if (
+            !extractedRecords.length
+        ) {
+
+            tbody.innerHTML = `
+                <tr>
+                    <td
+                        colspan="10"
+                        class="empty-row">
+                        No records extracted.
+                    </td>
+                </tr>
+            `;
+
+            return;
+        }
+
+
+        extractedRecords.forEach(
+            function (record) {
+
+                const row =
+                    document.createElement("tr");
+
+
+                row.innerHTML = `
+
+                    <td>
+                        ${escapeHtml(
+                            record.record_no || ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            record.driver_id || ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            record.vehicle_id || ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            record.rfid_tag || ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            record.vehicle_class || ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            record.date || ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            record.time || ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            record.parking_area_id || ""
+                        )}
+                    </td>
+
+                    <td>
+                        <span class="badge badge-movement">
+                            ${escapeHtml(
+                                record.movement || ""
+                            )}
+                        </span>
+                    </td>
+
+                    <td>
+                        ${
+                            String(
+                                record.sap_status || ""
+                            ).toLowerCase() === "pending"
+
+                            ?
+
+                            `<span class="badge badge-pending">
+                                Pending
+                            </span>`
+
+                            :
+
+                            `<span class="badge badge-synced">
+                                ${escapeHtml(
+                                    record.sap_status || ""
+                                )}
+                            </span>`
+                        }
+                    </td>
+
+                `;
+
+
+                tbody.appendChild(row);
+
+            }
+        );
+
+    }
+
+
+    // =========================================================
+    // SAVE ALL EXTRACTED RECORDS
+    // =========================================================
+
+    async function saveAllRecords() {
+
+        if (
+            !Array.isArray(
+                extractedRecords
+            )
+            ||
+            extractedRecords.length === 0
+        ) {
+
+            showMessage(
+                "saveMessage",
+                "No extracted records available to save.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        const saveButton =
+            document.getElementById(
+                "saveAllBtn"
+            );
+
+
+        saveButton.disabled = true;
+
+        saveButton.textContent =
+            "⏳ Saving...";
+
+
+        document.getElementById(
+            "saveLoading"
+        ).style.display = "block";
+
+
+        clearMessage("saveMessage");
+
+
+        try {
+
+            console.log(
+                "Sending records to backend:",
+                extractedRecords
+            );
+
+
+            const response =
+                await fetch(
+                    API_BASE_URL +
+                    "/api/entry/pdf/save-bulk",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            records:
+                                extractedRecords
+                        })
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            console.log(
+                "Save response:",
+                result
+            );
+
+
+            if (
+                !response.ok
+            ) {
+
+                throw new Error(
+                    result.error ||
+                    result.message ||
+                    "Records could not be saved."
+                );
+
+            }
+
+
+            // =================================================
+            // SAVE COUNTS
+            // =================================================
+
+            const saved =
+                Number(
+                    result.saved_count || 0
+                );
+
+            const failed =
+                Number(
+                    result.failed_count || 0
+                );
+
+
+            document.getElementById(
+                "savedCount"
+            ).textContent = saved;
+
+
+            document.getElementById(
+                "failedCount"
+            ).textContent = failed;
+
+
+            document.getElementById(
+                "readyToSave"
+            ).textContent =
+                Math.max(
+                    extractedRecords.length - saved,
+                    0
+                );
+
+
+            // =================================================
+            // RESPONSE MESSAGE
+            // =================================================
+
+            if (
+                result.status === "SUCCESS"
+            ) {
+
+                showMessage(
+                    "saveMessage",
+                    "✅ " +
+                    saved +
+                    " records saved successfully.",
+                    "success"
+                );
+
+            }
+
+            else if (
+                result.status ===
+                "PARTIAL_SUCCESS"
+            ) {
+
+                showMessage(
+                    "saveMessage",
+                    "⚠️ " +
+                    saved +
+                    " records saved, " +
+                    failed +
+                    " records failed.",
+                    "info"
+                );
+
+            }
+
+            else {
+
+                showMessage(
+                    "saveMessage",
+                    "❌ No records were saved. " +
+                    failed +
+                    " records failed.",
+                    "error"
+                );
+
+            }
+
+
+            // =================================================
+            // SHOW FAILED RECORD DETAILS
+            // =================================================
+
+            if (
+                Array.isArray(
+                    result.failed_records
+                )
+                &&
+                result.failed_records.length > 0
+            ) {
+
+                console.log(
+                    "Failed records:",
+                    result.failed_records
+                );
+
+            }
+
+
+            // =================================================
+            // LOAD SAVED RECORDS
+            // =================================================
+
+            await loadSavedRecords();
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Save error:",
+                error
+            );
+
+
+            showMessage(
+                "saveMessage",
+                "❌ Save failed: " +
+                error.message,
+                "error"
+            );
+
+        }
+
+        finally {
+
+            saveButton.disabled = false;
+
+            saveButton.textContent =
+                "💾 Save All Records";
+
+
+            document.getElementById(
+                "saveLoading"
+            ).style.display = "none";
+
+        }
+
+    }
+
+
+    // =========================================================
+    // LOAD SAVED RECORDS
+    // =========================================================
+
+    async function loadSavedRecords() {
+
+        const tbody =
+            document.getElementById(
+                "savedTableBody"
+            );
+
+
+        tbody.innerHTML = `
+            <tr>
+                <td
+                    colspan="11"
+                    class="empty-row">
+                    ⏳ Loading saved records...
+                </td>
+            </tr>
+        `;
+
+
+        try {
+
+            const response =
+                await fetch(
+                    API_BASE_URL +
+                    "/api/entry/entries?limit=500"
+                );
+
+
+            const result =
+                await response.json();
+
+
+            console.log(
+                "Saved records:",
+                result
+            );
+
+
+            if (
+                !response.ok
+            ) {
+
+                throw new Error(
+                    result.error ||
+                    "Could not load saved records."
+                );
+
+            }
+
+
+            // Backend returns array
+
+            const records =
+                Array.isArray(result)
+                    ? result
+                    : (
+                        Array.isArray(
+                            result.data
+                        )
+                        ? result.data
+                        : []
+                    );
+
+
+            renderSavedRecords(
+                records
+            );
+
+
+            if (
+                records.length > 0
+            ) {
+
+                showMessage(
+                    "savedMessage",
+                    "✅ " +
+                    records.length +
+                    " saved record(s) loaded from database.",
+                    "success"
+                );
+
+            }
+
+            else {
+
+                clearMessage(
+                    "savedMessage"
+                );
+
+            }
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Load saved records error:",
+                error
+            );
+
+
+            tbody.innerHTML = `
+                <tr>
+                    <td
+                        colspan="11"
+                        class="empty-row">
+                        ❌ Could not load saved records.
+                    </td>
+                </tr>
+            `;
+
+
+            showMessage(
+                "savedMessage",
+                "❌ " + error.message,
+                "error"
+            );
+
+        }
+
+    }
+
+
+    // =========================================================
+    // RENDER SAVED RECORDS
+    // =========================================================
+
+    function renderSavedRecords(
+        records
+    ) {
+
+        const tbody =
+            document.getElementById(
+                "savedTableBody"
+            );
+
+
+        tbody.innerHTML = "";
+
+
+        if (
+            !records.length
+        ) {
+
+            tbody.innerHTML = `
+                <tr>
+                    <td
+                        colspan="11"
+                        class="empty-row">
+                        No vehicle entry records saved yet.
+                    </td>
+                </tr>
+            `;
+
+            return;
+        }
+
+
+        records.forEach(
+            function (record) {
+
+                const row =
+                    document.createElement("tr");
+
+
+                row.innerHTML = `
+
+                    <td>
+                        ${escapeHtml(
+                            record.entry_id ??
+                            record.id ??
+                            ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            record.vehicle_id || ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            record.rfid_tag || ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            record.vin || ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            record.vehicle_class || ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            record.driver_id || ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            record.driver_name || ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            record.license_number || ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            record.parking_area_id || ""
+                        )}
+                    </td>
+
+                    <td>
+                        <span class="badge badge-synced">
+                            ${escapeHtml(
+                                record.entry_source ||
+                                "UPLOAD"
+                            )}
+                        </span>
+                    </td>
+
+                    <td>
+                        ${formatDateTime(
+                            record.entry_time
+                        )}
+                    </td>
+
+                `;
+
+
+                tbody.appendChild(row);
+
+            }
+        );
+
+    }
+
+
+    // =========================================================
+    // MANUAL ENTRY
+    // =========================================================
+
+    async function submitManualEntry(
+        event
+    ) {
+
+        event.preventDefault();
+
+
+        const form =
+            document.getElementById(
+                "manualEntryForm"
+            );
+
+
+        const data = {
+
+            vehicle_id:
+                document.getElementById(
+                    "vehicleId"
+                ).value.trim(),
+
+            rfid_tag:
+                document.getElementById(
+                    "rfidTag"
+                ).value.trim(),
+
+            vin:
+                document.getElementById(
+                    "vin"
+                ).value.trim(),
+
+            vehicle_class:
+                document.getElementById(
+                    "vehicleClass"
+                ).value.trim(),
+
+            driver_id:
+                document.getElementById(
+                    "driverId"
+                ).value.trim(),
+
+            driver_name:
+                document.getElementById(
+                    "driverName"
+                ).value.trim(),
+
+            license_number:
+                document.getElementById(
+                    "licenseNumber"
+                ).value.trim(),
+
+            parking_area_id:
+                document.getElementById(
+                    "parkingArea"
+                ).value.trim(),
+
+            notes:
+                document.getElementById(
+                    "notes"
+                ).value.trim()
+
+        };
+
+
+        // Required frontend validation
+
+        if (!data.vehicle_id) {
+
+            showMessage(
+                "manualMessage",
+                "Vehicle ID is required.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if (!data.rfid_tag) {
+
+            showMessage(
+                "manualMessage",
+                "RFID Tag is required.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if (!data.vin) {
+
+            showMessage(
+                "manualMessage",
+                "VIN is required for manual entry.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if (!data.vehicle_class) {
+
+            showMessage(
+                "manualMessage",
+                "Vehicle Class is required.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        const saveButton =
+            document.getElementById(
+                "manualSaveBtn"
+            );
+
+
+        saveButton.disabled = true;
+
+        saveButton.textContent =
+            "⏳ Saving...";
+
+
+        document.getElementById(
+            "manualLoading"
+        ).style.display = "block";
+
+
+        clearMessage(
+            "manualMessage"
+        );
+
+
+        try {
+
+            const response =
+                await fetch(
+                    API_BASE_URL +
+                    "/api/entry/manual",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify(data)
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            console.log(
+                "Manual entry response:",
+                result
+            );
+
+
+            if (
+                !response.ok ||
+                result.status !== "SUCCESS"
+            ) {
+
+                throw new Error(
+                    result.error ||
+                    result.message ||
+                    "Manual entry could not be saved."
+                );
+
+            }
+
+
+            showMessage(
+                "manualMessage",
+                "✅ Manual vehicle entry saved successfully.",
+                "success"
+            );
+
+
+            // Clear form
+
+            form.reset();
+
+
+            // Refresh database records
+
+            await loadSavedRecords();
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Manual entry error:",
+                error
+            );
+
+
+            showMessage(
+                "manualMessage",
+                "❌ " +
+                error.message,
+                "error"
+            );
+
+        }
+
+        finally {
+
+            saveButton.disabled = false;
+
+            saveButton.textContent =
+                "💾 Save Vehicle Entry";
+
+
+            document.getElementById(
+                "manualLoading"
+            ).style.display = "none";
+
+        }
+
+    }
+
+
+    // =========================================================
+    // CLEAR UPLOAD
+    // =========================================================
+
+    function clearUpload() {
+
+        document.getElementById(
+            "entryFile"
+        ).value = "";
+
+
+        document.getElementById(
+            "selectedFile"
+        ).textContent =
+            "No file selected";
+
+
+        extractedRecords = [];
+
+
+        document.getElementById(
+            "extractedSection"
+        ).style.display = "none";
+
+
+        clearMessage(
+            "uploadMessage"
+        );
+
+        clearMessage(
+            "saveMessage"
+        );
+
+
+        document.getElementById(
+            "extractedTableBody"
+        ).innerHTML = "";
+
+    }
+
+
+    // =========================================================
+    // CLEAR MANUAL FORM
+    // =========================================================
+
+    function clearManualForm() {
+
+        document.getElementById(
+            "manualEntryForm"
+        ).reset();
+
+
+        clearMessage(
+            "manualMessage"
+        );
+
+    }
+
+
+    // =========================================================
+    // ESCAPE HTML
+    // =========================================================
+
+    function escapeHtml(
+        value
+    ) {
+
+        if (
+            value === null ||
+            value === undefined
+        ) {
+
+            return "";
+
+        }
+
+
+        return String(value)
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+    }
+
+
+    // =========================================================
+    // FORMAT DATE TIME
+    // =========================================================
+
+    function formatDateTime(
+        value
+    ) {
+
+        if (!value) {
+            return "";
+        }
+
+
+        try {
+
+            const date =
+                new Date(value);
+
+
+            if (
+                isNaN(
+                    date.getTime()
+                )
+            ) {
+
+                return escapeHtml(
+                    value
+                );
+
+            }
+
+
+            return date.toLocaleString();
+
+        }
+
+        catch (error) {
+
+            return escapeHtml(
+                value
+            );
+
+        }
+
+    }
+
+</script>
+
+</body>
+
+</html>

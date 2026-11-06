@@ -1,23 +1,30 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Movements | Vehicle Yard Management System</title>
+
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 
-```
-<!-- SIDEBAR -->
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
 <aside class="sidebar">
 
     <div class="sidebar-logo">
         🚗
-        <span>Vehicle Yard<br>Management System</span>
+        <span>
+            Vehicle Yard<br>
+            Management System
+        </span>
     </div>
 
     <nav class="sidebar-menu">
@@ -28,7 +35,9 @@
 
         <a href="parking.html">🅿️ Parking Areas</a>
 
-        <a href="movements.html" class="active">🔄 Movements</a>
+        <a href="movements.html" class="active">
+            🔄 Movements
+        </a>
 
         <a href="rfid.html">📡 RFID</a>
 
@@ -47,22 +56,42 @@
 </aside>
 
 
-<!-- MAIN CONTENT -->
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+
 <main class="main-content">
 
-    <!-- TOPBAR -->
+
+    <!-- =====================================================
+         TOPBAR
+    ====================================================== -->
+
     <header class="topbar">
 
         <div>
-            <h2>Movements</h2>
-            <p>Vehicle movement and location updates</p>
+
+            <h2>
+                Movements
+            </h2>
+
+            <p>
+                Vehicle movement and location updates
+            </p>
+
         </div>
+
 
         <div class="topbar-right">
 
-            <span class="system-status">
-                ● System Online
+            <span
+                class="system-status"
+                id="systemStatus">
+
+                ● Connecting...
+
             </span>
+
 
             <div class="admin-profile">
 
@@ -71,8 +100,15 @@
                 </div>
 
                 <div>
-                    <strong>Admin</strong>
-                    <small>Administrator</small>
+
+                    <strong>
+                        Admin
+                    </strong>
+
+                    <small>
+                        Administrator
+                    </small>
+
                 </div>
 
             </div>
@@ -82,10 +118,17 @@
     </header>
 
 
-    <!-- PAGE CONTENT -->
+    <!-- =====================================================
+         PAGE CONTENT
+    ====================================================== -->
+
     <section class="page-content">
 
-        <!-- HEADER -->
+
+        <!-- =================================================
+             PAGE HEADER
+        ================================================== -->
+
         <div class="page-header">
 
             <div>
@@ -94,7 +137,9 @@
                     VEHICLE MOVEMENT
                 </span>
 
-                <h1>Movement Management</h1>
+                <h1>
+                    Movement Management
+                </h1>
 
                 <p>
                     Record vehicle parking, relocation and dispatch
@@ -106,8 +151,14 @@
         </div>
 
 
-        <!-- SUMMARY CARDS -->
+        <!-- =================================================
+             SUMMARY CARDS
+        ================================================== -->
+
         <div class="dashboard-cards">
+
+
+            <!-- TOTAL MOVEMENTS -->
 
             <div class="dashboard-card">
 
@@ -116,13 +167,25 @@
                 </div>
 
                 <div>
-                    <span>Total Movements</span>
-                    <h2>—</h2>
-                    <small>Backend pending</small>
+
+                    <span>
+                        Total Movements
+                    </span>
+
+                    <h2 id="totalMovements">
+                        0
+                    </h2>
+
+                    <small>
+                        Backend Records
+                    </small>
+
                 </div>
 
             </div>
 
+
+            <!-- PARKING UPDATES -->
 
             <div class="dashboard-card">
 
@@ -131,13 +194,25 @@
                 </div>
 
                 <div>
-                    <span>Parking Updates</span>
-                    <h2>—</h2>
-                    <small>Backend pending</small>
+
+                    <span>
+                        Parking Updates
+                    </span>
+
+                    <h2 id="parkingUpdates">
+                        0
+                    </h2>
+
+                    <small>
+                        Parking / Relocation
+                    </small>
+
                 </div>
 
             </div>
 
+
+            <!-- DRIVER UPDATES -->
 
             <div class="dashboard-card">
 
@@ -146,13 +221,25 @@
                 </div>
 
                 <div>
-                    <span>Driver Updates</span>
-                    <h2>—</h2>
-                    <small>Backend pending</small>
+
+                    <span>
+                        Driver Updates
+                    </span>
+
+                    <h2 id="driverUpdates">
+                        0
+                    </h2>
+
+                    <small>
+                        Mobile App
+                    </small>
+
                 </div>
 
             </div>
 
+
+            <!-- LOCATION UPDATES -->
 
             <div class="dashboard-card">
 
@@ -161,9 +248,19 @@
                 </div>
 
                 <div>
-                    <span>Location Updates</span>
-                    <h2>—</h2>
-                    <small>Backend pending</small>
+
+                    <span>
+                        Location Updates
+                    </span>
+
+                    <h2 id="locationUpdates">
+                        0
+                    </h2>
+
+                    <small>
+                        GPS / Parking Area
+                    </small>
+
                 </div>
 
             </div>
@@ -171,22 +268,32 @@
         </div>
 
 
-        <!-- BACKEND NOTE -->
-        <div class="backend-note">
+        <!-- =================================================
+             BACKEND CONNECTION MESSAGE
+        ================================================== -->
 
-            <strong>Backend integration pending</strong>
+        <div
+            class="backend-note"
+            id="backendNote">
+
+            <strong>
+                Connecting to backend...
+            </strong>
 
             <p>
-                Movement records will be received from the backend
-                after the Driver Mobile Application and API integration
-                are completed.
+                Loading movement records from Vehicle Yard
+                Management backend.
             </p>
 
         </div>
 
 
-        <!-- MOVEMENT FORM -->
+        <!-- =================================================
+             MOVEMENT FORM
+        ================================================== -->
+
         <div class="panel">
+
 
             <div class="panel-header">
 
@@ -196,98 +303,82 @@
                         DRIVER MOBILE APPLICATION
                     </span>
 
-                    <h2>Vehicle Movement Update</h2>
+                    <h2>
+                        Vehicle Movement Update
+                    </h2>
 
                 </div>
 
             </div>
 
 
-            <form id="movementForm" class="movement-form">
+            <form
+                id="movementForm"
+                class="movement-form">
 
-                <!-- VEHICLE ID -->
+
+                <!-- =========================================
+                     VEHICLE ID
+                ========================================== -->
+
                 <div class="form-group">
 
                     <label for="vehicleId">
                         Vehicle ID
                     </label>
 
-                    <input
-                        type="text"
+                    <select
                         id="vehicleId"
-                        placeholder="Enter Vehicle ID"
                         required>
+
+                        <option value="">
+                            Loading Vehicles...
+                        </option>
+
+                    </select>
 
                 </div>
 
 
-                <!-- DRIVER ID -->
+                <!-- =========================================
+                     DRIVER ID
+                ========================================== -->
+
                 <div class="form-group">
 
                     <label for="driverId">
                         Driver ID
                     </label>
 
-                    <input
-                        type="text"
+                    <select
                         id="driverId"
-                        placeholder="Enter Driver ID"
                         required>
+
+                        <option value="">
+                            Loading Drivers...
+                        </option>
+
+                    </select>
 
                 </div>
 
 
-                <!-- PARKING AREA -->
+                <!-- =========================================
+                     PARKING AREA
+                ========================================== -->
+
                 <div class="form-group">
 
                     <label for="parkingArea">
                         Parking Area
                     </label>
 
-                    <select id="parkingArea" required>
+                    <select
+                        id="parkingArea"
+                        required>
 
                         <option value="">
-                            Select Parking Area
-                        </option>
-
-                        <option value="Area 1">
-                            Area 1
-                        </option>
-
-                        <option value="Area 2">
-                            Area 2
-                        </option>
-
-                        <option value="Area 3">
-                            Area 3
-                        </option>
-
-                        <option value="Area 4">
-                            Area 4
-                        </option>
-
-                        <option value="Area 5">
-                            Area 5
-                        </option>
-
-                        <option value="Area 6">
-                            Area 6
-                        </option>
-
-                        <option value="Area 7">
-                            Area 7
-                        </option>
-
-                        <option value="Area 8">
-                            Area 8
-                        </option>
-
-                        <option value="Area 9">
-                            Area 9
-                        </option>
-
-                        <option value="Area 10">
-                            Area 10
+                            Loading Parking Areas...
                         </option>
 
                     </select>
@@ -295,33 +386,34 @@
                 </div>
 
 
-                <!-- MOVEMENT TYPE -->
+                <!-- =========================================
+                     MOVEMENT TYPE
+                ========================================== -->
+
                 <div class="form-group">
 
                     <label for="movementType">
                         Movement Type
                     </label>
 
-                    <select id="movementType" required>
+                    <select
+                        id="movementType"
+                        required>
 
                         <option value="">
                             Select Movement Type
                         </option>
 
-                        <option value="Parked">
+                        <option value="PARKED">
                             Parked
                         </option>
 
-                        <option value="Shifted">
+                        <option value="SHIFTED">
                             Shifted
                         </option>
 
-                        <option value="Ready for Dispatch">
+                        <option value="READY_FOR_DISPATCH">
                             Ready for Dispatch
-                        </option>
-
-                        <option value="Exited Yard">
-                            Exited Yard
                         </option>
 
                     </select>
@@ -329,7 +421,10 @@
                 </div>
 
 
-                <!-- TIMESTAMP -->
+                <!-- =========================================
+                     TIMESTAMP
+                ========================================== -->
+
                 <div class="form-group">
 
                     <label for="movementTime">
@@ -344,14 +439,20 @@
                 </div>
 
 
-                <!-- GPS -->
+                <!-- =========================================
+                     GPS
+                ========================================== -->
+
                 <div class="form-group">
 
                     <label for="gps">
+
                         GPS Coordinates
+
                         <span class="optional">
                             Optional
                         </span>
+
                     </label>
 
                     <input
@@ -362,16 +463,21 @@
                 </div>
 
 
-                <!-- BUTTON -->
+                <!-- =========================================
+                     BUTTONS
+                ========================================== -->
+
                 <div class="form-actions">
 
                     <button
                         type="submit"
-                        class="primary-btn">
+                        class="primary-btn"
+                        id="saveMovementBtn">
 
                         Save Movement
 
                     </button>
+
 
                     <button
                         type="reset"
@@ -386,15 +492,23 @@
             </form>
 
 
-            <div id="movementMessage"
-                 class="movement-message">
+            <!-- MESSAGE -->
+
+            <div
+                id="movementMessage"
+                class="movement-message">
+
             </div>
 
         </div>
 
 
-        <!-- MOVEMENT HISTORY -->
+        <!-- =================================================
+             MOVEMENT HISTORY
+        ================================================== -->
+
         <div class="panel">
+
 
             <div class="panel-header">
 
@@ -404,12 +518,15 @@
                         MOVEMENT RECORDS
                     </span>
 
-                    <h2>Recent Movement History</h2>
+                    <h2>
+                        Recent Movement History
+                    </h2>
 
                 </div>
 
+
                 <span class="area-count">
-                    Backend Data
+                    Live Backend Data
                 </span>
 
             </div>
@@ -423,19 +540,33 @@
 
                         <tr>
 
-                            <th>Vehicle ID</th>
+                            <th>
+                                Vehicle ID
+                            </th>
 
-                            <th>Driver ID</th>
+                            <th>
+                                Driver ID
+                            </th>
 
-                            <th>Parking Area</th>
+                            <th>
+                                Parking Area
+                            </th>
 
-                            <th>Movement Type</th>
+                            <th>
+                                Movement Type
+                            </th>
 
-                            <th>Timestamp</th>
+                            <th>
+                                Timestamp
+                            </th>
 
-                            <th>GPS</th>
+                            <th>
+                                GPS
+                            </th>
 
-                            <th>Data Source</th>
+                            <th>
+                                Data Source
+                            </th>
 
                         </tr>
 
@@ -444,55 +575,11 @@
 
                     <tbody id="movementTable">
 
-                        <!-- PROJECT EXAMPLE -->
-
                         <tr>
-
-                            <td>
-                                <strong>V1025</strong>
-                            </td>
-
-                            <td>
-                                —
-                            </td>
-
-                            <td>
-                                <span class="location-badge">
-                                    Area 6
-                                </span>
-                            </td>
-
-                            <td>
-                                <span class="vehicle-status parked">
-                                    Parked
-                                </span>
-                            </td>
-
-                            <td>
-                                2026-07-28 10:42
-                            </td>
-
-                            <td>
-                                —
-                            </td>
-
-                            <td>
-                                <span class="data-source">
-                                    Project Example
-                                </span>
-                            </td>
-
-                        </tr>
-
-
-                        <!-- BACKEND PLACEHOLDER -->
-
-                        <tr class="empty-vehicle">
 
                             <td colspan="7">
 
-                                🔄 Movement records will appear
-                                here when backend data is connected.
+                                Loading movement records...
 
                             </td>
 
@@ -507,8 +594,12 @@
         </div>
 
 
-        <!-- DATA FLOW -->
+        <!-- =================================================
+             DATA FLOW
+        ================================================== -->
+
         <div class="panel">
+
 
             <div class="panel-header">
 
@@ -518,7 +609,9 @@
                         MOVEMENT DATA FLOW
                     </span>
 
-                    <h2>Driver Movement Update Flow</h2>
+                    <h2>
+                        Driver Movement Update Flow
+                    </h2>
 
                 </div>
 
@@ -527,13 +620,16 @@
 
             <div class="location-flow">
 
+
                 <div class="flow-step">
 
                     <div class="flow-icon">
                         🚗
                     </div>
 
-                    <strong>Vehicle</strong>
+                    <strong>
+                        Vehicle
+                    </strong>
 
                     <span>
                         Vehicle Movement
@@ -553,7 +649,9 @@
                         📱
                     </div>
 
-                    <strong>Driver App</strong>
+                    <strong>
+                        Driver App
+                    </strong>
 
                     <span>
                         Update Location
@@ -573,7 +671,9 @@
                         📍
                     </div>
 
-                    <strong>Parking Area</strong>
+                    <strong>
+                        Parking Area
+                    </strong>
 
                     <span>
                         Current Location
@@ -593,7 +693,9 @@
                         ⚡
                     </div>
 
-                    <strong>Business Event</strong>
+                    <strong>
+                        Business Event
+                    </strong>
 
                     <span>
                         Movement Event
@@ -613,7 +715,9 @@
                         SAP
                     </div>
 
-                    <strong>SAP Integration</strong>
+                    <strong>
+                        SAP Integration
+                    </strong>
 
                     <span>
                         Validated Event
@@ -626,15 +730,18 @@
         </div>
 
 
-        <!-- FOOTER -->
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
         <footer class="page-footer">
 
             <strong>
                 Vehicle Yard Management System
             </strong>
 
-            <span>
-                Frontend Demo • Backend Integration Pending
+            <span id="footerStatus">
+                Frontend • Connecting to Backend
             </span>
 
         </footer>
@@ -644,48 +751,935 @@
 </main>
 
 
-<!-- JAVASCRIPT -->
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
 <script>
 
-    const movementForm =
-        document.getElementById("movementForm");
 
-    const movementMessage =
-        document.getElementById("movementMessage");
+/* =========================================================
+   BACKEND URL
+========================================================= */
+
+const API_BASE_URL =
+    "http://127.0.0.1:5000";
 
 
-    movementForm.addEventListener(
-        "submit",
-        function(event) {
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
-            event.preventDefault();
+const movementForm =
+    document.getElementById("movementForm");
 
-            movementMessage.innerHTML =
-                "✓ Movement captured in frontend demo. Backend API integration is pending.";
+const movementMessage =
+    document.getElementById("movementMessage");
 
-            movementMessage.style.display =
-                "block";
+const movementTable =
+    document.getElementById("movementTable");
 
-            movementMessage.style.color =
-                "#15803d";
+const vehicleSelect =
+    document.getElementById("vehicleId");
 
-            movementMessage.style.background =
-                "#f0fdf4";
+const driverSelect =
+    document.getElementById("driverId");
 
-            movementMessage.style.padding =
-                "12px 15px";
+const parkingSelect =
+    document.getElementById("parkingArea");
 
-            movementMessage.style.borderRadius =
-                "8px";
+const movementTypeSelect =
+    document.getElementById("movementType");
 
-            movementMessage.style.marginTop =
-                "15px";
+const movementTime =
+    document.getElementById("movementTime");
+
+const saveMovementBtn =
+    document.getElementById("saveMovementBtn");
+
+
+/* =========================================================
+   DEFAULT TIMESTAMP
+========================================================= */
+
+function setCurrentDateTime() {
+
+    const now = new Date();
+
+    const year =
+        now.getFullYear();
+
+    const month =
+        String(now.getMonth() + 1)
+            .padStart(2, "0");
+
+    const day =
+        String(now.getDate())
+            .padStart(2, "0");
+
+    const hours =
+        String(now.getHours())
+            .padStart(2, "0");
+
+    const minutes =
+        String(now.getMinutes())
+            .padStart(2, "0");
+
+    movementTime.value =
+        `${year}-${month}-${day}T${hours}:${minutes}`;
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value) {
+
+    if (value === null ||
+        value === undefined) {
+
+        return "—";
+    }
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+/* =========================================================
+   FORMAT DATE
+========================================================= */
+
+function formatDate(dateString) {
+
+    if (!dateString) {
+        return "—";
+    }
+
+    const date =
+        new Date(dateString);
+
+    if (isNaN(date.getTime())) {
+        return dateString;
+    }
+
+    return date.toLocaleString();
+}
+
+
+/* =========================================================
+   LOAD VEHICLES
+========================================================= */
+
+async function loadVehicles() {
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_BASE_URL}/api/driver/vehicles`
+            );
+
+        if (!response.ok) {
+            throw new Error(
+                "Vehicle API failed"
+            );
+        }
+
+        const vehicles =
+            await response.json();
+
+        vehicleSelect.innerHTML =
+            `<option value="">
+                Select Vehicle
+            </option>`;
+
+        vehicles.forEach(vehicle => {
+
+            const option =
+                document.createElement("option");
+
+            option.value =
+                vehicle.vehicle_id;
+
+            option.textContent =
+                `${vehicle.vehicle_id} - ${vehicle.vehicle_class}`;
+
+            vehicleSelect.appendChild(option);
+
+        });
+
+    }
+    catch (error) {
+
+        console.error(
+            "Vehicle loading error:",
+            error
+        );
+
+        vehicleSelect.innerHTML =
+            `<option value="">
+                Unable to load vehicles
+            </option>`;
+    }
+}
+
+
+/* =========================================================
+   LOAD DRIVERS
+========================================================= */
+
+async function loadDrivers() {
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_BASE_URL}/api/driver/drivers`
+            );
+
+        if (!response.ok) {
+            throw new Error(
+                "Driver API failed"
+            );
+        }
+
+        const drivers =
+            await response.json();
+
+        driverSelect.innerHTML =
+            `<option value="">
+                Select Driver
+            </option>`;
+
+        drivers.forEach(driver => {
+
+            const option =
+                document.createElement("option");
+
+            option.value =
+                driver.driver_id;
+
+            option.textContent =
+                `${driver.driver_id} - ${driver.full_name}`;
+
+            driverSelect.appendChild(option);
+
+        });
+
+    }
+    catch (error) {
+
+        console.error(
+            "Driver loading error:",
+            error
+        );
+
+        driverSelect.innerHTML =
+            `<option value="">
+                Unable to load drivers
+            </option>`;
+    }
+}
+
+
+/* =========================================================
+   LOAD PARKING AREAS
+========================================================= */
+
+async function loadParkingAreas() {
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_BASE_URL}/api/driver/parking-areas`
+            );
+
+        if (!response.ok) {
+            throw new Error(
+                "Parking Area API failed"
+            );
+        }
+
+        const areas =
+            await response.json();
+
+        parkingSelect.innerHTML =
+            `<option value="">
+                Select Parking Area
+            </option>`;
+
+        areas.forEach(area => {
+
+            const option =
+                document.createElement("option");
+
+            option.value =
+                area.area_id;
+
+            option.textContent =
+                `${area.area_id} - ${area.name} (${area.available_slots} available)`;
+
+            parkingSelect.appendChild(option);
+
+        });
+
+    }
+    catch (error) {
+
+        console.error(
+            "Parking area loading error:",
+            error
+        );
+
+        parkingSelect.innerHTML =
+            `<option value="">
+                Unable to load parking areas
+            </option>`;
+    }
+}
+
+
+/* =========================================================
+   LOAD MOVEMENT HISTORY
+========================================================= */
+
+async function loadMovements() {
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_BASE_URL}/api/driver/movements?limit=100`
+            );
+
+        if (!response.ok) {
+            throw new Error(
+                "Movement API failed"
+            );
+        }
+
+        const movements =
+            await response.json();
+
+        updateSummary(
+            movements
+        );
+
+        renderMovements(
+            movements
+        );
+
+        setBackendConnected();
+
+    }
+    catch (error) {
+
+        console.error(
+            "Movement loading error:",
+            error
+        );
+
+        movementTable.innerHTML = `
+            <tr>
+                <td colspan="7">
+                    Unable to load movement records.
+                    Please check whether backend is running.
+                </td>
+            </tr>
+        `;
+
+        setBackendDisconnected();
+    }
+}
+
+
+/* =========================================================
+   UPDATE SUMMARY CARDS
+========================================================= */
+
+function updateSummary(movements) {
+
+    const total =
+        movements.length;
+
+    const parkingUpdates =
+        movements.filter(
+            movement =>
+                movement.movement_type === "PARKED" ||
+                movement.movement_type === "SHIFTED"
+        ).length;
+
+    const driverUpdates =
+        movements.filter(
+            movement =>
+                movement.updated_by
+        ).length;
+
+    const locationUpdates =
+        movements.filter(
+            movement =>
+                movement.to_area_id
+        ).length;
+
+
+    document.getElementById(
+        "totalMovements"
+    ).textContent = total;
+
+
+    document.getElementById(
+        "parkingUpdates"
+    ).textContent =
+        parkingUpdates;
+
+
+    document.getElementById(
+        "driverUpdates"
+    ).textContent =
+        driverUpdates;
+
+
+    document.getElementById(
+        "locationUpdates"
+    ).textContent =
+        locationUpdates;
+}
+
+
+/* =========================================================
+   RENDER MOVEMENTS
+========================================================= */
+
+function renderMovements(movements) {
+
+    if (!movements ||
+        movements.length === 0) {
+
+        movementTable.innerHTML = `
+            <tr class="empty-vehicle">
+                <td colspan="7">
+                    🔄 No movement records found.
+                    Save a movement using the Driver Mobile
+                    Application form above.
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+
+    movementTable.innerHTML =
+        movements.map(
+            movement => {
+
+                const gps =
+                    movement.gps &&
+                    movement.gps.lat !== null &&
+                    movement.gps.lng !== null
+                        ? `${movement.gps.lat}, ${movement.gps.lng}`
+                        : "—";
+
+
+                const area =
+                    movement.to_area_id
+                        ? `<span class="location-badge">
+                            ${escapeHTML(
+                                movement.to_area_id
+                            )}
+                           </span>`
+                        : "—";
+
+
+                let movementLabel =
+                    movement.movement_type;
+
+
+                if (
+                    movement.movement_type ===
+                    "PARKED"
+                ) {
+
+                    movementLabel =
+                        "Parked";
+
+                }
+                else if (
+                    movement.movement_type ===
+                    "SHIFTED"
+                ) {
+
+                    movementLabel =
+                        "Shifted";
+
+                }
+                else if (
+                    movement.movement_type ===
+                    "READY_FOR_DISPATCH"
+                ) {
+
+                    movementLabel =
+                        "Ready for Dispatch";
+                }
+
+
+                return `
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                ${escapeHTML(
+                                    movement.vehicle_id
+                                )}
+                            </strong>
+                        </td>
+
+
+                        <td>
+                            ${escapeHTML(
+                                movement.updated_by
+                            )}
+                        </td>
+
+
+                        <td>
+                            ${area}
+                        </td>
+
+
+                        <td>
+
+                            <span
+                                class="vehicle-status parked">
+
+                                ${escapeHTML(
+                                    movementLabel
+                                )}
+
+                            </span>
+
+                        </td>
+
+
+                        <td>
+                            ${formatDate(
+                                movement.recorded_at
+                            )}
+                        </td>
+
+
+                        <td>
+                            ${escapeHTML(gps)}
+                        </td>
+
+
+                        <td>
+
+                            <span class="data-source">
+
+                                Driver Mobile App
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+        ).join("");
+}
+
+
+/* =========================================================
+   SAVE MOVEMENT
+========================================================= */
+
+movementForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        const vehicleId =
+            vehicleSelect.value;
+
+        const driverId =
+            driverSelect.value;
+
+        const parkingArea =
+            parkingSelect.value;
+
+        const movementType =
+            movementTypeSelect.value;
+
+        const gpsText =
+            document.getElementById(
+                "gps"
+            ).value.trim();
+
+
+        if (!vehicleId ||
+            !driverId ||
+            !parkingArea ||
+            !movementType ||
+            !movementTime.value) {
+
+            showMessage(
+                "Please fill all required fields.",
+                false
+            );
+
+            return;
+        }
+
+
+        /* =============================================
+           GPS PARSING
+        ============================================== */
+
+        let coordinates = null;
+
+
+        if (gpsText) {
+
+            const parts =
+                gpsText.split(",");
+
+            if (parts.length !== 2) {
+
+                showMessage(
+                    "GPS format should be: Latitude, Longitude",
+                    false
+                );
+
+                return;
+            }
+
+
+            const lat =
+                parseFloat(
+                    parts[0].trim()
+                );
+
+            const lng =
+                parseFloat(
+                    parts[1].trim()
+                );
+
+
+            if (
+                isNaN(lat) ||
+                isNaN(lng)
+            ) {
+
+                showMessage(
+                    "Please enter valid GPS coordinates.",
+                    false
+                );
+
+                return;
+            }
+
+
+            coordinates = {
+                lat: lat,
+                lng: lng
+            };
+        }
+
+
+        /* =============================================
+           DISABLE BUTTON
+        ============================================== */
+
+        saveMovementBtn.disabled =
+            true;
+
+        saveMovementBtn.textContent =
+            "Saving...";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    `${API_BASE_URL}/api/driver/confirm-location`,
+                    {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            vehicle_id:
+                                vehicleId,
+
+                            driver_id:
+                                driverId,
+
+                            parking_area_id:
+                                parkingArea,
+
+                            movement_type:
+                                movementType,
+
+                            coordinates:
+                                coordinates
+
+                        })
+
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    result.error ||
+                    "Unable to save movement."
+                );
+            }
+
+
+            showMessage(
+                "✓ Movement recorded successfully.",
+                true
+            );
+
+
+            movementForm.reset();
+
+            setCurrentDateTime();
+
+
+            await loadMovements();
+
+            await loadParkingAreas();
+
 
         }
+        catch (error) {
+
+            console.error(
+                "Save movement error:",
+                error
+            );
+
+            showMessage(
+                "✕ " + error.message,
+                false
+            );
+
+        }
+        finally {
+
+            saveMovementBtn.disabled =
+                false;
+
+            saveMovementBtn.textContent =
+                "Save Movement";
+        }
+
+    }
+);
+
+
+/* =========================================================
+   SHOW MESSAGE
+========================================================= */
+
+function showMessage(
+    message,
+    success
+) {
+
+    movementMessage.innerHTML =
+        escapeHTML(message);
+
+    movementMessage.style.display =
+        "block";
+
+    movementMessage.style.padding =
+        "12px 15px";
+
+    movementMessage.style.borderRadius =
+        "8px";
+
+    movementMessage.style.marginTop =
+        "15px";
+
+
+    if (success) {
+
+        movementMessage.style.color =
+            "#15803d";
+
+        movementMessage.style.background =
+            "#f0fdf4";
+
+    }
+    else {
+
+        movementMessage.style.color =
+            "#b91c1c";
+
+        movementMessage.style.background =
+            "#fef2f2";
+    }
+
+
+    setTimeout(
+        function() {
+
+            movementMessage.style.display =
+                "none";
+
+        },
+        4000
     );
+}
+
+
+/* =========================================================
+   BACKEND CONNECTED
+========================================================= */
+
+function setBackendConnected() {
+
+    const status =
+        document.getElementById(
+            "systemStatus"
+        );
+
+    status.textContent =
+        "● Backend Connected";
+
+
+    const note =
+        document.getElementById(
+            "backendNote"
+        );
+
+    note.innerHTML = `
+
+        <strong>
+            Backend integration active
+        </strong>
+
+        <p>
+            Movement records are being received from
+            the Vehicle Yard Management backend.
+        </p>
+
+    `;
+
+
+    document.getElementById(
+        "footerStatus"
+    ).textContent =
+        "Frontend • Backend Connected";
+}
+
+
+/* =========================================================
+   BACKEND DISCONNECTED
+========================================================= */
+
+function setBackendDisconnected() {
+
+    const status =
+        document.getElementById(
+            "systemStatus"
+        );
+
+    status.textContent =
+        "● Backend Disconnected";
+
+
+    const note =
+        document.getElementById(
+            "backendNote"
+        );
+
+    note.innerHTML = `
+
+        <strong>
+            Backend connection unavailable
+        </strong>
+
+        <p>
+            Please make sure the Flask backend is running
+            on port 5000.
+        </p>
+
+    `;
+
+
+    document.getElementById(
+        "footerStatus"
+    ).textContent =
+        "Frontend • Backend Disconnected";
+}
+
+
+/* =========================================================
+   INITIAL PAGE LOAD
+========================================================= */
+
+async function initializePage() {
+
+    setCurrentDateTime();
+
+    await Promise.all([
+
+        loadVehicles(),
+
+        loadDrivers(),
+
+        loadParkingAreas(),
+
+        loadMovements()
+
+    ]);
+}
+
+
+/* =========================================================
+   AUTO REFRESH
+========================================================= */
+
+setInterval(
+    loadMovements,
+    10000
+);
+
+
+/* =========================================================
+   START
+========================================================= */
+
+initializePage();
 
 </script>
-```
 
 </body>
 

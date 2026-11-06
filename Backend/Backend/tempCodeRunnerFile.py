@@ -1,50 +1,138 @@
-from app import create_app
-from models import db, ParkingArea, Vehicle, Driver
+from flask import Flask, jsonify
+from flask_cors import CORS
 
-app = create_app()
+from config import Config
+from models import db
 
-def seed_initial_data():
+
+def create_app(config_class=Config):
+
+    app = Flask(__name__)
+
+    app.config.from_object(
+        config_class
+    )
+
+    CORS(app)
+
+    db.init_app(app)
+
+    # =====================================================
+    # REGISTER BLUEPRINTS
+    # =====================================================
+
+    from rfid_routes import rfid_bp
+    from driver_routes import driver_bp
+    from sap_routes import sap_bp
+    from entry_routes import entry_bp
+    from camera_patrol_routes import camera_patrol_bp
+
+    app.register_blueprint(
+        rfid_bp
+    )
+
+    app.register_blueprint(
+        driver_bp
+    )
+
+    app.register_blueprint(
+        sap_bp
+    )
+
+    app.register_blueprint(
+        entry_bp
+    )
+
+    app.register_blueprint(
+        camera_patrol_bp
+    )
+
+    # =====================================================
+    # CREATE NEW TABLES
+    # =====================================================
+
     with app.app_context():
         db.create_all()
 
-        # Seed 10 Parking Areas
-        if ParkingArea.query.count() == 0:
-            for i in range(1, 11):
-                area = ParkingArea(
-                    area_id=f"AREA_{i:02d}",
-                    name=f"Parking Zone {i}",
-                    capacity=25,
-                    current_occupancy=0
-                )
-                db.session.add(area)
+    # =====================================================
+    # HOME / HEALTH CHECK
+    # =====================================================
 
-        # Seed 8 Vehicle Classes
-        vehicle_classes = [
-            "Heavy Trailer", "Semi-Trailer", "Box Truck", "Flatbed", 
-            "Container Chassis", "Tanker", "Cargo Van", "Yard Tug"
-        ]
-        if Vehicle.query.count() == 0:
-            for idx, v_class in enumerate(vehicle_classes, start=1):
-                v = Vehicle(
-                    vehicle_id=f"V{1000 + idx}",
-                    rfid_tag=f"E2801160600002047805{idx:04d}",
-                    vin=f"1M8GDM9A_SAMPLE{idx:02d}",
-                    vehicle_class=v_class,
-                    current_status="EXPECTED"
-                )
-                db.session.add(v)
+    @app.route(
+        "/",
+        methods=["GET"]
+    )
+    def home():
 
-        # Seed Drivers
-        if Driver.query.count() == 0:
-            drivers = [
-                Driver(driver_id="DRV_101", full_name="John Doe", license_number="DL-TX-9901"),
-                Driver(driver_id="DRV_102", full_name="Jane Smith", license_number="DL-TX-9902"),
-            ]
-            db.session.add_all(drivers)
+        return jsonify({
+            "status": "success",
 
-        db.session.commit()
-        print("[*] Database initialized and seeded with 10 Areas, 8 Classes, and Drivers.")
+            "message":
+                "Vehicle Yard Management Backend is running",
+
+            "service":
+                "Vehicle Yard Management System",
+
+            "api": {
+
+                "rfid":
+                    "/api/rfid",
+
+                "rfid_scan":
+                    "/api/rfid/scan",
+
+                "rfid_entry_simulation":
+                    "/api/rfid/simulate/entry",
+
+                "rfid_exit_simulation":
+                    "/api/rfid/simulate/exit",
+
+                "manual_entry":
+                    "/api/entry/manual",
+
+                "pdf_upload":
+                    "/api/entry/pdf",
+
+                "pdf_save":
+                    "/api/entry/pdf/save",
+
+                "pdf_save_bulk":
+                    "/api/entry/pdf/save-bulk",
+
+                "entries":
+                    "/api/entry/entries",
+
+                # =================================================
+                # CAMERA PATROL APIs
+                # =================================================
+
+                "camera_patrol_start":
+                    "/api/camera/patrol/start",
+
+                "camera_patrol_latest":
+                    "/api/camera/patrol/latest",
+
+                "camera_patrol_history":
+                    "/api/camera/patrol/history",
+
+                "camera_vehicle_search":
+                    "/api/camera/patrol/vehicle/<vehicle_number>"
+            }
+        })
+
+    return app
+
+
+# =====================================================
+# RUN APPLICATION
+# =====================================================
 
 if __name__ == "__main__":
-    seed_initial_data()
-    app.run(host="0.0.0.0", port=5000, debug=True)
+
+    app = create_app()
+
+    app.run(
+        host="127.0.0.1",
+        port=5000,
+        debug=True
+    )

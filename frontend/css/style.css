@@ -1,6 +1,11 @@
+/* =========================================================
+   VEHICLE YARD MANAGEMENT SYSTEM
+   COMPLETE UPDATED STYLE.CSS
+========================================================= */
+
 
 /* =========================================================
-   GLOBAL RESET
+   GLOBAL
 ========================================================= */
 
 * {
@@ -14,7 +19,7 @@
     --primary-dark: #1d4ed8;
 
     --sidebar: #111827;
-    --sidebar-hover: #1e3a8a;
+    --sidebar-hover: #1f2937;
 
     --background: #f4f7fb;
     --card: #ffffff;
@@ -45,6 +50,7 @@ body {
 
 a {
     text-decoration: none;
+    color: inherit;
 }
 
 button,
@@ -66,77 +72,82 @@ textarea {
     align-items: center;
     justify-content: center;
 
-    padding: 20px;
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff,
+            #f8fafc
+        );
 
-    background: linear-gradient(
-        135deg,
-        #eff6ff,
-        #f8fafc
-    );
+    padding: 20px;
 }
 
 .login-card {
-    width: 400px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 410px;
 
     background: #ffffff;
 
-    padding: 40px;
+    border: 1px solid var(--border);
 
     border-radius: 18px;
 
-    text-align: center;
+    padding: 35px;
 
     box-shadow:
-        0 20px 50px
-        rgba(15, 23, 42, 0.12);
+        0 15px 40px rgba(15, 23, 42, 0.10);
 }
 
-.logo {
-    width: 72px;
-    height: 72px;
-
-    margin: 0 auto 20px;
+.login-card .logo {
+    width: 60px;
+    height: 60px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
+    margin: 0 auto 15px;
+
     background: var(--primary);
 
-    color: #ffffff;
+    border-radius: 15px;
 
-    border-radius: 18px;
-
-    font-size: 32px;
-
-    box-shadow:
-        0 8px 20px
-        rgba(37, 99, 235, 0.25);
+    font-size: 30px;
 }
 
 .login-card h1 {
-    font-size: 28px;
-    margin-bottom: 5px;
+    text-align: center;
+
+    color: var(--heading);
+
+    font-size: 27px;
+
+    margin-bottom: 3px;
 }
 
-.subtitle {
+.login-card .subtitle {
+    text-align: center;
+
     color: var(--muted);
-    margin-bottom: 30px;
+
+    font-size: 14px;
+
+    margin-bottom: 28px;
 }
 
 .login-card form {
-    text-align: left;
+    display: flex;
+    flex-direction: column;
 }
 
 .login-card label {
-    display: block;
+    font-size: 13px;
 
-    margin-top: 15px;
-    margin-bottom: 7px;
-
-    font-size: 14px;
     font-weight: 600;
+
+    color: #374151;
+
+    margin-bottom: 7px;
 }
 
 .login-card input {
@@ -144,15 +155,15 @@ textarea {
 
     padding: 12px 13px;
 
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--border);
 
     border-radius: 8px;
 
-    font-size: 14px;
-
-    background: #ffffff;
-
     outline: none;
+
+    margin-bottom: 16px;
+
+    font-size: 14px;
 
     transition: 0.2s;
 }
@@ -161,28 +172,23 @@ textarea {
     border-color: var(--primary);
 
     box-shadow:
-        0 0 0 3px
-        rgba(37, 99, 235, 0.10);
+        0 0 0 3px rgba(37, 99, 235, 0.10);
 }
 
 .login-card button {
-    width: 100%;
-
-    margin-top: 25px;
-
-    padding: 13px;
-
     border: none;
 
-    border-radius: 8px;
+    padding: 12px;
 
     background: var(--primary);
 
-    color: #ffffff;
+    color: white;
 
-    font-size: 15px;
+    border-radius: 8px;
 
-    font-weight: 600;
+    font-size: 14px;
+
+    font-weight: 700;
 
     cursor: pointer;
 
@@ -191,38 +197,44 @@ textarea {
 
 .login-card button:hover {
     background: var(--primary-dark);
-
-    transform: translateY(-1px);
 }
 
 #message {
-    margin-top: 15px;
-    font-size: 14px;
+    text-align: center;
+
+    margin-top: 12px;
+
+    font-size: 13px;
 }
 
 .demo {
-    margin-top: 25px;
+    margin-top: 22px;
 
-    padding: 15px;
+    padding: 13px;
 
     background: #f8fafc;
 
     border: 1px solid var(--border);
 
-    border-radius: 10px;
+    border-radius: 9px;
 
-    font-size: 13px;
+    text-align: center;
 
-    color: #4b5563;
+    font-size: 12px;
+
+    color: var(--muted);
 }
 
+.demo b {
+    color: var(--heading);
 
-/* =========================================================
-   MAIN APP LAYOUT
-========================================================= */
+    display: block;
 
-.app-layout {
-    min-height: 100vh;
+    margin-bottom: 4px;
+}
+
+.demo p {
+    margin: 2px 0;
 }
 
 
@@ -235,45 +247,65 @@ textarea {
 
     left: 0;
     top: 0;
+    bottom: 0;
 
-    width: 250px;
-    height: 100vh;
+    width: 245px;
 
     background: var(--sidebar);
 
-    color: #ffffff;
-
-    padding: 22px 15px;
+    color: white;
 
     display: flex;
     flex-direction: column;
 
     z-index: 1000;
+
+    border-right: 1px solid #1f2937;
 }
+
+
+/* =========================================================
+   SIDEBAR LOGO
+========================================================= */
 
 .sidebar-logo {
-    display: flex;
+    min-height: 75px;
 
+    display: flex;
     align-items: center;
 
-    gap: 10px;
+    gap: 11px;
 
-    padding: 8px 10px 25px;
+    padding: 17px 18px;
 
-    border-bottom:
-        1px solid
-        rgba(255,255,255,0.08);
-
-    margin-bottom: 20px;
+    border-bottom: 1px solid #1f2937;
 }
 
-.sidebar-logo::first-letter {
-    font-size: 25px;
+.logo-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #2563eb;
+
+    border-radius: 9px;
+
+    font-size: 19px;
+
+    flex-shrink: 0;
 }
 
 .sidebar-logo h2 {
-    font-size: 17px;
+    margin: 0;
+
     color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 700;
 }
 
 .sidebar-logo span {
@@ -286,10 +318,20 @@ textarea {
     margin-top: 2px;
 }
 
+
+/* =========================================================
+   SIDEBAR NAVIGATION
+========================================================= */
+
 .sidebar-nav {
+    padding: 18px 11px;
+
     display: flex;
     flex-direction: column;
+
     gap: 5px;
+
+    flex: 1;
 }
 
 .sidebar-nav a {
@@ -303,40 +345,44 @@ textarea {
 
     border-radius: 8px;
 
-    color: #d1d5db;
+    color: #cbd5e1;
 
-    font-size: 14px;
+    font-size: 13px;
 
     transition: 0.2s;
 }
 
-.sidebar-nav a:hover {
-    background:
-        rgba(255,255,255,0.07);
+.sidebar-nav a span {
+    width: 22px;
 
-    color: #ffffff;
+    text-align: center;
+
+    font-size: 16px;
+}
+
+.sidebar-nav a:hover {
+    background: var(--sidebar-hover);
+
+    color: white;
 }
 
 .sidebar-nav a.active {
     background: var(--primary);
 
-    color: #ffffff;
+    color: white;
 
-    box-shadow:
-        0 5px 15px
-        rgba(37,99,235,0.25);
+    font-weight: 600;
 }
 
-.sidebar-nav a span:first-child {
-    width: 22px;
 
-    text-align: center;
-
-    font-size: 17px;
-}
+/* =========================================================
+   SIDEBAR BOTTOM
+========================================================= */
 
 .sidebar-bottom {
-    margin-top: auto;
+    padding: 15px;
+
+    border-top: 1px solid #1f2937;
 }
 
 .system-status {
@@ -346,78 +392,40 @@ textarea {
 
     gap: 10px;
 
-    padding: 12px;
+    padding: 10px;
 
-    margin-bottom: 10px;
-
-    background:
-        rgba(255,255,255,0.05);
+    background: #182231;
 
     border-radius: 9px;
-
-    color: #d1d5db;
-
-    font-size: 12px;
 }
 
-.status-dot {
-    width: 8px;
-    height: 8px;
-
-    border-radius: 50%;
-
-    background: #22c55e;
-
-    display: inline-block;
-
-    flex-shrink: 0;
-
-    box-shadow:
-        0 0 0 4px
-        rgba(34,197,94,0.12);
-}
-
-.admin-info {
-    padding: 10px 12px;
-}
-
-.admin-info strong {
+.system-status strong {
     display: block;
 
-    color: #ffffff;
-
     font-size: 12px;
+
+    color: white;
 }
 
-.admin-info span {
+.system-status small {
     display: block;
 
     color: #9ca3af;
 
     font-size: 10px;
+
+    margin-top: 2px;
 }
 
-.logout-link {
-    display: flex;
+.status-dot {
+    width: 9px;
+    height: 9px;
 
-    align-items: center;
+    border-radius: 50%;
 
-    gap: 12px;
+    background: var(--success);
 
-    padding: 11px 13px;
-
-    color: #d1d5db;
-
-    border-radius: 8px;
-
-    font-size: 14px;
-}
-
-.logout-link:hover {
-    background:
-        rgba(220,38,38,0.15);
-
-    color: #fca5a5;
+    flex-shrink: 0;
 }
 
 
@@ -426,123 +434,52 @@ textarea {
 ========================================================= */
 
 .main-content {
-    margin-left: 250px;
+    margin-left: 245px;
 
     min-height: 100vh;
 
-    padding: 25px 30px;
-
-    background: var(--background);
+    padding: 0 28px 30px;
 }
 
 
 /* =========================================================
-   TOP HEADER
-========================================================= */
-
-.top-header {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    gap: 20px;
-
-    margin-bottom: 25px;
-}
-
-.top-header h1 {
-    font-size: 28px;
-
-    font-weight: 700;
-
-    color: var(--text);
-
-    margin-bottom: 3px;
-}
-
-.top-header p {
-    color: var(--muted);
-
-    font-size: 13px;
-}
-
-.header-right {
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-}
-
-.demo-badge {
-    padding: 7px 11px;
-
-    background: #eff6ff;
-
-    color: #1d4ed8;
-
-    border-radius: 20px;
-
-    font-size: 10px;
-
-    font-weight: 700;
-}
-
-.logout-btn {
-    padding: 8px 13px;
-
-    background: #ffffff;
-
-    color: #475569;
-
-    border: 1px solid var(--border);
-
-    border-radius: 8px;
-
-    font-size: 11px;
-
-    font-weight: 600;
-
-    transition: 0.2s;
-}
-
-.logout-btn:hover {
-    background: #fee2e2;
-
-    color: #991b1b;
-}
-
-
-/* =========================================================
-   OLD TOPBAR SUPPORT
+   TOPBAR
 ========================================================= */
 
 .topbar {
-    display: flex;
+    min-height: 75px;
 
-    justify-content: space-between;
+    display: flex;
 
     align-items: center;
 
-    margin-bottom: 25px;
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--border);
+
+    margin-bottom: 24px;
 }
 
-.page-title h1 {
-    font-size: 28px;
-    margin-bottom: 3px;
+.topbar-left h1 {
+    font-size: 24px;
+
+    color: var(--heading);
+
+    margin-bottom: 2px;
 }
 
-.page-title p {
+.topbar-left p {
+    font-size: 12px;
+
     color: var(--muted);
-    font-size: 13px;
 }
 
 .topbar-right {
     display: flex;
+
     align-items: center;
-    gap: 18px;
+
+    gap: 25px;
 }
 
 .connection-status {
@@ -550,35 +487,24 @@ textarea {
 
     align-items: center;
 
-    gap: 8px;
-
-    padding: 8px 12px;
-
-    background: #ecfdf5;
-
-    color: #166534;
-
-    border-radius: 20px;
+    gap: 7px;
 
     font-size: 12px;
 
-    font-weight: 600;
+    color: #475569;
 }
 
-.user-info {
+.connection-status .status-dot {
+    width: 8px;
+    height: 8px;
+}
+
+.user-profile {
     display: flex;
 
     align-items: center;
 
-    gap: 10px;
-
-    background: #ffffff;
-
-    padding: 8px 12px;
-
-    border-radius: 10px;
-
-    box-shadow: var(--shadow);
+    gap: 9px;
 }
 
 .user-avatar {
@@ -592,173 +518,31 @@ textarea {
 
     background: #dbeafe;
 
-    color: #1d4ed8;
+    color: var(--primary);
 
     border-radius: 50%;
 
-    font-weight: bold;
+    font-size: 13px;
+
+    font-weight: 700;
 }
 
-
-/* =========================================================
-   BACKEND NOTE
-========================================================= */
-
-.backend-note {
-    display: flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    margin-bottom: 20px;
-
-    padding: 13px 16px;
-
-    background: #fff7ed;
-
-    border: 1px solid #fed7aa;
-
-    border-radius: 10px;
-
-    color: #9a3412;
-
-    font-size: 12px;
-}
-
-.backend-note strong {
-    white-space: nowrap;
-}
-
-.backend-note p {
-    margin: 0;
-}
-
-
-/* =========================================================
-   SUMMARY CARDS
-========================================================= */
-
-.summary-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 18px;
-
-    margin-bottom: 22px;
-}
-
-.summary-card {
-    background: #ffffff;
-
-    padding: 20px;
-
-    border-radius: 13px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 15px;
-
-    box-shadow: var(--shadow);
-
-    border:
-        1px solid
-        #edf0f4;
-}
-
-.summary-icon {
-    width: 50px;
-    height: 50px;
-
-    min-width: 50px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    background: #eff6ff;
-
-    border-radius: 11px;
-
-    font-size: 22px;
-}
-
-.summary-label {
+.user-profile strong {
     display: block;
 
-    color: var(--muted);
-
-    font-size: 11px;
-
-    margin-bottom: 3px;
-}
-
-.summary-card h2 {
-    font-size: 19px;
-
-    line-height: 1.3;
-
-    color: var(--heading);
-}
-
-.summary-card small {
-    color: var(--muted);
-
-    font-size: 9px;
-}
-
-
-/* =========================================================
-   CONTENT PANELS
-========================================================= */
-
-.content-panel {
-    background: #ffffff;
-
-    padding: 22px;
-
-    margin-bottom: 20px;
-
-    border-radius: 13px;
-
-    box-shadow: var(--shadow);
-
-    border:
-        1px solid
-        #edf0f4;
-
-    min-width: 0;
-}
-
-.section-header {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 15px;
-
-    margin-bottom: 18px;
-}
-
-.section-header h2 {
-    font-size: 17px;
-
-    color: var(--heading);
-
-    margin-bottom: 3px;
-}
-
-.section-header p {
-    color: var(--muted);
-
     font-size: 12px;
+
+    color: var(--heading);
+}
+
+.user-profile small {
+    display: block;
+
+    font-size: 10px;
+
+    color: var(--muted);
+
+    margin-top: 1px;
 }
 
 
@@ -767,19 +551,6 @@ textarea {
 ========================================================= */
 
 .welcome-panel {
-    background:
-        linear-gradient(
-            135deg,
-            #1e40af,
-            #2563eb
-        );
-
-    color: #ffffff;
-
-    padding: 25px 28px;
-
-    border-radius: 15px;
-
     display: flex;
 
     justify-content: space-between;
@@ -788,79 +559,81 @@ textarea {
 
     gap: 20px;
 
-    margin-bottom: 22px;
+    padding: 25px;
 
-    box-shadow:
-        0 10px 25px
-        rgba(37,99,235,0.18);
+    background:
+        linear-gradient(
+            135deg,
+            #1d4ed8,
+            #2563eb
+        );
+
+    color: white;
+
+    border-radius: 15px;
+
+    box-shadow: var(--shadow);
+
+    margin-bottom: 20px;
 }
 
-.welcome-panel h2 {
-    font-size: 22px;
-    margin-bottom: 5px;
-}
-
-.welcome-panel p {
-    color: #dbeafe;
-
-    font-size: 13px;
-
-    max-width: 600px;
-}
-
-.section-label {
+.welcome-label {
     display: block;
 
     font-size: 10px;
 
     font-weight: 700;
 
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
 
-    color: #64748b;
+    opacity: 0.75;
+
+    margin-bottom: 6px;
+}
+
+.welcome-panel h2 {
+    font-size: 23px;
 
     margin-bottom: 5px;
 }
 
-.welcome-panel .section-label {
-    color: #bfdbfe;
+.welcome-panel p {
+    font-size: 13px;
+
+    opacity: 0.85;
+
+    max-width: 650px;
 }
 
-.overview-info {
+.welcome-stats {
     display: flex;
-    gap: 12px;
+
+    gap: 28px;
+
+    flex-shrink: 0;
 }
 
-.overview-info div {
-    min-width: 110px;
-
+.welcome-stats div {
     text-align: center;
 
-    padding: 15px;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.20);
-
-    border-radius: 10px;
-
-    background:
-        rgba(255,255,255,0.08);
+    min-width: 80px;
 }
 
-.overview-info strong {
+.welcome-stats strong {
     display: block;
-    font-size: 24px;
+
+    font-size: 27px;
 }
 
-.overview-info span {
-    font-size: 10px;
-    color: #dbeafe;
+.welcome-stats span {
+    font-size: 11px;
+
+    opacity: 0.80;
 }
 
 
 /* =========================================================
-   DASHBOARD CARDS
+   SUMMARY CARDS
 ========================================================= */
 
 .dashboard-cards {
@@ -869,103 +642,296 @@ textarea {
     grid-template-columns:
         repeat(4, 1fr);
 
-    gap: 18px;
+    gap: 16px;
 
-    margin-bottom: 22px;
+    margin-bottom: 25px;
 }
 
 .dashboard-card {
-    background: #ffffff;
-
-    padding: 20px;
-
-    border-radius: 13px;
-
     display: flex;
 
     align-items: center;
 
-    gap: 15px;
+    gap: 14px;
+
+    padding: 18px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
 
     box-shadow: var(--shadow);
-
-    border:
-        1px solid
-        #edf0f4;
 }
 
 .card-icon {
-    width: 52px;
-    height: 52px;
-
-    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    border-radius: 11px;
+    background: #eff6ff;
 
-    font-size: 22px;
+    border-radius: 10px;
+
+    font-size: 21px;
 }
 
-.card-icon.blue {
-    background: #dbeafe;
-}
-
-.card-icon.green {
-    background: #dcfce7;
-}
-
-.card-icon.orange {
-    background: #ffedd5;
-}
-
-.card-icon.purple {
-    background: #ede9fe;
-}
-
-.card-label {
+.dashboard-card span {
     display: block;
 
     color: var(--muted);
 
     font-size: 11px;
 
-    margin-bottom: 3px;
+    margin-bottom: 2px;
 }
 
-.card-content h2 {
-    font-size: 22px;
+.dashboard-card strong {
+    display: block;
 
-    line-height: 1.2;
+    color: var(--heading);
 
-    margin-bottom: 3px;
+    font-size: 21px;
 }
 
-.card-content small {
-    color: #9ca3af;
-    font-size: 10px;
+.success-text {
+    color: var(--success) !important;
+
+    font-size: 16px !important;
 }
 
 
 /* =========================================================
-   DASHBOARD GRID
+   CHART SECTION
 ========================================================= */
 
-.dashboard-grid {
+.chart-section {
+    margin-top: 5px;
+
+    margin-bottom: 25px;
+}
+
+.chart-section-title {
+    margin-bottom: 15px;
+}
+
+.chart-section-title h2 {
+    margin: 0;
+
+    font-size: 21px;
+
+    color: var(--heading);
+}
+
+.chart-section-title p {
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+.chart-grid {
     display: grid;
 
     grid-template-columns:
-        0.9fr 1.5fr;
+        repeat(3, 1fr);
 
     gap: 20px;
-
-    margin-bottom: 20px;
 }
 
-.bottom-grid {
+.chart-card {
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    padding: 21px;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+.chart-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, 0.08);
+}
+
+.chart-card-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 10px;
+}
+
+.chart-card-header h3 {
+    margin: 0;
+
+    font-size: 16px;
+
+    color: var(--heading);
+}
+
+.chart-card-header p {
+    margin: 5px 0 0;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+.chart-badge {
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    background: #eff6ff;
+
+    color: var(--primary);
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+.chart-container {
+    height: 225px;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.chart-container canvas {
+    max-width: 205px;
+
+    max-height: 205px;
+}
+
+.chart-center {
+    position: absolute;
+
+    text-align: center;
+
+    pointer-events: none;
+}
+
+.chart-center-value {
+    display: block;
+
+    font-size: 29px;
+
+    font-weight: 800;
+
+    color: #111827;
+}
+
+.chart-center-label {
+    display: block;
+
+    font-size: 11px;
+
+    color: var(--muted);
+
+    margin-top: 1px;
+}
+
+.chart-legend {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 8px;
+
+    margin-top: 8px;
+}
+
+.legend-item {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 8px 9px;
+
+    border-radius: 8px;
+
+    background: #f8fafc;
+
+    font-size: 11px;
+
+    color: #475569;
+}
+
+.legend-left {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+}
+
+.legend-dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    display: inline-block;
+}
+
+.dot-blue {
+    background: #2563eb;
+}
+
+.dot-green {
+    background: #16a34a;
+}
+
+.dot-orange {
+    background: #f59e0b;
+}
+
+.dot-red {
+    background: #dc2626;
+}
+
+.dot-gray {
+    background: #cbd5e1;
+}
+
+.legend-value {
+    font-weight: 700;
+
+    color: var(--heading);
+}
+
+
+/* =========================================================
+   GENERAL DASHBOARD GRID
+========================================================= */
+
+.dashboard-grid {
     display: grid;
 
     grid-template-columns:
@@ -976,46 +942,61 @@ textarea {
     margin-bottom: 20px;
 }
 
-.dashboard-panel {
-    background: #ffffff;
 
-    padding: 22px;
+/* =========================================================
+   PANELS
+========================================================= */
+
+.panel {
+    background: var(--card);
+
+    border: 1px solid var(--border);
 
     border-radius: 13px;
 
     box-shadow: var(--shadow);
 
-    border:
-        1px solid
-        #edf0f4;
-
-    min-width: 0;
+    overflow: hidden;
 }
 
 .panel-header {
     display: flex;
 
-    justify-content: space-between;
-
     align-items: center;
 
-    gap: 15px;
+    justify-content: space-between;
 
-    margin-bottom: 18px;
+    padding: 17px 19px;
+
+    border-bottom: 1px solid var(--border);
 }
 
 .panel-header h2 {
-    font-size: 17px;
+    font-size: 16px;
+
+    color: var(--heading);
+
+    margin-bottom: 2px;
 }
 
-.view-link {
-    color: var(--primary);
+.panel-header p {
+    font-size: 11px;
 
-    font-size: 12px;
+    color: var(--muted);
+}
 
-    font-weight: 600;
+.panel-badge {
+    padding: 5px 9px;
 
-    white-space: nowrap;
+    background: #ecfdf5;
+
+    color: var(--success);
+
+    border-radius: 15px;
+
+    font-size: 9px;
+
+    font-weight: 700;
 }
 
 
@@ -1023,49 +1004,427 @@ textarea {
    PARKING AREA LIST
 ========================================================= */
 
-.area-list {
-    display: flex;
-    flex-direction: column;
+.parking-area-list {
+    padding: 14px 18px;
 }
 
-.area-row {
+.parking-area-item {
+    padding: 12px 0;
+
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.parking-area-item:last-child {
+    border-bottom: none;
+}
+
+.parking-area-info {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 7px;
+}
+
+.parking-area-info strong {
+    display: block;
+
+    font-size: 12px;
+
+    color: var(--heading);
+}
+
+.parking-area-info small {
+    display: block;
+
+    font-size: 10px;
+
+    color: var(--muted);
+
+    margin-top: 2px;
+}
+
+.parking-area-info > strong {
+    font-size: 12px;
+}
+
+.progress-bar {
+    height: 7px;
+
+    background: #e5e7eb;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+
+    border-radius: 10px;
+
+    transition: width 0.5s ease;
+}
+
+.progress-fill.low {
+    background: var(--success);
+}
+
+.progress-fill.medium {
+    background: var(--warning);
+}
+
+.progress-fill.high {
+    background: var(--danger);
+}
+
+.parking-area-bottom {
+    margin-top: 5px;
+
+    font-size: 10px;
+
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   PARKING YARD MAP
+   UPDATED:
+   AVAILABLE = BLACK BORDER
+   OCCUPIED = GREEN BORDER
+   FULL = RED BORDER
+========================================================= */
+
+.yard-map-panel {
+    margin-top: 25px;
+}
+
+.yard-map-title {
+    padding: 20px 20px 0;
+    margin-bottom: 18px;
+}
+
+.yard-map-title h2 {
+    margin: 0;
+
+    color: var(--heading);
+
+    font-size: 21px;
+}
+
+.yard-map-title p {
+    margin: 5px 0 0;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+.parking-map {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 14px;
+
+    padding: 0 20px 20px;
+}
+
+
+/* DEFAULT PARKING SLOT */
+
+.parking-zone {
+    position: relative;
+
+    min-height: 125px;
+
+    padding: 15px;
+
+    border-radius: 14px;
+
+    /* BLACK BORDER */
+    border: 2px solid #111827;
+
+    /* WHITE INSIDE */
+    background: #ffffff;
+
+    transition:
+        all 0.25s ease;
+}
+
+
+/* AVAILABLE */
+
+.parking-zone.available {
+    background: #ffffff;
+
+    border-color: #111827;
+}
+
+
+/* AVAILABLE HOVER */
+
+.parking-zone.available:hover {
+    transform: translateY(-2px);
+
+    border-color: #000000;
+
+    box-shadow:
+        0 5px 15px rgba(15, 23, 42, 0.12);
+}
+
+
+/* OCCUPIED */
+
+.parking-zone.occupied {
+    background: #ffffff;
+
+    /* GREEN BORDER ONLY */
+    border-color: #16a34a;
+
+    box-shadow:
+        0 5px 18px rgba(22, 163, 74, 0.15);
+}
+
+
+/* OCCUPIED HOVER */
+
+.parking-zone.occupied:hover {
+    transform: translateY(-2px);
+
+    border-color: #15803d;
+
+    box-shadow:
+        0 7px 20px rgba(22, 163, 74, 0.20);
+}
+
+
+/* FULL */
+
+.parking-zone.full {
+    background: #ffffff;
+
+    border-color: #dc2626;
+
+    box-shadow:
+        0 5px 18px rgba(220, 38, 38, 0.12);
+}
+
+
+/* =========================================================
+   PARKING ZONE TOP
+========================================================= */
+
+.zone-top {
     display: flex;
 
     justify-content: space-between;
 
     align-items: center;
+}
 
-    padding: 10px 0;
 
-    border-bottom:
-        1px solid
-        var(--border);
+/* =========================================================
+   ZONE NUMBER
+========================================================= */
+
+.zone-number {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 8px;
+
+    /* AVAILABLE = BLACK */
+    background: #111827;
+
+    color: #ffffff;
+
+    font-weight: 800;
 
     font-size: 13px;
 }
 
-.area-row:last-child {
-    border-bottom: none;
+
+/* OCCUPIED = GREEN */
+
+.parking-zone.occupied .zone-number {
+    background: #16a34a;
+
+    color: #ffffff;
 }
 
-.area-badge {
-    padding: 4px 9px;
 
-    background: #f1f5f9;
+/* FULL = RED */
+
+.parking-zone.full .zone-number {
+    background: #dc2626;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   ZONE STATUS
+========================================================= */
+
+.zone-status {
+    font-size: 10px;
+
+    font-weight: 700;
+
+    padding: 5px 8px;
+
+    border-radius: 12px;
+
+    background: #111827;
+
+    color: #ffffff;
+}
+
+
+/* OCCUPIED */
+
+.parking-zone.occupied .zone-status {
+    background: #16a34a;
+
+    color: #ffffff;
+}
+
+
+/* FULL */
+
+.parking-zone.full .zone-status {
+    background: #dc2626;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   ZONE TEXT
+========================================================= */
+
+.parking-zone h3 {
+    margin: 14px 0 5px;
+
+    font-size: 15px;
+
+    color: #1e293b;
+}
+
+.zone-id {
+    font-size: 11px;
+
+    color: #64748b;
+}
+
+.zone-count {
+    margin-top: 12px;
+
+    font-size: 12px;
 
     color: #475569;
+}
 
-    border-radius: 5px;
+.zone-count strong {
+    color: #111827;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   OCCUPIED VEHICLE INDICATOR
+========================================================= */
+
+.zone-vehicles {
+    margin-top: 7px;
 
     font-size: 10px;
 
-    font-weight: 600;
+    color: #166534;
+
+    font-weight: 700;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 4px;
 }
 
-.area-badge.highlighted {
-    background: #dbeafe;
 
-    color: #1d4ed8;
+/* =========================================================
+   FLOW
+========================================================= */
+
+.data-flow-panel {
+    margin-bottom: 20px;
+}
+
+.data-flow {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 25px 18px;
+
+    overflow-x: auto;
+}
+
+.flow-step {
+    min-width: 110px;
+
+    padding: 13px 9px;
+
+    background: #f8fafc;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    flex-shrink: 0;
+}
+
+.flow-step span {
+    display: block;
+
+    font-size: 20px;
+
+    margin-bottom: 5px;
+}
+
+.flow-step strong {
+    display: block;
+
+    font-size: 10px;
+
+    color: var(--heading);
+}
+
+.flow-arrow {
+    color: var(--primary);
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    flex-shrink: 0;
 }
 
 
@@ -1074,8 +1433,6 @@ textarea {
 ========================================================= */
 
 .table-container {
-    width: 100%;
-
     overflow-x: auto;
 }
 
@@ -1084,97 +1441,47 @@ table {
 
     border-collapse: collapse;
 
-    min-width: 700px;
+    font-size: 12px;
+}
+
+thead {
+    background: #f8fafc;
 }
 
 th {
-    padding: 13px 12px;
+    text-align: left;
 
-    background: #f8fafc;
+    padding: 11px 15px;
 
     color: #64748b;
 
     font-size: 10px;
-
-    font-weight: 700;
-
-    text-align: left;
 
     text-transform: uppercase;
 
     letter-spacing: 0.3px;
+
+    font-weight: 700;
+
+    border-bottom: 1px solid var(--border);
 }
 
 td {
-    padding: 14px 12px;
-
-    border-bottom:
-        1px solid
-        var(--border);
-
-    font-size: 12px;
+    padding: 12px 15px;
 
     color: #475569;
 
-    vertical-align: middle;
+    border-bottom: 1px solid #f1f5f9;
+
+    font-size: 11px;
 }
 
 tbody tr:hover {
-    background: #fafcff;
-}
-
-.vehicle-id {
-    color: var(--primary);
-
-    font-weight: 700;
-}
-
-
-/* =========================================================
-   ACTIVITY TABLE
-========================================================= */
-
-.activity-table {
-    width: 100%;
-    overflow-x: auto;
-}
-
-.table-header,
-.table-row {
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr 1fr 1.2fr;
-
-    gap: 10px;
-
-    align-items: center;
-
-    min-width: 500px;
-}
-
-.table-header {
-    padding: 10px;
-
     background: #f8fafc;
-
-    color: #64748b;
-
-    font-size: 10px;
-
-    font-weight: 700;
-
-    text-transform: uppercase;
 }
 
-.table-row {
-    padding: 14px 10px;
-
-    border-bottom:
-        1px solid
-        var(--border);
-
-    font-size: 12px;
+td strong {
+    color: var(--heading);
 }
 
 
@@ -1185,97 +1492,119 @@ tbody tr:hover {
 .status-badge {
     display: inline-block;
 
-    padding: 5px 10px;
+    padding: 4px 8px;
 
-    border-radius: 20px;
-
-    font-size: 10px;
-
-    font-weight: 700;
-}
-
-.status-badge.pending {
-    background: #fff7ed;
-    color: #c2410c;
-}
-
-.status-badge.active {
-    background: #dcfce7;
-    color: #166534;
-}
-
-.status-badge.success {
-    background: #dcfce7;
-    color: #166534;
-}
-
-.active-badge {
-    padding: 5px 9px;
-
-    background: #dcfce7;
-
-    color: #166534;
-
-    border-radius: 20px;
+    border-radius: 12px;
 
     font-size: 9px;
 
     font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+.status-badge.success {
+    background: #dcfce7;
+
+    color: #15803d;
+}
+
+.status-badge.warning {
+    background: #fef3c7;
+
+    color: #b45309;
+}
+
+.status-badge.danger {
+    background: #fee2e2;
+
+    color: #b91c1c;
+}
+
+.status-badge.info {
+    background: #dbeafe;
+
+    color: #1d4ed8;
 }
 
 
 /* =========================================================
-   RFID
+   BACKEND MESSAGE
 ========================================================= */
 
-.rfid-status-list {
-    display: flex;
+.backend-message {
+    padding: 10px 15px;
 
-    flex-direction: column;
+    font-size: 10px;
 
-    gap: 10px;
+    color: var(--muted);
 }
 
-.rfid-status-item {
+.loading-message {
+    padding: 25px 10px;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   RFID INFRASTRUCTURE
+========================================================= */
+
+.infrastructure-list {
+    padding: 8px 18px;
+}
+
+.infrastructure-item {
     display: flex;
 
     align-items: center;
 
     gap: 12px;
 
-    padding: 12px;
+    padding: 13px 0;
 
-    background: #f8fafc;
-
-    border-radius: 9px;
+    border-bottom: 1px solid #f1f5f9;
 }
 
-.rfid-icon {
-    width: 38px;
-    height: 38px;
+.infrastructure-item:last-child {
+    border-bottom: none;
+}
+
+.infra-icon {
+    width: 37px;
+    height: 37px;
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
-    background: #dbeafe;
+    background: #eff6ff;
 
-    border-radius: 8px;
+    border-radius: 9px;
 
     font-size: 17px;
 }
 
-.rfid-info {
+.infrastructure-item > div:nth-child(2) {
     flex: 1;
 }
 
-.rfid-info strong {
+.infrastructure-item strong {
     display: block;
+
+    color: var(--heading);
+
     font-size: 12px;
 }
 
-.rfid-info span {
+.infrastructure-item small {
     display: block;
 
     color: var(--muted);
@@ -1287,1158 +1616,66 @@ tbody tr:hover {
 
 
 /* =========================================================
-   RFID PAGE
+   BUSINESS EVENTS
 ========================================================= */
 
-.rfid-reader-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 20px;
-
-    margin-top: 20px;
+.event-list {
+    padding: 8px 18px;
 }
 
-.rfid-reader-card {
-    display: flex;
-
-    gap: 16px;
-
-    background: #ffffff;
-
-    border: 1px solid var(--border);
-
-    border-radius: 14px;
-
-    padding: 22px;
-}
-
-.rfid-reader-icon {
-    width: 52px;
-    height: 52px;
-
-    min-width: 52px;
-
-    border-radius: 12px;
-
-    background: #f1f5f9;
-
+.event-item {
     display: flex;
 
     align-items: center;
-    justify-content: center;
-
-    font-size: 25px;
-}
-
-.rfid-reader-content h3 {
-    margin: 5px 0 8px;
-
-    color: var(--heading);
-
-    font-size: 17px;
-}
-
-.rfid-reader-content p {
-    margin: 0 0 12px;
-
-    color: var(--muted);
-
-    font-size: 13px;
-
-    line-height: 1.6;
-}
-
-.reader-status {
-    display: inline-block;
-
-    padding: 5px 10px;
-
-    border-radius: 20px;
-
-    font-size: 11px;
-
-    font-weight: 600;
-}
-
-.reader-status.active {
-    background: #dcfce7;
-    color: #166534;
-}
-
-.reader-status.available {
-    background: #eff6ff;
-    color: #1d4ed8;
-}
-
-
-/* =========================================================
-   VEHICLES PAGE
-========================================================= */
-
-.vehicle-controls {
-    display: grid;
-
-    grid-template-columns:
-        2fr 1fr;
-
-    gap: 20px;
-
-    margin-bottom: 20px;
-}
-
-.vehicle-controls label {
-    margin-top: 0;
-}
-
-.vehicle-table-panel {
-    margin-bottom: 20px;
-}
-
-.vehicle-table-panel table {
-    min-width: 850px;
-}
-
-.vehicle-table-panel th {
-    padding: 13px 12px;
-}
-
-.vehicle-table-panel td {
-    padding: 15px 12px;
-}
-
-.location-badge {
-    display: inline-block;
-
-    padding: 5px 9px;
-
-    background: #eff6ff;
-
-    color: #1d4ed8;
-
-    border-radius: 6px;
-
-    font-size: 10px;
-
-    font-weight: 600;
-}
-
-.vehicle-status {
-    display: inline-block;
-
-    padding: 5px 10px;
-
-    border-radius: 20px;
-
-    font-size: 10px;
-
-    font-weight: 700;
-}
-
-.vehicle-status.parked {
-    background: #dcfce7;
-    color: #166534;
-}
-
-.data-source {
-    padding: 4px 8px;
-
-    background: #f1f5f9;
-
-    color: #64748b;
-
-    border-radius: 5px;
-
-    font-size: 9px;
-}
-
-.empty-vehicle {
-    text-align: center;
-
-    padding: 25px;
-
-    color: #64748b;
-}
-
-.empty-icon {
-    font-size: 30px;
-
-    margin-bottom: 8px;
-}
-
-.empty-vehicle strong {
-    display: block;
-
-    color: #475569;
-
-    font-size: 12px;
-
-    margin-bottom: 4px;
-}
-
-.empty-vehicle p {
-    font-size: 10px;
-
-    color: #94a3b8;
-}
-
-
-/* =========================================================
-   VEHICLE CLASS GRID
-========================================================= */
-
-.class-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 12px;
-}
-
-.class-card {
-    padding: 15px;
-
-    background: #f8fafc;
-
-    border: 1px solid #edf0f4;
-
-    border-radius: 10px;
-}
-
-.class-card > span {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 25px;
-    height: 25px;
-
-    background: #dbeafe;
-
-    color: #1d4ed8;
-
-    border-radius: 6px;
-
-    font-size: 9px;
-
-    font-weight: 700;
-
-    margin-bottom: 8px;
-}
-
-.class-card strong {
-    display: block;
-
-    font-size: 12px;
-
-    margin-bottom: 4px;
-}
-
-.class-card small {
-    display: block;
-
-    color: #94a3b8;
-
-    font-size: 9px;
-
-    line-height: 1.4;
-}
-
-
-/* =========================================================
-   PARKING PAGE
-========================================================= */
-
-.parking-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 20px;
-
-    margin-top: 20px;
-}
-
-.parking-card {
-    background: #ffffff;
-
-    border: 1px solid var(--border);
-
-    border-radius: 14px;
-
-    padding: 22px;
-
-    transition: 0.2s ease;
-}
-
-.parking-card:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 8px 25px
-        rgba(0,0,0,0.07);
-}
-
-.parking-card-header {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    margin-bottom: 18px;
-}
-
-.parking-number {
-    width: 42px;
-    height: 42px;
-
-    border-radius: 10px;
-
-    background: #f1f5f9;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    font-weight: 700;
-
-    color: #334155;
-}
-
-.parking-card h3 {
-    margin: 0 0 20px;
-
-    font-size: 20px;
-
-    color: var(--heading);
-}
-
-.parking-info {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 12px;
-}
-
-.parking-info div {
-    background: #f8fafc;
-
-    padding: 12px;
-
-    border-radius: 8px;
-}
-
-.parking-info span {
-    display: block;
-
-    font-size: 11px;
-
-    color: #64748b;
-
-    margin-bottom: 5px;
-}
-
-.parking-info strong {
-    font-size: 13px;
-
-    color: #334155;
-}
-
-.parking-status {
-    display: inline-block;
-
-    padding: 6px 10px;
-
-    border-radius: 20px;
-
-    font-size: 11px;
-
-    font-weight: 600;
-}
-
-.parking-status.pending {
-    background: #fff7ed;
-    color: #c2410c;
-}
-
-.parking-status.example {
-    background: #eff6ff;
-    color: #2563eb;
-}
-
-.parking-status.occupied {
-    background: #fee2e2;
-    color: #991b1b;
-}
-
-.parking-status.available {
-    background: #dcfce7;
-    color: #166534;
-}
-
-.area-count {
-    background: #f1f5f9;
-
-    padding: 8px 14px;
-
-    border-radius: 20px;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    color: #475569;
-}
-
-
-/* =========================================================
-   MOVEMENTS PAGE
-========================================================= */
-
-.movement-form {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 20px;
-
-    margin-top: 20px;
-}
-
-.form-group {
-    display: flex;
-
-    flex-direction: column;
-}
-
-.form-group label {
-    font-size: 13px;
-
-    font-weight: 600;
-
-    color: #334155;
-
-    margin-bottom: 8px;
-
-    margin-top: 0;
-}
-
-.form-group input,
-.form-group select {
-    width: 100%;
-
-    padding: 12px 14px;
-
-    border: 1px solid #dbe1e8;
-
-    border-radius: 8px;
-
-    background: #ffffff;
-
-    color: #334155;
-
-    font-size: 14px;
-
-    outline: none;
-}
-
-.form-group input:focus,
-.form-group select:focus {
-    border-color: var(--primary);
-
-    box-shadow:
-        0 0 0 3px
-        rgba(37,99,235,0.10);
-}
-
-.optional {
-    font-size: 11px;
-
-    font-weight: 400;
-
-    color: #94a3b8;
-
-    margin-left: 5px;
-}
-
-.form-actions {
-    grid-column: 1 / -1;
-
-    display: flex;
 
     gap: 12px;
 
-    margin-top: 5px;
+    padding: 11px 0;
+
+    border-bottom: 1px solid #f1f5f9;
 }
 
-.primary-btn,
-.secondary-btn {
-    width: auto;
-
-    margin-top: 0;
-
-    padding: 12px 20px;
-
-    border-radius: 8px;
-
-    border: none;
-
-    cursor: pointer;
-
-    font-size: 14px;
-
-    font-weight: 600;
+.event-item:last-child {
+    border-bottom: none;
 }
 
-.primary-btn {
-    background: var(--primary);
+.event-number {
+    width: 31px;
+    height: 31px;
 
-    color: #ffffff;
-}
-
-.primary-btn:hover {
-    background: var(--primary-dark);
-
-    transform: none;
-}
-
-.secondary-btn {
-    background: #f1f5f9;
-
-    color: #334155;
-}
-
-.secondary-btn:hover {
-    background: #e2e8f0;
-
-    transform: none;
-}
-
-.movement-message {
-    display: none;
-
-    margin-top: 12px;
-
-    font-size: 13px;
-
-    font-weight: 600;
-}
-
-.movement-history {
-    margin-top: 22px;
-
-    overflow-x: auto;
-}
-
-
-/* =========================================================
-   LOCATION FLOW
-========================================================= */
-
-.location-flow {
     display: flex;
 
     align-items: center;
 
-    justify-content: center;
-
-    gap: 15px;
-
-    padding: 30px 10px;
-
-    flex-wrap: wrap;
-}
-
-.flow-step {
-    min-width: 150px;
-
-    text-align: center;
-
-    background: #f8fafc;
-
-    border: 1px solid #e2e8f0;
-
-    border-radius: 12px;
-
-    padding: 18px 15px;
-}
-
-.flow-icon {
-    width: 42px;
-    height: 42px;
-
-    margin: 0 auto 8px;
-
-    display: flex;
-
-    align-items: center;
     justify-content: center;
 
     background: #eff6ff;
 
     color: var(--primary);
 
-    border-radius: 10px;
-
-    font-size: 20px;
-}
-
-.flow-step strong {
-    display: block;
-
-    color: #1e293b;
-
-    font-size: 12px;
-
-    margin-bottom: 5px;
-}
-
-.flow-step span {
-    color: #64748b;
-
-    font-size: 10px;
-}
-
-.flow-arrow {
-    font-size: 24px;
-
-    color: #94a3b8;
-
-    font-weight: bold;
-}
-
-
-/* =========================================================
-   EVENTS PAGE
-========================================================= */
-
-.event-type-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 18px;
-
-    margin-top: 20px;
-}
-
-.event-type-card {
-    display: flex;
-
-    align-items: flex-start;
-
-    gap: 15px;
-
-    background: #ffffff;
-
-    border: 1px solid var(--border);
-
-    border-radius: 12px;
-
-    padding: 20px;
-}
-
-.event-number {
-    width: 42px;
-    height: 42px;
-
-    min-width: 42px;
-
-    border-radius: 10px;
-
-    background: #f1f5f9;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    color: #475569;
-}
-
-.event-type-card h3 {
-    margin: 2px 0 7px;
-
-    font-size: 15px;
-
-    color: var(--heading);
-}
-
-.event-type-card p {
-    margin: 0;
-
-    color: #64748b;
-
-    font-size: 12px;
-
-    line-height: 1.5;
-}
-
-.sync-status {
-    display: inline-block;
-
-    padding: 5px 10px;
-
-    border-radius: 20px;
-
-    font-size: 11px;
-
-    font-weight: 600;
-}
-
-.sync-status.pending {
-    background: #fff7ed;
-    color: #c2410c;
-}
-
-.sync-status.success {
-    background: #dcfce7;
-    color: #166534;
-}
-
-
-/* =========================================================
-   DRIVERS PAGE
-========================================================= */
-
-.driver-feature-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 18px;
-
-    margin-top: 20px;
-}
-
-.driver-feature-card {
-    background: #ffffff;
-
-    border: 1px solid var(--border);
-
-    border-radius: 12px;
-
-    padding: 20px;
-
-    min-height: 170px;
-}
-
-.feature-icon {
-    width: 45px;
-    height: 45px;
-
-    border-radius: 10px;
-
-    background: #f1f5f9;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    font-size: 22px;
-
-    margin-bottom: 14px;
-}
-
-.driver-feature-card h3 {
-    margin: 0 0 8px;
-
-    font-size: 15px;
-
-    color: var(--heading);
-}
-
-.driver-feature-card p {
-    margin: 0;
-
-    color: #64748b;
-
-    font-size: 12px;
-
-    line-height: 1.6;
-}
-
-.empty-driver {
-    text-align: center;
-
-    padding: 45px 20px;
-}
-
-.empty-driver h3 {
-    margin: 0 0 7px;
-
-    color: #334155;
-
-    font-size: 15px;
-}
-
-.empty-driver p {
-    margin: 0;
-
-    color: #64748b;
-
-    font-size: 12px;
-}
-
-.driver-flow {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 12px;
-
-    flex-wrap: wrap;
-
-    margin-top: 25px;
-}
-
-.driver-data-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 15px;
-
-    margin-top: 20px;
-}
-
-.data-item {
-    padding: 17px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 10px;
-
-    background: #ffffff;
-}
-
-.data-item span {
-    display: block;
-
-    font-size: 11px;
-
-    color: #64748b;
-
-    margin-bottom: 7px;
-}
-
-.data-item strong {
-    font-size: 13px;
-
-    color: #334155;
-}
-
-
-/* =========================================================
-   REPORTS PAGE
-========================================================= */
-
-.report-status {
-    padding: 7px 13px;
-
-    border-radius: 20px;
-
-    background: #fff7ed;
-
-    color: #c2410c;
-
-    font-size: 11px;
-
-    font-weight: 600;
-}
-
-.report-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 16px;
-
-    margin-top: 20px;
-}
-
-.report-card {
-    padding: 20px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 12px;
-
-    background: #ffffff;
-}
-
-.report-icon {
-    width: 42px;
-    height: 42px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 10px;
-
-    background: #f1f5f9;
-
-    font-size: 20px;
-
-    margin-bottom: 14px;
-}
-
-.report-card span {
-    display: block;
-
-    font-size: 12px;
-
-    color: #64748b;
-
-    margin-bottom: 7px;
-}
-
-.report-card strong {
-    font-size: 14px;
-
-    color: #334155;
-}
-
-.area-report-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(5, 1fr);
-
-    gap: 14px;
-
-    margin-top: 20px;
-}
-
-.area-report-card {
-    padding: 18px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 10px;
-
-    background: #ffffff;
-}
-
-.area-report-card span {
-    display: block;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    color: #334155;
-
-    margin-bottom: 8px;
-}
-
-.area-report-card strong {
-    font-size: 11px;
-
-    color: #64748b;
-}
-
-.area-report-card.example-area {
-    background: #f8fafc;
-
-    border-color: #cbd5e1;
-}
-
-.area-report-card.example-area strong {
-    color: #475569;
-}
-
-.event-report-list {
-    margin-top: 20px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 10px;
-}
-
-.event-report-item {
-    display: flex;
-
-    align-items: center;
-
-    gap: 15px;
-
-    padding: 15px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 10px;
-
-    background: #ffffff;
-}
-
-.event-report-number {
-    width: 36px;
-    height: 36px;
-
-    min-width: 36px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
     border-radius: 8px;
 
-    background: #f1f5f9;
-
-    color: #475569;
-
-    font-size: 11px;
+    font-size: 10px;
 
     font-weight: 700;
 }
 
-.event-report-item div {
-    flex: 1;
-}
-
-.event-report-item strong {
+.event-item strong {
     display: block;
-
-    font-size: 13px;
-
-    color: #334155;
-
-    margin-bottom: 4px;
-}
-
-.event-report-item p {
-    margin: 0;
-
-    font-size: 11px;
-
-    color: #64748b;
-}
-
-.event-pending {
-    padding: 5px 9px;
-
-    border-radius: 15px;
-
-    background: #f8fafc;
-
-    color: #64748b;
-
-    font-size: 10px;
-
-    font-weight: 600;
-}
-
-.sap-flow {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 10px;
-
-    flex-wrap: wrap;
-
-    margin-top: 25px;
-}
-
-.sap-step {
-    min-width: 145px;
-
-    padding: 15px;
-
-    text-align: center;
-
-    border: 1px solid var(--border);
-
-    border-radius: 10px;
-
-    background: #f8fafc;
-}
-
-.sap-step span {
-    display: block;
-
-    margin-bottom: 7px;
-
-    font-size: 10px;
-
-    color: #64748b;
-
-    font-weight: 700;
-}
-
-.sap-step strong {
-    font-size: 11px;
-
-    color: #334155;
-}
-
-.sap-arrow {
-    font-size: 22px;
-
-    color: #94a3b8;
-}
-
-.sap-note {
-    margin-top: 20px;
-
-    padding: 15px;
-
-    border-radius: 10px;
-
-    background: #f8fafc;
-
-    border: 1px solid #e2e8f0;
-
-    color: #475569;
 
     font-size: 12px;
 
-    line-height: 1.6;
+    color: var(--heading);
 }
 
-.report-actions {
-    display: flex;
+.event-item small {
+    display: block;
 
-    gap: 12px;
+    color: var(--muted);
 
-    margin-top: 20px;
-}
+    font-size: 10px;
 
-.report-message {
-    margin-top: 15px;
-
-    font-size: 12px;
-
-    color: #64748b;
+    margin-top: 2px;
 }
 
 
@@ -2455,82 +1692,55 @@ tbody tr:hover {
 
     align-items: center;
 
-    justify-content: space-between;
-
-    gap: 8px;
-
-    overflow-x: auto;
-
-    padding: 10px 0;
-}
-
-.data-flow .flow-step {
-    min-width: 105px;
-
-    text-align: center;
-
-    background: transparent;
-
-    border: none;
-
-    padding: 0;
-}
-
-.data-flow .flow-icon {
-    width: 42px;
-    height: 42px;
-
-    margin: 0 auto 7px;
-
-    display: flex;
-
-    align-items: center;
     justify-content: center;
 
-    background: #eff6ff;
+    gap: 9px;
 
-    color: var(--primary);
+    padding: 25px 18px;
+
+    overflow-x: auto;
+}
+
+.flow-step {
+    min-width: 110px;
+
+    padding: 13px 9px;
+
+    background: #f8fafc;
+
+    border: 1px solid var(--border);
 
     border-radius: 10px;
 
-    font-size: 18px;
-}
-
-.data-flow .flow-step strong {
-    display: block;
-
-    font-size: 10px;
-
-    white-space: nowrap;
-}
-
-.data-flow .flow-arrow {
-    color: #94a3b8;
-
-    font-size: 18px;
+    text-align: center;
 
     flex-shrink: 0;
 }
 
+.flow-step span {
+    display: block;
 
-/* =========================================================
-   NO DATA
-========================================================= */
+    font-size: 20px;
 
-.no-data-row {
-    margin-top: 15px;
+    margin-bottom: 5px;
+}
 
-    padding: 15px;
+.flow-step strong {
+    display: block;
 
-    text-align: center;
+    font-size: 10px;
 
-    background: #f8fafc;
+    color: var(--heading);
+}
 
-    border-radius: 8px;
+.flow-arrow {
+    color: var(--primary);
 
-    color: #94a3b8;
+    font-size: 18px;
 
-    font-size: 11px;
+    font-weight: 700;
+
+    flex-shrink: 0;
 }
 
 
@@ -2538,64 +1748,558 @@ tbody tr:hover {
    FOOTER
 ========================================================= */
 
-.page-footer {
-    padding: 18px 5px;
-
-    text-align: center;
-
-    color: #94a3b8;
-
-    font-size: 10px;
-}
-
-.footer {
+.dashboard-footer {
     display: flex;
 
     justify-content: space-between;
 
     align-items: center;
 
-    padding: 15px 5px;
+    padding: 12px 3px;
 
-    color: #94a3b8;
+    color: var(--muted);
 
     font-size: 10px;
 }
 
 
 /* =========================================================
-   RESPONSIVE - 1200px
+   VEHICLES PAGE
 ========================================================= */
 
-@media (max-width: 1200px) {
+.page-header {
+    display: flex;
 
-    .summary-grid,
-    .dashboard-cards {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
+    justify-content: space-between;
 
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-    }
+    align-items: center;
 
-    .report-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
+    margin-bottom: 20px;
+}
 
-    .area-report-grid {
-        grid-template-columns:
-            repeat(3, 1fr);
-    }
+.page-header h1 {
+    font-size: 22px;
+
+    color: var(--heading);
+}
+
+.page-header p {
+    color: var(--muted);
+
+    font-size: 12px;
+
+    margin-top: 3px;
+}
+
+.search-box {
+    padding: 9px 12px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background: white;
+
+    font-size: 12px;
+}
+
+.search-box:focus {
+    border-color: var(--primary);
 }
 
 
 /* =========================================================
-   RESPONSIVE - 1000px
+   BUTTONS
 ========================================================= */
 
-@media (max-width: 1000px) {
+.btn {
+    border: none;
+
+    padding: 9px 14px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+.btn-primary {
+    background: var(--primary);
+
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+.btn-success {
+    background: var(--success);
+
+    color: white;
+}
+
+.btn-danger {
+    background: var(--danger);
+
+    color: white;
+}
+
+.btn-secondary {
+    background: #e5e7eb;
+
+    color: #374151;
+}
+
+
+/* =========================================================
+   FORM ELEMENTS
+========================================================= */
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: #374151;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    padding: 10px 11px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 7px;
+
+    outline: none;
+
+    font-size: 12px;
+
+    background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(
+            37,
+            99,
+            235,
+            0.08
+        );
+}
+
+
+/* =========================================================
+   MOVEMENTS
+========================================================= */
+
+.movement-card {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    padding: 17px;
+
+    box-shadow: var(--shadow);
+
+    margin-bottom: 15px;
+}
+
+.movement-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 10px;
+}
+
+.movement-id {
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: var(--heading);
+}
+
+.movement-details {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+.movement-details span {
+    display: block;
+
+    font-size: 10px;
+
+    color: var(--muted);
+}
+
+.movement-details strong {
+    display: block;
+
+    font-size: 12px;
+
+    color: var(--heading);
+
+    margin-top: 2px;
+}
+
+
+/* =========================================================
+   DRIVERS
+========================================================= */
+
+.driver-card {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    padding: 18px;
+
+    box-shadow: var(--shadow);
+
+    margin-bottom: 15px;
+}
+
+.driver-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.driver-avatar {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #dbeafe;
+
+    color: var(--primary);
+
+    border-radius: 50%;
+
+    font-weight: 700;
+}
+
+.driver-info strong {
+    display: block;
+
+    color: var(--heading);
+
+    font-size: 13px;
+}
+
+.driver-info small {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    margin-top: 2px;
+}
+
+
+/* =========================================================
+   PARKING PAGE
+========================================================= */
+
+.parking-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.parking-card {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    padding: 18px;
+
+    box-shadow: var(--shadow);
+}
+
+.parking-card h3 {
+    font-size: 15px;
+
+    color: var(--heading);
+
+    margin-bottom: 5px;
+}
+
+.parking-card p {
+    font-size: 11px;
+
+    color: var(--muted);
+
+    margin-bottom: 15px;
+}
+
+.parking-number {
+    font-size: 28px;
+
+    font-weight: 800;
+
+    color: var(--primary);
+}
+
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+.events-container {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.event-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 13px 15px;
+
+    box-shadow: var(--shadow);
+}
+
+.event-card-icon {
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #eff6ff;
+
+    border-radius: 8px;
+}
+
+
+/* =========================================================
+   REPORTS
+========================================================= */
+
+.report-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.report-card {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    padding: 18px;
+
+    box-shadow: var(--shadow);
+}
+
+.report-card h3 {
+    font-size: 14px;
+
+    color: var(--heading);
+
+    margin-bottom: 6px;
+}
+
+.report-card p {
+    font-size: 11px;
+
+    color: var(--muted);
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================================================
+   ALERTS
+========================================================= */
+
+.alert {
+    padding: 11px 13px;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+
+    margin-bottom: 12px;
+}
+
+.alert-success {
+    background: #dcfce7;
+
+    color: #166534;
+}
+
+.alert-warning {
+    background: #fef3c7;
+
+    color: #92400e;
+}
+
+.alert-danger {
+    background: #fee2e2;
+
+    color: #991b1b;
+}
+
+.alert-info {
+    background: #dbeafe;
+
+    color: #1e40af;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(
+        15,
+        23,
+        42,
+        0.45
+    );
+
+    z-index: 2000;
+
+    padding: 20px;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    width: 100%;
+
+    max-width: 500px;
+
+    background: white;
+
+    border-radius: 13px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 20px 50px rgba(
+            15,
+            23,
+            42,
+            0.2
+        );
+}
+
+.modal-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.modal-header h2 {
+    font-size: 18px;
+
+    color: var(--heading);
+}
+
+.modal-close {
+    border: none;
+
+    background: none;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
 
     .sidebar {
         width: 210px;
@@ -2604,304 +2308,1006 @@ tbody tr:hover {
     .main-content {
         margin-left: 210px;
 
-        padding: 20px;
+        padding-left: 20px;
+
+        padding-right: 20px;
     }
 
-    .bottom-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .welcome-panel {
-        flex-direction: column;
-
-        align-items: flex-start;
-    }
-
-    .parking-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .rfid-reader-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .driver-feature-grid {
+    .dashboard-cards {
         grid-template-columns:
             repeat(2, 1fr);
     }
 
-    .driver-data-grid {
+    .chart-grid {
         grid-template-columns:
-            repeat(2, 1fr);
+            1fr 1fr;
     }
 
-    .class-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-}
-
-
-/* =========================================================
-   RESPONSIVE - 850px
-========================================================= */
-
-@media (max-width: 850px) {
-
-    .event-type-grid {
-        grid-template-columns: 1fr;
-    }
-
+    .parking-grid,
     .report-grid {
         grid-template-columns:
             repeat(2, 1fr);
     }
 
-    .area-report-grid {
+    .parking-map {
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(3, 1fr);
     }
 }
 
 
 /* =========================================================
-   RESPONSIVE - 700px
+   RESPONSIVE - MOBILE
 ========================================================= */
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
 
     .sidebar {
-        width: 68px;
+        position: relative;
 
-        padding:
-            15px 8px;
+        width: 100%;
+
+        height: auto;
+
+        min-height: auto;
     }
 
     .sidebar-logo {
-        justify-content: center;
-
-        padding:
-            8px 0 20px;
+        padding: 13px 18px;
     }
 
-    .sidebar-logo > div {
-        display: none;
-    }
+    .sidebar-nav {
+        flex-direction: row;
 
-    .sidebar-nav a {
-        justify-content: center;
-
-        padding: 11px 5px;
-    }
-
-    .sidebar-nav a {
-        font-size: 0;
-    }
-
-    .sidebar-nav a span:first-child {
-        font-size: 18px;
-    }
-
-    .system-status {
-        justify-content: center;
-
-        padding: 10px 5px;
-    }
-
-    .system-status span.status-dot {
-        display: block;
-    }
-
-    .admin-info {
-        display: none;
-    }
-
-    .main-content {
-        margin-left: 68px;
-
-        padding: 16px;
-    }
-
-    .top-header {
-        align-items: flex-start;
-    }
-
-    .top-header h1 {
-        font-size: 23px;
-    }
-
-    .header-right {
-        gap: 6px;
-    }
-
-    .demo-badge {
-        display: none;
-    }
-
-    .summary-grid,
-    .dashboard-cards {
-        grid-template-columns: 1fr;
-    }
-
-    .parking-info {
-        grid-template-columns: 1fr;
-    }
-
-    .movement-form {
-        grid-template-columns: 1fr;
-    }
-
-    .form-actions {
-        grid-column: auto;
-    }
-
-    .driver-feature-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .driver-data-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .overview-info {
-        width: 100%;
-    }
-
-    .overview-info div {
-        flex: 1;
-    }
-
-    .report-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .area-report-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .location-flow {
-        flex-direction: column;
-    }
-
-    .location-flow .flow-arrow {
-        transform: rotate(90deg);
-    }
-
-    .sap-flow .sap-arrow {
-        transform: rotate(90deg);
-    }
-
-    .event-report-item {
-        align-items: flex-start;
-
-        flex-wrap: wrap;
-    }
-
-    .report-actions {
-        flex-direction: column;
-    }
-
-    .report-actions button {
-        width: 100%;
-    }
-
-    .footer,
-    .page-footer {
-        text-align: left;
-    }
-}
-
-
-/* =========================================================
-   RESPONSIVE - 600px
-========================================================= */
-
-@media (max-width: 600px) {
-
-    .class-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .vehicle-controls {
-        grid-template-columns: 1fr;
-    }
-
-    .event-type-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .event-type-card {
-        padding: 15px;
-    }
-
-    .content-panel {
-        padding: 16px;
-    }
-
-    .section-header {
-        align-items: flex-start;
-
-        flex-direction: column;
-    }
-
-    .backend-note {
-        align-items: flex-start;
-
-        flex-direction: column;
-    }
-}
-
-
-/* =========================================================
-   RESPONSIVE - 450px
-========================================================= */
-
-@media (max-width: 450px) {
-
-    .main-content {
-        padding: 12px;
-    }
-
-    .top-header {
-        flex-direction: column;
-    }
-
-    .top-header h1 {
-        font-size: 21px;
-    }
-
-    .welcome-panel {
-        padding: 20px;
-    }
-
-    .dashboard-panel {
-        padding: 16px;
-    }
-
-    .content-panel {
-        padding: 14px;
-    }
-
-    .overview-info {
-        gap: 7px;
-    }
-
-    .overview-info div {
-        min-width: 0;
+        overflow-x: auto;
 
         padding: 10px;
     }
 
-    .overview-info strong {
+    .sidebar-nav a {
+        min-width: 100px;
+
+        justify-content: center;
+
+        flex-direction: column;
+
+        gap: 4px;
+
+        padding: 9px 7px;
+    }
+
+    .sidebar-nav a span {
+        width: auto;
+    }
+
+    .sidebar-bottom {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 0;
+
+        padding: 0 14px 25px;
+    }
+
+    .topbar {
+        min-height: 65px;
+    }
+
+    .topbar-left h1 {
         font-size: 20px;
     }
 
-    .form-actions {
-        flex-direction: column;
+    .topbar-right {
+        gap: 10px;
     }
 
-    .primary-btn,
-    .secondary-btn {
-        width: 100%;
+    .connection-status {
+        display: none;
     }
+
+    .welcome-panel {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .welcome-stats {
+        width: 100%;
+
+        justify-content: space-around;
+    }
+
+    .dashboard-cards {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .dashboard-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .chart-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .parking-map {
+        grid-template-columns:
+            1fr 1fr;
+
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .movement-details {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .data-flow {
+        justify-content: flex-start;
+    }
+
+    .parking-grid,
+    .report-grid {
+        grid-template-columns:
+            1fr;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - SMALL MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+
+    .dashboard-cards {
+        grid-template-columns:
+            1fr;
+    }
+
+    .user-profile {
+        display: none;
+    }
+
+    .topbar-left p {
+        display: none;
+    }
+
+    .welcome-panel {
+        padding: 20px;
+    }
+
+    .welcome-panel h2 {
+        font-size: 19px;
+    }
+
+    .welcome-panel p {
+        font-size: 11px;
+    }
+
+    .welcome-stats strong {
+        font-size: 23px;
+    }
+
+    .chart-card {
+        padding: 17px;
+    }
+
+    .chart-container {
+        height: 210px;
+    }
+
+    .chart-legend {
+        grid-template-columns:
+            1fr;
+    }
+
+    .movement-details {
+        grid-template-columns:
+            1fr;
+    }
+
+    .parking-map {
+        grid-template-columns:
+            1fr;
+    }
+
+    .dashboard-footer {
+        flex-direction: column;
+
+        gap: 5px;
+
+        align-items: flex-start;
+    }
+}
+/* =========================================================
+   DASHBOARD - INDUSTRIAL BLACK YARD LAYOUT
+========================================================= */
+
+.dashboard-yard-panel {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.06);
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.dashboard-yard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.dashboard-yard-header h2 {
+    font-size: 20px;
+    color: #1e293b;
+    margin: 0;
+}
+
+.dashboard-yard-header p {
+    color: #64748b;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.yard-controls {
+    display: flex;
+    gap: 6px;
+}
+
+.yard-controls button {
+    width: 34px;
+    height: 32px;
+
+    border: 1px solid #374151;
+    border-radius: 6px;
+
+    background: #111827;
+    color: white;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.yard-controls button:hover {
+    background: #000000;
+}
+
+
+/* =========================================================
+   MAP WRAPPER
+========================================================= */
+
+.yard-map-wrapper {
+    width: 100%;
+    overflow: auto;
+    background: #050505;
+    padding: 25px;
+}
+
+
+/* =========================================================
+   MAIN BLACK CANVAS
+========================================================= */
+
+.yard-map-canvas {
+    position: relative;
+
+    width: 1100px;
+    min-width: 1100px;
+    height: 650px;
+
+    margin: auto;
+
+    background-color: #0b0b0b;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.035) 1px,
+            transparent 1px
+        );
+
+    background-size: 25px 25px;
+
+    border: 2px solid #252525;
+
+    border-radius: 6px;
+
+    transform-origin: center center;
+
+    transition: transform 0.25s ease;
+
+    box-shadow:
+        inset 0 0 50px rgba(0,0,0,0.8);
+}
+
+
+/* =========================================================
+   COMMON YARD ZONE
+========================================================= */
+
+.yard-zone {
+    position: absolute;
+
+    background: #101010;
+
+    border: 2px solid #777;
+
+    border-radius: 5px;
+
+    padding: 10px;
+
+    color: white;
+
+    box-shadow:
+        inset 0 0 20px rgba(255,255,255,0.02);
+
+    overflow: hidden;
+}
+
+.zone-heading {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 9px;
+
+    color: #ffffff;
+
+    font-size: 11px;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   LOAD ZONE
+========================================================= */
+
+.load-zone {
+    left: 60px;
+    top: 70px;
+
+    width: 360px;
+    height: 175px;
+
+    border-color: #20c997;
+}
+
+.load-zone::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 4px;
+
+    border: 1px dashed rgba(32,201,151,0.4);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   OFFLOAD ZONE
+========================================================= */
+
+.offload-zone {
+    left: 680px;
+    top: 70px;
+
+    width: 360px;
+    height: 175px;
+
+    border-color: #ef4444;
+}
+
+.offload-zone::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 4px;
+
+    border: 1px dashed rgba(239,68,68,0.4);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   NORMAL PARKING
+========================================================= */
+
+.normal-parking {
+    left: 60px;
+    top: 325px;
+
+    width: 485px;
+    height: 240px;
+
+    border-color: #777;
+}
+
+
+/* =========================================================
+   TRUCK PARKING
+========================================================= */
+
+.truck-parking {
+    left: 570px;
+    top: 325px;
+
+    width: 220px;
+    height: 240px;
+
+    border-color: #a855f7;
+}
+
+
+/* =========================================================
+   DOCK
+========================================================= */
+
+.dock-area {
+    left: 815px;
+    top: 325px;
+
+    width: 225px;
+    height: 110px;
+
+    border-color: #f59e0b;
+}
+
+
+/* =========================================================
+   RAIL
+========================================================= */
+
+.rail-area {
+    left: 815px;
+    top: 455px;
+
+    width: 225px;
+    height: 110px;
+
+    border-color: #06b6d4;
+}
+
+
+/* =========================================================
+   PARKING SLOTS
+========================================================= */
+
+.parking-slots {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 5px;
+
+    position: relative;
+    z-index: 2;
+}
+
+.parking-slots div {
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #3b3b3b;
+
+    background: #171717;
+
+    color: #aaa;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    border-radius: 2px;
+}
+
+
+/* =========================================================
+   LARGE PARKING
+========================================================= */
+
+.large-parking-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 5px;
+}
+
+.yard-slot {
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #555;
+
+    background: #161616;
+
+    color: #999;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    border-radius: 2px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+/* AVAILABLE */
+
+.yard-slot.available {
+    border-color: #555;
+    color: #aaa;
+}
+
+
+/* OCCUPIED */
+
+.yard-slot.occupied {
+    background: rgba(22,163,74,0.15);
+    border-color: #16a34a;
+    color: #4ade80;
+}
+
+
+/* HOVER */
+
+.yard-slot:hover {
+    background: #242424;
+    border-color: #ffffff;
+    color: white;
+}
+
+
+/* =========================================================
+   TRUCK SLOTS
+========================================================= */
+
+.truck-slots {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 7px;
+}
+
+.truck-slot {
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #171717;
+
+    border: 1px solid #555;
+
+    color: #aaa;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    border-radius: 3px;
+}
+
+.truck-slot.occupied {
+    border-color: #16a34a;
+
+    background:
+        rgba(22,163,74,0.14);
+
+    color: #4ade80;
+}
+
+
+/* =========================================================
+   DOCK SLOTS
+========================================================= */
+
+.dock-slots {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 6px;
+}
+
+.dock-slots div {
+    height: 30px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #181818;
+
+    border: 1px solid #f59e0b;
+
+    color: #fbbf24;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   RAIL
+========================================================= */
+
+.rail-lines {
+    margin-top: 10px;
+
+    color: #06b6d4;
+
+    font-size: 14px;
+
+    line-height: 25px;
+
+    letter-spacing: 2px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   ZONE STATUS
+========================================================= */
+
+.zone-status {
+    padding: 3px 6px;
+
+    border-radius: 3px;
+
+    font-size: 8px;
+
+    font-weight: 800;
+}
+
+.zone-status.green {
+    background: #064e3b;
+    color: #6ee7b7;
+}
+
+.zone-status.red {
+    background: #450a0a;
+    color: #fca5a5;
+}
+
+.zone-status.blue {
+    background: #172554;
+    color: #93c5fd;
+}
+
+.zone-status.purple {
+    background: #3b0764;
+    color: #d8b4fe;
+}
+
+.zone-status.orange {
+    background: #451a03;
+    color: #fcd34d;
+}
+
+.zone-status.cyan {
+    background: #083344;
+    color: #67e8f9;
+}
+
+
+/* =========================================================
+   ROAD
+========================================================= */
+
+.yard-road {
+    position: absolute;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #262626 0,
+            #262626 30px,
+            #202020 30px,
+            #202020 60px
+        );
+
+    border-top: 2px solid #444;
+    border-bottom: 2px solid #444;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #666;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.road-one {
+    left: 440px;
+    top: 250px;
+
+    width: 240px;
+    height: 45px;
+
+    transform: rotate(0deg);
+}
+
+.road-two {
+    left: 545px;
+    top: 435px;
+
+    width: 30px;
+    height: 100px;
+
+    writing-mode: vertical-rl;
+
+    border-left: 2px solid #444;
+    border-right: 2px solid #444;
+
+    border-top: none;
+    border-bottom: none;
+
+    background:
+        repeating-linear-gradient(
+            180deg,
+            #262626 0,
+            #262626 30px,
+            #202020 30px,
+            #202020 60px
+        );
+}
+
+
+/* =========================================================
+   GATES
+========================================================= */
+
+.yard-gate {
+    position: absolute;
+
+    width: 80px;
+    height: 65px;
+
+    background: #151515;
+
+    border: 2px solid #ffffff;
+
+    border-radius: 4px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    text-align: center;
+
+    z-index: 5;
+}
+
+.yard-gate strong {
+    font-size: 8px;
+
+    margin-top: 3px;
+}
+
+.yard-gate small {
+    font-size: 7px;
+
+    color: #999;
+}
+
+.gate-icon {
+    font-size: 19px;
+
+    color: #22c55e;
+}
+
+.entry-gate {
+    left: 10px;
+    top: 270px;
+}
+
+.exit-gate {
+    right: 10px;
+    top: 270px;
+}
+
+.exit-gate .gate-icon {
+    color: #ef4444;
+}
+
+
+/* =========================================================
+   SECURITY
+========================================================= */
+
+.yard-building {
+    position: absolute;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background: #171717;
+
+    border: 1px solid #555;
+
+    border-radius: 4px;
+
+    color: white;
+}
+
+.security-building {
+    left: 475px;
+    top: 15px;
+
+    width: 145px;
+    height: 45px;
+}
+
+.security-building span {
+    font-size: 14px;
+}
+
+.security-building strong {
+    font-size: 8px;
+}
+
+.security-building small {
+    font-size: 7px;
+
+    color: #888;
+}
+
+
+/* =========================================================
+   LEGEND
+========================================================= */
+
+.yard-legend {
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 20px;
+
+    padding: 13px 20px;
+
+    background: #111827;
+
+    color: #d1d5db;
+
+    font-size: 10px;
+}
+
+.yard-legend > div {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+.legend-box {
+    width: 12px;
+    height: 12px;
+
+    display: inline-block;
+
+    border-radius: 2px;
+
+    border: 1px solid #555;
+}
+
+.available-box {
+    background: #161616;
+}
+
+.occupied-box {
+    background: #16a34a;
+}
+
+.reserved-box {
+    background: #eab308;
+}
+
+.load-box {
+    border-color: #20c997;
+    background: #101010;
+}
+
+.offload-box {
+    border-color: #ef4444;
+    background: #101010;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .dashboard-yard-panel {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .yard-map-wrapper {
+        padding: 12px;
+    }
+
+    .dashboard-yard-header {
+        padding: 15px;
+    }
+
+    .yard-map-canvas {
+        transform: scale(0.8);
+        transform-origin: top left;
+        margin-bottom: -120px;
+    }
+
+    .yard-legend {
+        gap: 12px;
+        padding: 12px;
+    }
+
 }

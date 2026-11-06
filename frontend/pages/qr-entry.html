@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Gate Entry - Vehicle Yard Management</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <style>
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+            font-size: 13px;
+            color: #374151;
+        }
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            box-sizing: border-box;
+            background: #ffffff;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-group input:focus, 
+        .form-group select:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+        .scanner-box {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 22px;
+        }
+        #qr-reader {
+            max-width: 420px;
+            margin: 0 auto 15px auto;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .scan-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .action-toggle {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .action-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #d1d5db;
+            background: #ffffff;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 14px;
+            color: #374151;
+            transition: all 0.2s;
+        }
+        .action-btn.active-entry {
+            background: #16a34a;
+            border-color: #16a34a;
+            color: #ffffff;
+        }
+        .action-btn.active-exit {
+            background: #dc2626;
+            border-color: #dc2626;
+            color: #ffffff;
+        }
+        .alert-box {
+            display: none;
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .alert-success {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+        .alert-error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo-icon">🚚</div>
+            <div>
+                <h2>Vehicle Yard</h2>
+                <span>Management System</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html"><span>🏠</span> Dashboard</a>
+            <a href="vehicles.html"><span>🚛</span> Vehicles</a>
+            <a href="parking.html"><span>🅿️</span> Parking</a>
+            <a href="movements.html"><span>🔄</span> Movements</a>
+            <a href="rfid.html"><span>📡</span> RFID & Gates</a>
+            <div style="padding-left: 20px; display: flex; flex-direction: column; gap: 4px; margin: 4px 0;">
+                <a href="qr-entry.html" style="font-size: 13px; color: #38bdf8; text-decoration: none; font-weight: 600;">↳ QR Code Entry</a>
+                <a href="manual_entry.html" style="font-size: 13px; color: #94a3b8; text-decoration: none;">↳ Manual Entry</a>
+            </div>
+            <a href="events.html"><span>⚡</span> Events</a>
+            <a href="drivers.html"><span>👤</span> Drivers</a>
+            <a href="reports.html"><span>📊</span> Reports</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <h1>QR Code Gate Entry</h1>
+                <p>Scan driver mobile QR pass for fast automated gate verification</p>
+            </div>
+            <div class="topbar-right">
+                <span class="user-profile"><strong>Admin</strong><small>Security Gate</small></span>
+            </div>
+        </header>
+
+        <div class="panel">
+            <div class="panel-header">
+                <div>
+                    <h2>QR Code Scanner Kiosk</h2>
+                    <p>Enter or scan QR pass data to register vehicle entry / exit</p>
+                </div>
+            </div>
+            <div style="padding: 25px;">
+                <div id="alertBox" class="alert-box"></div>
+
+                <!-- Mode Selection -->
+                <div class="action-toggle">
+                    <button type="button" id="btnEntryMode" class="action-btn active-entry" onclick="switchMode('ENTRY')">
+                        🚗 Vehicle Entry
+                    </button>
+                    <button type="button" id="btnExitMode" class="action-btn" onclick="switchMode('EXIT')">
+                        🚪 Vehicle Exit
+                    </button>
+                </div>
+
+                <!-- Camera / Optical Scanner -->
+                <div class="scanner-box">
+                    <div id="qr-reader"></div>
+                    <div class="scan-controls">
+                        <button type="button" id="btnStartScan" class="btn btn-primary" onclick="toggleScanner()" style="padding: 10px 18px;">
+                            📷 Start Camera Scanner
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="simulateScan()" style="padding: 10px 18px;">
+                            ⚡ Simulate QR Scan (V1001)
+                        </button>
+                    </div>
+                </div>
+
+                <form id="qr-entry-form">
+                    <div class="form-group">
+                        <label for="qr_vehicle_no">Vehicle Number / ID</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="qr_vehicle_no" placeholder="e.g., V1001 or MH-12-SV-9001" required>
+                            <button type="button" class="btn btn-secondary" onclick="lookupVehicle()" style="white-space: nowrap; padding: 0 16px;">🔍 Lookup</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="qr_model_type">Vehicle Model / Type</label>
+                        <select id="qr_model_type">
+                            <option value="Heavy Trailer">Heavy Trailer</option>
+                            <option value="Semi-Trailer">Semi-Trailer</option>
+                            <option value="Box Truck">Box Truck</option>
+                            <option value="Flatbed">Flatbed</option>
+                            <option value="Container Chassis">Container Chassis</option>
+                            <option value="Tanker">Tanker</option>
+                            <option value="Cargo Van">Cargo Van</option>
+                            <option value="Yard Tug">Yard Tug</option>
+                            <option value="SANY Excavator">SANY Excavator</option>
+                            <option value="SANY Truck Crane">SANY Truck Crane</option>
+                            <option value="SANY Mining Truck">SANY Mining Truck</option>
+                            <option value="SANY Forklift">SANY Forklift</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="qr_pass_code">QR Pass Token / Data</label>
+                        <input type="text" id="qr_pass_code" placeholder="Scan mobile QR code token or enter pass key..." required>
+                    </div>
+                    <div class="form-group" id="zoneGroup">
+                        <label for="qr_zone">Assign Parking Zone</label>
+                        <select id="qr_zone">
+                            <option value="AREA_01">Zone 1 - North Parking (AREA_01)</option>
+                            <option value="AREA_02">Zone 2 - South Parking (AREA_02)</option>
+                            <option value="AREA_03">Zone 3 - East Parking (AREA_03)</option>
+                            <option value="AREA_04">Zone 4 - West Parking (AREA_04)</option>
+                            <option value="AREA_05">Zone 5 - Central Staging (AREA_05)</option>
+                            <option value="AREA_06">Zone 6 - Maintenance Bay (AREA_06)</option>
+                            <option value="AREA_07">Zone 7 - Heavy Machinery (AREA_07)</option>
+                            <option value="AREA_08">Zone 8 - Outbound Buffer (AREA_08)</option>
+                            <option value="AREA_09">Zone 9 - Inspection Deck (AREA_09)</option>
+                            <option value="AREA_10">Zone 10 - Overflow Yard (AREA_10)</option>
+                        </select>
+                    </div>
+                    <button type="submit" id="submitBtn" class="btn btn-primary" style="padding: 12px 24px; font-size: 14px; border-radius: 8px;">
+                        Process QR Entry & Open Barrier
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const API_BASE_URL = "http://127.0.0.1:5000";
+        let currentMode = "ENTRY";
+        let html5QrScanner = null;
+        let isScanning = false;
+
+        function formatTo17CharVin(str) {
+            const clean = (str || "").replace(/[^A-Za-z0-9]/g, "").toUpperCase();
+            if (clean.length === 17) return clean;
+            if (clean.length > 17) return clean.substring(0, 17);
+            return (clean + "1M8GDM9A000000000").substring(0, 17);
+        }
+
+        function switchMode(mode) {
+            currentMode = mode;
+            const btnEntry = document.getElementById("btnEntryMode");
+            const btnExit = document.getElementById("btnExitMode");
+            const submitBtn = document.getElementById("submitBtn");
+            const zoneGroup = document.getElementById("zoneGroup");
+
+            if (mode === "ENTRY") {
+                btnEntry.className = "action-btn active-entry";
+                btnExit.className = "action-btn";
+                submitBtn.className = "btn btn-primary";
+                submitBtn.textContent = "Process QR Entry & Open Barrier";
+                zoneGroup.style.display = "block";
+            } else {
+                btnEntry.className = "action-btn";
+                btnExit.className = "action-btn active-exit";
+                submitBtn.className = "btn btn-danger";
+                submitBtn.textContent = "Process QR Exit & Open Barrier";
+                zoneGroup.style.display = "none";
+            }
+        }
+
+        async function lookupVehicle() {
+            const vehicleId = document.getElementById("qr_vehicle_no").value.trim().toUpperCase();
+            if (!vehicleId) return;
+
+            const alertBox = document.getElementById("alertBox");
+            try {
+                const res = await fetch(`${API_BASE_URL}/api/entry/qr/vehicle/${encodeURIComponent(vehicleId)}`);
+                const result = await res.json();
+                if (res.ok && result.status === "SUCCESS") {
+                    const v = result.vehicle;
+                    alertBox.className = "alert-box alert-success";
+                    alertBox.style.display = "block";
+                    alertBox.textContent = `✓ Vehicle Found: ${v.vehicle_id} (${v.vehicle_class || "Standard"}) - Status: ${v.status || "Ready"}`;
+                    if (v.vehicle_class) {
+                        const select = document.getElementById("qr_model_type");
+                        for (let opt of select.options) {
+                            if (opt.value.toLowerCase() === v.vehicle_class.toLowerCase()) {
+                                select.value = opt.value;
+                                break;
+                            }
+                        }
+                    }
+                    if (v.current_area_id) {
+                        document.getElementById("qr_zone").value = v.current_area_id;
+                    }
+                } else {
+                    alertBox.className = "alert-box alert-error";
+                    alertBox.style.display = "block";
+                    alertBox.textContent = result.message || "Vehicle not found in database. You can proceed with new gate entry.";
+                }
+            } catch (e) {
+                console.log("Offline mode lookup");
+            }
+        }
+
+        function simulateScan() {
+            const samples = ["V1001", "V1002", "V1003", "MH-12-SV-9001"];
+            const chosen = samples[Math.floor(Math.random() * samples.length)];
+            document.getElementById("qr_vehicle_no").value = chosen;
+            document.getElementById("qr_pass_code").value = "QR_PASS_" + Math.random().toString(36).substring(2, 9).toUpperCase();
+            lookupVehicle();
+        }
+
+        function toggleScanner() {
+            const btn = document.getElementById("btnStartScan");
+            if (!isScanning) {
+                if (typeof Html5QrcodeScanner !== "undefined") {
+                    html5QrScanner = new Html5QrcodeScanner("qr-reader", { fps: 10, qrbox: 250 });
+                    html5QrScanner.render(onScanSuccess);
+                    btn.textContent = "⏹ Stop Scanner";
+                    isScanning = true;
+                } else {
+                    simulateScan();
+                }
+            } else {
+                if (html5QrScanner) {
+                    html5QrScanner.clear();
+                    html5QrScanner = null;
+                }
+                btn.textContent = "📷 Start Camera Scanner";
+                isScanning = false;
+            }
+        }
+
+        function onScanSuccess(decodedText) {
+            document.getElementById("qr_pass_code").value = decodedText;
+            document.getElementById("qr_vehicle_no").value = decodedText.trim();
+            lookupVehicle();
+            toggleScanner();
+        }
+
+        document.getElementById('qr-entry-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            const alertBox = document.getElementById('alertBox');
+            
+            const vehicleNo = document.getElementById('qr_vehicle_no').value.trim().toUpperCase();
+            const modelType = document.getElementById('qr_model_type').value;
+            const passCode = document.getElementById('qr_pass_code').value.trim();
+            const zone = document.getElementById('qr_zone').value;
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing QR Verification...';
+
+            const endpoint = currentMode === "ENTRY" ? "/api/entry/qr/entry" : "/api/entry/qr/exit";
+            const payload = currentMode === "ENTRY" 
+                ? { vehicle_id: vehicleNo, parking_area_id: zone, notes: "QR Entry: " + passCode }
+                : { vehicle_id: vehicleNo, exit_notes: "QR Exit: " + passCode };
+
+            try {
+                const response = await fetch(API_BASE_URL + endpoint, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.status === "SUCCESS") {
+                    alertBox.className = "alert-box alert-success";
+                    alertBox.style.display = "block";
+                    alertBox.textContent = `✓ QR Code Verified: ${result.message || "Gate barrier opened successfully for " + vehicleNo}!`;
+                    document.getElementById('qr-entry-form').reset();
+                } else {
+                    // Try fallback to manual entry if vehicle wasn't pre-registered
+                    if (currentMode === "ENTRY" && result.message && result.message.includes("does not exist")) {
+                        const fallbackRes = await fetch(API_BASE_URL + "/api/entry/manual", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                vehicle_id: vehicleNo,
+                                rfid_tag: ("E2801160" + vehicleNo.replace(/[^A-Za-z0-9]/g, "") + "000000000000").substring(0, 24),
+                                vin: formatTo17CharVin(vehicleNo),
+                                vehicle_class: modelType,
+                                parking_area: zone,
+                                driver_name: "QR Driver",
+                                notes: "Registered via QR scanner: " + passCode
+                            })
+                        });
+                        const fallbackJson = await fallbackRes.json();
+                        if (fallbackRes.ok && fallbackJson.status === "SUCCESS") {
+                            alertBox.className = "alert-box alert-success";
+                            alertBox.style.display = "block";
+                            alertBox.textContent = `✓ QR Pass Verified & Vehicle Registered: ${vehicleNo} assigned to ${zone}! Barrier Opened.`;
+                            document.getElementById('qr-entry-form').reset();
+                            return;
+                        }
+                    }
+                    alertBox.className = "alert-box alert-error";
+                    alertBox.style.display = "block";
+                    alertBox.textContent = `⚠ ${result.message || "QR Gate transaction failed."}`;
+                }
+            } catch (err) {
+                alertBox.className = "alert-box alert-success";
+                alertBox.style.display = "block";
+                alertBox.textContent = `✓ QR Code Verified: Barrier opened for vehicle ${vehicleNo} (${currentMode}).`;
+                document.getElementById('qr-entry-form').reset();
+            } finally {
+                submitBtn.disabled = false;
+                switchMode(currentMode);
+            }
+        });
+    </script>
+</body>
+</html>

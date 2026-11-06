@@ -2,578 +2,689 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Vehicles - Vehicle Yard Management</title>
+    <title>Vehicles | Vehicle Yard Management</title>
 
-    <link rel="stylesheet" href="../css/style.css">
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f8;
+            color: #1f2937;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ==========================================
+           SIDEBAR
+        ========================================== */
+
+        .sidebar {
+            width: 240px;
+            background: #111827;
+            color: white;
+            padding: 25px 15px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px;
+            margin-bottom: 25px;
+        }
+
+        .menu a {
+            display: block;
+            color: #d1d5db;
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 6px;
+        }
+
+        .menu a:hover,
+        .menu a.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* ==========================================
+           MAIN
+        ========================================== */
+
+        .main {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+        }
+
+        .connection {
+            padding: 8px 14px;
+            border-radius: 20px;
+            background: #e5e7eb;
+            font-size: 13px;
+        }
+
+        .connected {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .disconnected {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* ==========================================
+           INFO
+        ========================================== */
+
+        .info {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .info p {
+            color: #6b7280;
+            margin-top: 8px;
+        }
+
+        /* ==========================================
+           STATS
+        ========================================== */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .stat-card h3 {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .stat-card .number {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        /* ==========================================
+           CONTROLS
+        ========================================== */
+
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        input,
+        select {
+            padding: 11px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            font-size: 14px;
+            min-width: 230px;
+        }
+
+        /* ==========================================
+           TABLE
+        ========================================== */
+
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            overflow-x: auto;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #f9fafb;
+            text-align: left;
+            padding: 15px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        td {
+            padding: 15px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background: #f9fafb;
+        }
+
+        /* ==========================================
+           STATUS
+        ========================================== */
+
+        .status {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .expected {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .in-yard {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .parked {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .ready-for-dispatch {
+            background: #ede9fe;
+            color: #6d28d9;
+        }
+
+        .exited {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* ==========================================
+           CLASS CARDS
+        ========================================== */
+
+        .section-title {
+            margin: 30px 0 15px;
+            font-size: 20px;
+        }
+
+        .classes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .class-card {
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .class-card h3 {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .class-count {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* ==========================================
+           LOADING / ERROR
+        ========================================== */
+
+        .loading {
+            text-align: center;
+            padding: 30px;
+            color: #6b7280;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        /* ==========================================
+           FOOTER
+        ========================================== */
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                width: 200px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .classes {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .main {
+                padding: 15px;
+            }
+
+            .classes {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-    <!-- SIDEBAR -->
+
+<div class="container">
+
+
+    <!-- ==========================================
+         SIDEBAR
+    ========================================== -->
+
     <aside class="sidebar">
 
-        <div class="sidebar-logo">
-
-            <div class="logo-icon">🚗</div>
-
-            <div>
-                <strong>Vehicle Yard</strong>
-                <small>Management System</small>
-            </div>
-
+        <div class="logo">
+            🚛 Vehicle Yard
         </div>
 
 
-        <nav class="sidebar-nav">
+        <div class="menu">
+
 
             <a href="dashboard.html">
-                <span>🏠</span>
-                <span>Dashboard</span>
+                📊 Dashboard
             </a>
+
 
             <a href="vehicles.html" class="active">
-                <span>🚗</span>
-                <span>Vehicles</span>
+                🚚 Vehicles
             </a>
+
 
             <a href="parking.html">
-                <span>🅿️</span>
-                <span>Parking Areas</span>
+                🅿️ Parking Areas
             </a>
+
 
             <a href="movements.html">
-                <span>🔄</span>
-                <span>Movements</span>
+                🔄 Movements
             </a>
+
 
             <a href="rfid.html">
-                <span>📡</span>
-                <span>RFID</span>
+                📡 RFID
             </a>
+
 
             <a href="events.html">
-                <span>📋</span>
-                <span>Events</span>
+                📋 Events
             </a>
+
 
             <a href="drivers.html">
-                <span>👤</span>
-                <span>Drivers</span>
+                👨‍✈️ Drivers
             </a>
+
 
             <a href="reports.html">
-                <span>📊</span>
-                <span>Reports</span>
+                📈 Reports
             </a>
 
-        </nav>
 
+            <!-- ==================================
+                 VEHICLE ENTRY - ADDED
+            =================================== -->
 
-        <div class="sidebar-bottom">
-
-            <div class="system-status">
-
-                <span class="status-dot"></span>
-
-                <div>
-                    <strong>System Online</strong>
-                    <small>Frontend Demo</small>
-                </div>
-
-            </div>
-
-
-            <a href="../index.html" class="logout-link">
-
-                <span>🚪</span>
-                <span>Logout</span>
-
+            <a href="vehicle-entry.html">
+                🚗 Vehicle Entry
             </a>
+
 
         </div>
 
     </aside>
 
 
-    <!-- MAIN CONTENT -->
-    <main class="main-content">
+
+    <!-- ==========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="main">
 
 
         <!-- HEADER -->
-        <header class="topbar">
 
-            <div class="page-title">
-
-                <h1>Vehicles</h1>
-
-                <p>
-                    Vehicle Master & Current Status
-                </p>
-
-            </div>
-
-
-            <div class="topbar-right">
-
-                <div class="connection-status">
-
-                    <span class="status-dot"></span>
-
-                    System Online
-
-                </div>
-
-
-                <div class="user-info">
-
-                    <div class="user-avatar">
-                        A
-                    </div>
-
-                    <div>
-
-                        <strong>Admin</strong>
-
-                        <small>Administrator</small>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </header>
-
-
-        <!-- PAGE INTRO -->
-        <section class="welcome-panel">
+        <div class="header">
 
             <div>
 
-                <span class="section-label">
-                    VEHICLE MASTER
-                </span>
-
-                <h2>
-                    Vehicle Records
-                </h2>
-
-                <p>
-                    Vehicle ID, RFID tag, vehicle class,
-                    current location and status.
-                </p>
+                <h1>
+                    Vehicles
+                </h1>
 
             </div>
 
 
-            <div class="overview-info">
+            <div
+                id="connectionStatus"
+                class="connection"
+            >
+                Connecting...
+            </div>
 
-                <div>
+        </div>
 
-                    <strong>8</strong>
 
-                    <span>
-                        Vehicle Classes
-                    </span>
 
+        <!-- INFO -->
+
+        <div class="info">
+
+            <h2>
+                Vehicle Management
+            </h2>
+
+            <p>
+                View and monitor all registered vehicles,
+                RFID tags, vehicle classes and current yard status.
+            </p>
+
+        </div>
+
+
+
+        <!-- STATS -->
+
+        <div class="stats">
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Total Vehicles
+                </h3>
+
+                <div
+                    class="number"
+                    id="totalVehicles"
+                >
+                    0
                 </div>
 
+            </div>
 
-                <div>
 
-                    <strong>10</strong>
 
-                    <span>
-                        Parking Areas
-                    </span>
+            <div class="stat-card">
 
+                <h3>
+                    Vehicles In Yard
+                </h3>
+
+                <div
+                    class="number"
+                    id="vehiclesInYard"
+                >
+                    0
                 </div>
 
             </div>
 
-        </section>
 
 
-        <!-- SEARCH / FILTER -->
-        <section class="dashboard-panel vehicle-controls">
+            <div class="stat-card">
 
-            <div class="vehicle-search">
+                <h3>
+                    Exited Vehicles
+                </h3>
 
-                <label for="vehicleSearch">
-                    Search Vehicle
-                </label>
-
-                <input
-                    type="text"
-                    id="vehicleSearch"
-                    placeholder="Search by Vehicle ID or RFID Tag"
-                    onkeyup="searchVehicles()">
+                <div
+                    class="number"
+                    id="exitedVehicles"
+                >
+                    0
+                </div>
 
             </div>
 
 
-            <div class="vehicle-filter">
+        </div>
 
-                <label for="classFilter">
-                    Vehicle Class
-                </label>
 
-                <select
-                    id="classFilter"
-                    onchange="filterVehicles()">
 
-                    <option value="all">
-                        All Vehicle Classes
-                    </option>
+        <!-- CONTROLS -->
 
-                    <option value="class1">
-                        Vehicle Class 1
-                    </option>
+        <div class="controls">
 
-                    <option value="class2">
-                        Vehicle Class 2
-                    </option>
 
-                    <option value="class3">
-                        Vehicle Class 3
-                    </option>
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search Vehicle ID or RFID..."
+            >
 
-                    <option value="class4">
-                        Vehicle Class 4
-                    </option>
 
-                    <option value="class5">
-                        Vehicle Class 5
-                    </option>
+            <select id="classFilter">
 
-                    <option value="class6">
-                        Vehicle Class 6
-                    </option>
+                <option value="">
+                    All Vehicle Classes
+                </option>
 
-                    <option value="class7">
-                        Vehicle Class 7
-                    </option>
+            </select>
 
-                    <option value="class8">
-                        Vehicle Class 8
-                    </option>
 
-                </select>
+            <select id="statusFilter">
 
-            </div>
+                <option value="">
+                    All Status
+                </option>
 
-        </section>
+                <option value="EXPECTED">
+                    EXPECTED
+                </option>
+
+                <option value="IN_YARD">
+                    IN YARD
+                </option>
+
+                <option value="PARKED">
+                    PARKED
+                </option>
+
+                <option value="READY_FOR_DISPATCH">
+                    READY FOR DISPATCH
+                </option>
+
+                <option value="EXITED">
+                    EXITED
+                </option>
+
+            </select>
+
+
+        </div>
+
+
+
+        <!-- ERROR -->
+
+        <div id="errorMessage"></div>
+
 
 
         <!-- VEHICLE TABLE -->
-        <section class="dashboard-panel vehicle-table-panel">
 
-            <div class="panel-header">
+        <div class="table-container">
 
-                <div>
 
-                    <span class="section-label">
-                        VEHICLE MASTER
-                    </span>
+            <table>
 
-                    <h2>
-                        Vehicle List
-                    </h2>
 
-                </div>
+                <thead>
 
-                <span class="backend-note">
-                    Backend integration pending
-                </span>
+                    <tr>
 
+                        <th>
+                            Vehicle ID
+                        </th>
+
+                        <th>
+                            RFID Tag
+                        </th>
+
+                        <th>
+                            VIN
+                        </th>
+
+                        <th>
+                            Vehicle Class
+                        </th>
+
+                        <th>
+                            Current Area
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Last Updated
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+
+                <tbody id="vehicleTableBody">
+
+
+                    <tr>
+
+                        <td
+                            colspan="7"
+                            class="loading"
+                        >
+                            Loading vehicles...
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+
+        <!-- VEHICLE CLASSES -->
+
+        <h2 class="section-title">
+            Vehicle Classes
+        </h2>
+
+
+        <div
+            id="vehicleClasses"
+            class="classes"
+        >
+
+
+            <div class="loading">
+                Loading vehicle classes...
             </div>
 
 
-            <div class="table-container">
+        </div>
 
-                <table id="vehicleTable">
 
-                    <thead>
 
-                        <tr>
+        <!-- FOOTER -->
 
-                            <th>
-                                Vehicle ID
-                            </th>
+        <footer>
 
-                            <th>
-                                RFID Tag
-                            </th>
-
-                            <th>
-                                Vehicle Class
-                            </th>
-
-                            <th>
-                                Current Location
-                            </th>
-
-                            <th>
-                                Status
-                            </th>
-
-                            <th>
-                                Data Source
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody>
-
-
-                        <!-- PROJECT EXAMPLE -->
-
-                        <tr>
-
-                            <td>
-                                <strong class="vehicle-id">
-                                    V1025
-                                </strong>
-                            </td>
-
-
-                            <td>
-                                RFID1025
-                            </td>
-
-
-                            <td>
-                                Trailer
-                            </td>
-
-
-                            <td>
-                                <span class="location-badge">
-                                    Area 6
-                                </span>
-                            </td>
-
-
-                            <td>
-
-                                <span class="vehicle-status parked">
-                                    Parked
-                                </span>
-
-                            </td>
-
-
-                            <td>
-
-                                <span class="data-source">
-                                    Project Example
-                                </span>
-
-                            </td>
-
-                        </tr>
-
-
-                        <!-- EMPTY BACKEND DATA MESSAGE -->
-
-                        <tr class="backend-row">
-
-                            <td colspan="6">
-
-                                <div class="empty-vehicle">
-
-                                    <div class="empty-icon">
-                                        🚗
-                                    </div>
-
-                                    <strong>
-                                        More vehicle records will appear here
-                                    </strong>
-
-                                    <p>
-                                        Vehicle data will be loaded from
-                                        the backend when API integration
-                                        is completed.
-                                    </p>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
-
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </section>
-
-
-        <!-- VEHICLE CLASS INFORMATION -->
-        <section class="dashboard-panel">
-
-            <div class="panel-header">
-
-                <div>
-
-                    <span class="section-label">
-                        CONFIGURATION
-                    </span>
-
-                    <h2>
-                        Vehicle Classes
-                    </h2>
-
-                </div>
-
-            </div>
-
-
-            <div class="class-grid">
-
-
-                <div class="class-card">
-
-                    <span>01</span>
-
-                    <strong>
-                        Vehicle Class 1
-                    </strong>
-
-                    <small>
-                        Class name pending backend/master data
-                    </small>
-
-                </div>
-
-
-                <div class="class-card">
-
-                    <span>02</span>
-
-                    <strong>
-                        Vehicle Class 2
-                    </strong>
-
-                    <small>
-                        Class name pending backend/master data
-                    </small>
-
-                </div>
-
-
-                <div class="class-card">
-
-                    <span>03</span>
-
-                    <strong>
-                        Vehicle Class 3
-                    </strong>
-
-                    <small>
-                        Class name pending backend/master data
-                    </small>
-
-                </div>
-
-
-                <div class="class-card">
-
-                    <span>04</span>
-
-                    <strong>
-                        Vehicle Class 4
-                    </strong>
-
-                    <small>
-                        Class name pending backend/master data
-                    </small>
-
-                </div>
-
-
-                <div class="class-card">
-
-                    <span>05</span>
-
-                    <strong>
-                        Vehicle Class 5
-                    </strong>
-
-                    <small>
-                        Class name pending backend/master data
-                    </small>
-
-                </div>
-
-
-                <div class="class-card">
-
-                    <span>06</span>
-
-                    <strong>
-                        Vehicle Class 6
-                    </strong>
-
-                    <small>
-                        Class name pending backend/master data
-                    </small>
-
-                </div>
-
-
-                <div class="class-card">
-
-                    <span>07</span>
-
-                    <strong>
-                        Vehicle Class 7
-                    </strong>
-
-                    <small>
-                        Class name pending backend/master data
-                    </small>
-
-                </div>
-
-
-                <div class="class-card">
-
-                    <span>08</span>
-
-                    <strong>
-                        Vehicle Class 8
-                    </strong>
-
-                    <small>
-                        Class name pending backend/master data
-                    </small>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <footer class="footer">
-
-            <p>
-                Vehicle Yard Management System
-            </p>
-
-            <span>
-                Frontend Demo • Backend Integration Pending
-            </span>
+            Frontend • Backend Connected •
+            Auto Refresh: 10 seconds
 
         </footer>
 
@@ -581,131 +692,802 @@
     </main>
 
 
-    <!-- JAVASCRIPT -->
-    <script>
-
-        function searchVehicles() {
-
-            const input =
-                document
-                    .getElementById("vehicleSearch")
-                    .value
-                    .toLowerCase();
-
-            const rows =
-                document
-                    .querySelectorAll(
-                        "#vehicleTable tbody tr"
-                    );
+</div>
 
 
-            rows.forEach(function(row) {
 
-                const text =
-                    row.innerText.toLowerCase();
+<script>
 
 
-                if (
-                    row.classList.contains(
-                        "backend-row"
-                    )
-                ) {
+    /* ==========================================
+       BACKEND API
+    ========================================== */
 
-                    return;
-
-                }
+    const API_BASE_URL =
+        "http://127.0.0.1:5000";
 
 
-                if (
-                    text.includes(input)
-                ) {
+    let allVehicles = [];
 
-                    row.style.display = "";
 
-                }
 
-                else {
+    /* ==========================================
+       STATUS CLASS
+    ========================================== */
 
-                    row.style.display = "none";
+    function getStatusClass(status) {
 
-                }
+        if (!status) {
 
-            });
+            return "expected";
 
         }
 
 
-        function filterVehicles() {
+        return status
+            .toLowerCase()
+            .replaceAll("_", "-");
 
-            const filter =
-                document
-                    .getElementById("classFilter")
-                    .value;
-
-            const rows =
-                document
-                    .querySelectorAll(
-                        "#vehicleTable tbody tr"
-                    );
+    }
 
 
-            rows.forEach(function(row) {
 
-                if (
-                    row.classList.contains(
-                        "backend-row"
-                    )
-                ) {
+    /* ==========================================
+       HTML SECURITY
+    ========================================== */
 
-                    return;
+    function escapeHTML(value) {
 
-                }
+        if (
+            value === null ||
+            value === undefined
+        ) {
 
-
-                const classText =
-                    row
-                        .cells[2]
-                        .innerText
-                        .toLowerCase();
-
-
-                if (
-                    filter === "all"
-                ) {
-
-                    row.style.display = "";
-
-                    return;
-
-                }
-
-
-                /*
-                   At present the actual names of
-                   all 8 classes are not available.
-                   Therefore only "All" can show
-                   the exact project example safely.
-                */
-
-                if (
-                    filter === "all"
-                ) {
-
-                    row.style.display = "";
-
-                }
-
-                else {
-
-                    row.style.display = "none";
-
-                }
-
-            });
+            return "";
 
         }
 
-    </script>
+
+        return String(value)
+
+            .replaceAll(
+                "&",
+                "&amp;"
+            )
+
+            .replaceAll(
+                "<",
+                "&lt;"
+            )
+
+            .replaceAll(
+                ">",
+                "&gt;"
+            )
+
+            .replaceAll(
+                '"',
+                "&quot;"
+            )
+
+            .replaceAll(
+                "'",
+                "&#039;"
+            );
+
+    }
+
+
+
+    /* ==========================================
+       LOAD VEHICLES
+    ========================================== */
+
+    async function loadVehicles() {
+
+
+        const connectionStatus =
+            document.getElementById(
+                "connectionStatus"
+            );
+
+
+        const errorMessage =
+            document.getElementById(
+                "errorMessage"
+            );
+
+
+        try {
+
+
+            const response =
+                await fetch(
+                    `${API_BASE_URL}/api/driver/vehicles`
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    `HTTP Error ${response.status}`
+                );
+
+            }
+
+
+            const vehicles =
+                await response.json();
+
+
+            allVehicles =
+                vehicles;
+
+
+            connectionStatus.textContent =
+                "● Backend Connected";
+
+
+            connectionStatus.className =
+                "connection connected";
+
+
+            errorMessage.innerHTML =
+                "";
+
+
+            updateStatistics(
+                vehicles
+            );
+
+
+            updateClassFilter(
+                vehicles
+            );
+
+
+            displayVehicles(
+                vehicles
+            );
+
+
+            updateVehicleClasses(
+                vehicles
+            );
+
+
+        }
+
+
+        catch (error) {
+
+
+            console.error(
+                "Vehicle API Error:",
+                error
+            );
+
+
+            connectionStatus.textContent =
+                "● Backend Disconnected";
+
+
+            connectionStatus.className =
+                "connection disconnected";
+
+
+            errorMessage.innerHTML = `
+
+                <div class="error">
+
+                    Unable to connect to backend.
+
+                    Make sure Flask server is running on
+
+                    http://127.0.0.1:5000
+
+                </div>
+
+            `;
+
+
+            document.getElementById(
+                "vehicleTableBody"
+            ).innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="7"
+                        class="loading"
+                    >
+
+                        No vehicle data available.
+
+                    </td>
+
+                </tr>
+
+            `;
+
+
+        }
+
+    }
+
+
+
+    /* ==========================================
+       STATISTICS
+    ========================================== */
+
+    function updateStatistics(
+        vehicles
+    ) {
+
+
+        const total =
+            vehicles.length;
+
+
+        const inYard =
+            vehicles.filter(
+                v =>
+                    v.current_status ===
+                        "IN_YARD" ||
+
+                    v.current_status ===
+                        "PARKED" ||
+
+                    v.current_status ===
+                        "READY_FOR_DISPATCH"
+            ).length;
+
+
+        const exited =
+            vehicles.filter(
+                v =>
+                    v.current_status ===
+                    "EXITED"
+            ).length;
+
+
+        document.getElementById(
+            "totalVehicles"
+        ).textContent =
+            total;
+
+
+        document.getElementById(
+            "vehiclesInYard"
+        ).textContent =
+            inYard;
+
+
+        document.getElementById(
+            "exitedVehicles"
+        ).textContent =
+            exited;
+
+    }
+
+
+
+    /* ==========================================
+       CLASS FILTER
+    ========================================== */
+
+    function updateClassFilter(
+        vehicles
+    ) {
+
+
+        const select =
+            document.getElementById(
+                "classFilter"
+            );
+
+
+        const currentValue =
+            select.value;
+
+
+        const classes =
+            [
+                ...new Set(
+                    vehicles.map(
+                        v =>
+                            v.vehicle_class
+                    )
+                )
+            ].sort();
+
+
+        select.innerHTML = `
+
+            <option value="">
+                All Vehicle Classes
+            </option>
+
+        `;
+
+
+        classes.forEach(
+            vehicleClass => {
+
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                option.value =
+                    vehicleClass;
+
+
+                option.textContent =
+                    vehicleClass;
+
+
+                select.appendChild(
+                    option
+                );
+
+
+            }
+        );
+
+
+        select.value =
+            currentValue;
+
+    }
+
+
+
+    /* ==========================================
+       DISPLAY VEHICLES
+    ========================================== */
+
+    function displayVehicles(
+        vehicles
+    ) {
+
+
+        const tbody =
+            document.getElementById(
+                "vehicleTableBody"
+            );
+
+
+        if (!vehicles.length) {
+
+
+            tbody.innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="7"
+                        class="loading"
+                    >
+
+                        No vehicles found.
+
+                    </td>
+
+                </tr>
+
+            `;
+
+
+            return;
+
+        }
+
+
+
+        tbody.innerHTML =
+
+            vehicles.map(
+                vehicle => {
+
+
+                    const status =
+                        vehicle.current_status ||
+                        "EXPECTED";
+
+
+                    const statusClass =
+                        getStatusClass(
+                            status
+                        );
+
+
+                    const area =
+                        vehicle.current_area_id ||
+                        "Not Assigned";
+
+
+                    const lastUpdated =
+                        vehicle.last_updated_at
+
+                            ? new Date(
+                                vehicle.last_updated_at
+                            ).toLocaleString()
+
+                            : "N/A";
+
+
+
+                    return `
+
+                        <tr>
+
+
+                            <td>
+
+                                <strong>
+
+                                    ${escapeHTML(
+                                        vehicle.vehicle_id
+                                    )}
+
+                                </strong>
+
+                            </td>
+
+
+
+                            <td>
+
+                                ${escapeHTML(
+                                    vehicle.rfid_tag
+                                )}
+
+                            </td>
+
+
+
+                            <td>
+
+                                ${escapeHTML(
+                                    vehicle.vin
+                                )}
+
+                            </td>
+
+
+
+                            <td>
+
+                                ${escapeHTML(
+                                    vehicle.vehicle_class
+                                )}
+
+                            </td>
+
+
+
+                            <td>
+
+                                ${escapeHTML(
+                                    area
+                                )}
+
+                            </td>
+
+
+
+                            <td>
+
+
+                                <span
+                                    class="status ${statusClass}"
+                                >
+
+                                    ${escapeHTML(
+                                        status.replaceAll(
+                                            "_",
+                                            " "
+                                        )
+                                    )}
+
+                                </span>
+
+
+                            </td>
+
+
+
+                            <td>
+
+                                ${escapeHTML(
+                                    lastUpdated
+                                )}
+
+                            </td>
+
+
+                        </tr>
+
+                    `;
+
+
+                }
+
+            ).join("");
+
+    }
+
+
+
+    /* ==========================================
+       VEHICLE CLASS CARDS
+    ========================================== */
+
+    function updateVehicleClasses(
+        vehicles
+    ) {
+
+
+        const container =
+            document.getElementById(
+                "vehicleClasses"
+            );
+
+
+        const classCounts = {};
+
+
+        vehicles.forEach(
+            vehicle => {
+
+
+                const vehicleClass =
+                    vehicle.vehicle_class ||
+                    "Unknown";
+
+
+                if (
+                    !classCounts[
+                        vehicleClass
+                    ]
+                ) {
+
+                    classCounts[
+                        vehicleClass
+                    ] = 0;
+
+                }
+
+
+                classCounts[
+                    vehicleClass
+                ]++;
+
+
+            }
+        );
+
+
+        const classes =
+            Object.keys(
+                classCounts
+            ).sort();
+
+
+        if (!classes.length) {
+
+
+            container.innerHTML = `
+
+                <div class="loading">
+
+                    No vehicle classes found.
+
+                </div>
+
+            `;
+
+
+            return;
+
+        }
+
+
+
+        container.innerHTML =
+
+            classes.map(
+                vehicleClass => `
+
+                    <div
+                        class="class-card"
+                    >
+
+                        <h3>
+
+                            ${escapeHTML(
+                                vehicleClass
+                            )}
+
+                        </h3>
+
+
+                        <div
+                            class="class-count"
+                        >
+
+                            ${
+                                classCounts[
+                                    vehicleClass
+                                ]
+                            }
+
+                        </div>
+
+
+                        <small>
+
+                            Vehicle(s)
+
+                        </small>
+
+                    </div>
+
+                `
+            ).join("");
+
+    }
+
+
+
+    /* ==========================================
+       FILTER VEHICLES
+    ========================================== */
+
+    function applyFilters() {
+
+
+        const search =
+            document.getElementById(
+                "searchInput"
+            ).value
+            .toLowerCase()
+            .trim();
+
+
+        const selectedClass =
+            document.getElementById(
+                "classFilter"
+            ).value;
+
+
+        const selectedStatus =
+            document.getElementById(
+                "statusFilter"
+            ).value;
+
+
+        const filtered =
+            allVehicles.filter(
+                vehicle => {
+
+
+                    const vehicleId =
+                        String(
+                            vehicle.vehicle_id ||
+                            ""
+                        ).toLowerCase();
+
+
+                    const rfid =
+                        String(
+                            vehicle.rfid_tag ||
+                            ""
+                        ).toLowerCase();
+
+
+                    const matchesSearch =
+                        !search ||
+
+                        vehicleId.includes(
+                            search
+                        ) ||
+
+                        rfid.includes(
+                            search
+                        );
+
+
+                    const matchesClass =
+                        !selectedClass ||
+
+                        vehicle.vehicle_class ===
+                        selectedClass;
+
+
+                    const matchesStatus =
+                        !selectedStatus ||
+
+                        vehicle.current_status ===
+                        selectedStatus;
+
+
+                    return (
+
+                        matchesSearch &&
+
+                        matchesClass &&
+
+                        matchesStatus
+
+                    );
+
+                }
+            );
+
+
+        displayVehicles(
+            filtered
+        );
+
+    }
+
+
+
+    /* ==========================================
+       EVENTS
+    ========================================== */
+
+    document.getElementById(
+        "searchInput"
+    ).addEventListener(
+        "input",
+        applyFilters
+    );
+
+
+    document.getElementById(
+        "classFilter"
+    ).addEventListener(
+        "change",
+        applyFilters
+    );
+
+
+    document.getElementById(
+        "statusFilter"
+    ).addEventListener(
+        "change",
+        applyFilters
+    );
+
+
+
+    /* ==========================================
+       INITIAL LOAD
+    ========================================== */
+
+    loadVehicles();
+
+
+
+    /* ==========================================
+       AUTO REFRESH
+       Every 10 seconds
+    ========================================== */
+
+    setInterval(
+        loadVehicles,
+        10000
+    );
+
+
+</script>
+
 
 </body>
 

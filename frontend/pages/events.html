@@ -1,32 +1,39 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<title>Events | Vehicle Yard Management System</title>
+    <title>Events | Vehicle Yard Management System</title>
 
-<link rel="stylesheet" href="../css/style.css">
-```
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 
+
 <body>
 
-```
-<!-- SIDEBAR -->
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
 <aside class="sidebar">
 
     <div class="sidebar-logo">
+
         🚗
+
         <span>
             Vehicle Yard<br>
             Management System
         </span>
+
     </div>
+
 
     <nav class="sidebar-menu">
 
@@ -64,6 +71,7 @@
 
     </nav>
 
+
     <div class="sidebar-footer">
         Vehicle Yard Management System
     </div>
@@ -71,25 +79,38 @@
 </aside>
 
 
-<!-- MAIN -->
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+
 <main class="main-content">
 
+
     <!-- TOPBAR -->
+
     <header class="topbar">
 
         <div>
-            <h2>Events</h2>
+
+            <h2>
+                Events
+            </h2>
 
             <p>
                 Business event processing and SAP integration
             </p>
+
         </div>
 
 
         <div class="topbar-right">
 
-            <span class="system-status">
-                ● System Online
+            <span
+                class="system-status"
+                id="systemStatus"
+            >
+                ● Checking Backend...
             </span>
 
 
@@ -100,11 +121,15 @@
                 </div>
 
                 <div>
-                    <strong>Admin</strong>
+
+                    <strong>
+                        Admin
+                    </strong>
 
                     <small>
                         Administrator
                     </small>
+
                 </div>
 
             </div>
@@ -114,11 +139,16 @@
     </header>
 
 
-    <!-- PAGE -->
+
+    <!-- =====================================================
+         PAGE CONTENT
+    ====================================================== -->
+
     <section class="page-content">
 
 
         <!-- PAGE HEADER -->
+
         <div class="page-header">
 
             <div>
@@ -127,9 +157,11 @@
                     BUSINESS EVENT PROCESSING
                 </span>
 
+
                 <h1>
                     Business Events
                 </h1>
+
 
                 <p>
                     Monitor validated business events generated
@@ -141,9 +173,15 @@
         </div>
 
 
-        <!-- SUMMARY -->
+
+        <!-- =================================================
+             SUMMARY CARDS
+        ================================================== -->
+
         <div class="dashboard-cards">
 
+
+            <!-- TOTAL EVENTS -->
 
             <div class="dashboard-card">
 
@@ -157,18 +195,21 @@
                         Total Events
                     </span>
 
-                    <h2>
+                    <h2 id="totalEvents">
                         —
                     </h2>
 
-                    <small>
-                        Backend pending
+                    <small id="totalEventsText">
+                        Loading...
                     </small>
 
                 </div>
 
             </div>
 
+
+
+            <!-- PENDING -->
 
             <div class="dashboard-card">
 
@@ -182,18 +223,21 @@
                         Pending SAP Sync
                     </span>
 
-                    <h2>
+                    <h2 id="pendingEvents">
                         —
                     </h2>
 
                     <small>
-                        Backend pending
+                        SAP synchronization
                     </small>
 
                 </div>
 
             </div>
 
+
+
+            <!-- SYNCED -->
 
             <div class="dashboard-card">
 
@@ -207,18 +251,21 @@
                         Synced Events
                     </span>
 
-                    <h2>
+                    <h2 id="syncedEvents">
                         —
                     </h2>
 
                     <small>
-                        Backend pending
+                        SAP synchronized
                     </small>
 
                 </div>
 
             </div>
 
+
+
+            <!-- MISMATCH -->
 
             <div class="dashboard-card">
 
@@ -232,12 +279,12 @@
                         Mismatch Alerts
                     </span>
 
-                    <h2>
+                    <h2 id="mismatchEvents">
                         —
                     </h2>
 
                     <small>
-                        Backend pending
+                        Inventory mismatch
                     </small>
 
                 </div>
@@ -247,24 +294,35 @@
         </div>
 
 
-        <!-- NOTE -->
-        <div class="backend-note">
+
+        <!-- =================================================
+             BACKEND NOTE
+        ================================================== -->
+
+        <div
+            class="backend-note"
+            id="backendNote"
+        >
 
             <strong>
-                Backend integration pending
+                Connecting to backend...
             </strong>
 
             <p>
                 Business event records and SAP synchronization
-                status will be loaded from the backend after
-                API integration is completed.
+                status are being loaded from the backend.
             </p>
 
         </div>
 
 
-        <!-- EVENT TYPES -->
+
+        <!-- =================================================
+             EVENT TYPES
+        ================================================== -->
+
         <div class="panel">
+
 
             <div class="panel-header">
 
@@ -283,10 +341,10 @@
             </div>
 
 
+
             <div class="event-type-grid">
 
 
-                <!-- EVENT 1 -->
                 <div class="event-type-card">
 
                     <div class="event-number">
@@ -308,7 +366,7 @@
                 </div>
 
 
-                <!-- EVENT 2 -->
+
                 <div class="event-type-card">
 
                     <div class="event-number">
@@ -330,7 +388,7 @@
                 </div>
 
 
-                <!-- EVENT 3 -->
+
                 <div class="event-type-card">
 
                     <div class="event-number">
@@ -353,7 +411,7 @@
                 </div>
 
 
-                <!-- EVENT 4 -->
+
                 <div class="event-type-card">
 
                     <div class="event-number">
@@ -376,7 +434,7 @@
                 </div>
 
 
-                <!-- EVENT 5 -->
+
                 <div class="event-type-card">
 
                     <div class="event-number">
@@ -398,7 +456,7 @@
                 </div>
 
 
-                <!-- EVENT 6 -->
+
                 <div class="event-type-card">
 
                     <div class="event-number">
@@ -421,7 +479,7 @@
                 </div>
 
 
-                <!-- EVENT 7 -->
+
                 <div class="event-type-card">
 
                     <div class="event-number">
@@ -449,8 +507,13 @@
         </div>
 
 
-        <!-- EVENT LOG -->
+
+        <!-- =================================================
+             EVENT LOG
+        ================================================== -->
+
         <div class="panel">
+
 
             <div class="panel-header">
 
@@ -466,16 +529,26 @@
 
                 </div>
 
-                <span class="area-count">
-                    Backend Data
-                </span>
+
+                <div>
+
+                    <span
+                        class="area-count"
+                        id="eventBackendStatus"
+                    >
+                        Loading...
+                    </span>
+
+                </div>
 
             </div>
+
 
 
             <div class="table-container">
 
                 <table class="vehicle-table">
+
 
                     <thead>
 
@@ -514,67 +587,21 @@
                     </thead>
 
 
-                    <tbody>
 
+                    <tbody id="eventTableBody">
 
-                        <!-- PROJECT EXAMPLE -->
                         <tr>
-
-                            <td>
-                                <strong>
-                                    V1025
-                                </strong>
-                            </td>
-
-                            <td>
-                                Trailer
-                            </td>
-
-                            <td>
-                                Parking Location Updated
-                            </td>
-
-                            <td>
-
-                                <span class="location-badge">
-                                    Area 6
-                                </span>
-
-                            </td>
-
-                            <td>
-                                Driver Mobile Application
-                            </td>
-
-                            <td>
-                                2026-07-28 10:42:00
-                            </td>
-
-                            <td>
-
-                                <span class="sync-status pending">
-                                    Pending
-                                </span>
-
-                            </td>
-
-                        </tr>
-
-
-                        <!-- BACKEND -->
-                        <tr class="empty-vehicle">
 
                             <td colspan="7">
 
-                                ⚡ More business events will appear
-                                here when backend data is connected.
+                                ⚡ Loading business events...
 
                             </td>
 
                         </tr>
 
-
                     </tbody>
+
 
                 </table>
 
@@ -583,8 +610,13 @@
         </div>
 
 
-        <!-- SAP ARCHITECTURE -->
+
+        <!-- =================================================
+             SAP ARCHITECTURE
+        ================================================== -->
+
         <div class="panel">
+
 
             <div class="panel-header">
 
@@ -601,6 +633,7 @@
                 </div>
 
             </div>
+
 
 
             <div class="location-flow">
@@ -716,7 +749,11 @@
         </div>
 
 
-        <!-- IMPORTANT RULE -->
+
+        <!-- =================================================
+             IMPORTANT RULE
+        ================================================== -->
+
         <div class="backend-note">
 
             <strong>
@@ -727,21 +764,23 @@
                 Raw RFID reads and camera detections are not sent
                 directly to SAP. Only validated business events
                 generated by the event processing layer are
-                synchronized with SAP.
+                synchronized with the SAP system.
             </p>
 
         </div>
 
 
+
         <!-- FOOTER -->
+
         <footer class="page-footer">
 
             <strong>
                 Vehicle Yard Management System
             </strong>
 
-            <span>
-                Frontend Demo • Backend Integration Pending
+            <span id="footerStatus">
+                Frontend • Connecting to Backend
             </span>
 
         </footer>
@@ -750,7 +789,702 @@
     </section>
 
 </main>
-```
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+
+const API_BASE_URL =
+    "http://127.0.0.1:5000";
+
+
+// =========================================================
+// HTML ESCAPE
+// =========================================================
+
+function escapeHTML(value) {
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+
+// =========================================================
+// FORMAT DATE
+// =========================================================
+
+function formatDateTime(dateString) {
+
+    if (!dateString) {
+        return "—";
+    }
+
+    const date =
+        new Date(dateString);
+
+    if (isNaN(date.getTime())) {
+        return escapeHTML(dateString);
+    }
+
+    return date.toLocaleString();
+
+}
+
+
+
+// =========================================================
+// FORMAT EVENT NAME
+// =========================================================
+
+function formatEventName(eventType) {
+
+    if (!eventType) {
+        return "Business Event";
+    }
+
+    const map = {
+
+        "VEHICLE_ENTERED_YARD":
+            "Vehicle Entered Yard",
+
+        "VEHICLE_ASSIGNED_TO_PARKING":
+            "Vehicle Assigned to Parking",
+
+        "VEHICLE_RELOCATED":
+            "Vehicle Relocated",
+
+        "VEHICLE_READY_FOR_DISPATCH":
+            "Vehicle Ready for Dispatch",
+
+        "VEHICLE_EXITED_YARD":
+            "Vehicle Exited Yard",
+
+        "INVENTORY_RECONCILIATION":
+            "Inventory Reconciliation",
+
+        "INVENTORY_MISMATCH_ALERT":
+            "Inventory Mismatch Alert"
+
+    };
+
+    return map[eventType] ||
+           eventType.replaceAll("_", " ");
+
+}
+
+
+
+// =========================================================
+// GET PARKING AREA FROM EVENT PAYLOAD
+// =========================================================
+
+function getParkingArea(event) {
+
+    try {
+
+        const payload =
+            typeof event.payload === "string"
+                ? JSON.parse(event.payload)
+                : event.payload;
+
+        if (
+            payload &&
+            payload.targetArea
+        ) {
+
+            return payload.targetArea;
+
+        }
+
+        if (
+            payload &&
+            payload.metadata &&
+            payload.metadata.parking_area
+        ) {
+
+            return payload.metadata.parking_area;
+
+        }
+
+    } catch (error) {
+
+        console.warn(
+            "Unable to read event payload",
+            error
+        );
+
+    }
+
+    return "—";
+
+}
+
+
+
+// =========================================================
+// GET UPDATED BY
+// =========================================================
+
+function getUpdatedBy(event) {
+
+    try {
+
+        const payload =
+            typeof event.payload === "string"
+                ? JSON.parse(event.payload)
+                : event.payload;
+
+        if (
+            payload &&
+            payload.metadata
+        ) {
+
+            if (
+                payload.metadata.driver_id
+            ) {
+
+                return payload.metadata.driver_id;
+
+            }
+
+            if (
+                payload.metadata.source
+            ) {
+
+                return payload.metadata.source;
+
+            }
+
+            if (
+                payload.metadata.gate_id
+            ) {
+
+                return payload.metadata.gate_id;
+
+            }
+
+        }
+
+    } catch (error) {
+
+        console.warn(
+            "Unable to read event metadata",
+            error
+        );
+
+    }
+
+    return "Tracking Engine";
+
+}
+
+
+
+// =========================================================
+// LOAD EVENTS
+// =========================================================
+
+async function loadEvents() {
+
+
+    const totalEvents =
+        document.getElementById(
+            "totalEvents"
+        );
+
+
+    const pendingEvents =
+        document.getElementById(
+            "pendingEvents"
+        );
+
+
+    const syncedEvents =
+        document.getElementById(
+            "syncedEvents"
+        );
+
+
+    const mismatchEvents =
+        document.getElementById(
+            "mismatchEvents"
+        );
+
+
+    const totalEventsText =
+        document.getElementById(
+            "totalEventsText"
+        );
+
+
+    const eventBackendStatus =
+        document.getElementById(
+            "eventBackendStatus"
+        );
+
+
+    const eventTableBody =
+        document.getElementById(
+            "eventTableBody"
+        );
+
+
+    const backendNote =
+        document.getElementById(
+            "backendNote"
+        );
+
+
+    const systemStatus =
+        document.getElementById(
+            "systemStatus"
+        );
+
+
+    const footerStatus =
+        document.getElementById(
+            "footerStatus"
+        );
+
+
+
+    try {
+
+
+        const response =
+            await fetch(
+                `${API_BASE_URL}/api/sap/events`
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                `Backend returned ${response.status}`
+            );
+
+        }
+
+
+        const events =
+            await response.json();
+
+
+
+        // =================================================
+        // BACKEND CONNECTED
+        // =================================================
+
+        systemStatus.textContent =
+            "● System Online";
+
+
+        eventBackendStatus.textContent =
+            "Backend Data";
+
+
+        footerStatus.textContent =
+            "Frontend • Backend Connected";
+
+
+        backendNote.innerHTML = `
+
+            <strong>
+                Backend integration active
+            </strong>
+
+            <p>
+                Business event records and SAP
+                synchronization status are being
+                received from the Vehicle Yard Management
+                backend.
+            </p>
+
+        `;
+
+
+
+        // =================================================
+        // SUMMARY COUNTS
+        // =================================================
+
+        const total =
+            events.length;
+
+
+        const pending =
+            events.filter(
+                event =>
+                    String(
+                        event.sync_status || ""
+                    ).toUpperCase() === "PENDING"
+            ).length;
+
+
+        const synced =
+            events.filter(
+                event =>
+                    String(
+                        event.sync_status || ""
+                    ).toUpperCase() === "SYNCED"
+            ).length;
+
+
+        const mismatch =
+            events.filter(
+                event =>
+                    String(
+                        event.event_type || ""
+                    ).toUpperCase()
+                    .includes("MISMATCH")
+            ).length;
+
+
+
+        totalEvents.textContent =
+            total;
+
+
+        pendingEvents.textContent =
+            pending;
+
+
+        syncedEvents.textContent =
+            synced;
+
+
+        mismatchEvents.textContent =
+            mismatch;
+
+
+        totalEventsText.textContent =
+            "Backend Records";
+
+
+
+        // =================================================
+        // EMPTY EVENTS
+        // =================================================
+
+        if (!events.length) {
+
+            eventTableBody.innerHTML = `
+
+                <tr class="empty-vehicle">
+
+                    <td colspan="7">
+
+                        ⚡ No business events
+                        recorded yet.
+
+                    </td>
+
+                </tr>
+
+            `;
+
+            return;
+
+        }
+
+
+
+        // =================================================
+        // EVENT TABLE
+        // =================================================
+
+        eventTableBody.innerHTML =
+            events.map(event => {
+
+
+                const eventType =
+                    String(
+                        event.event_type || ""
+                    ).toUpperCase();
+
+
+                const syncStatus =
+                    String(
+                        event.sync_status || "PENDING"
+                    ).toUpperCase();
+
+
+                const vehicleClass =
+                    getVehicleClass(event);
+
+
+                const parkingArea =
+                    getParkingArea(event);
+
+
+                const updatedBy =
+                    getUpdatedBy(event);
+
+
+                let syncClass =
+                    "pending";
+
+
+                if (
+                    syncStatus === "SYNCED" ||
+                    syncStatus === "SUCCESS"
+                ) {
+
+                    syncClass = "synced";
+
+                }
+
+
+                return `
+
+                    <tr>
+
+
+                        <td>
+
+                            <strong>
+                                ${escapeHTML(
+                                    event.vehicle_id ||
+                                    "Unknown"
+                                )}
+                            </strong>
+
+                        </td>
+
+
+                        <td>
+
+                            ${escapeHTML(
+                                vehicleClass
+                            )}
+
+                        </td>
+
+
+                        <td>
+
+                            ⚡
+                            ${escapeHTML(
+                                formatEventName(
+                                    eventType
+                                )
+                            )}
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="location-badge">
+
+                                ${escapeHTML(
+                                    parkingArea
+                                )}
+
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            ${escapeHTML(
+                                updatedBy
+                            )}
+
+                        </td>
+
+
+                        <td>
+
+                            ${formatDateTime(
+                                event.created_at
+                            )}
+
+                        </td>
+
+
+                        <td>
+
+                            <span
+                                class="sync-status ${syncClass}"
+                            >
+
+                                ${escapeHTML(
+                                    syncStatus
+                                )}
+
+                            </span>
+
+                        </td>
+
+
+                    </tr>
+
+                `;
+
+            }).join("");
+
+
+    }
+
+
+    catch (error) {
+
+
+        console.error(
+            "Events backend error:",
+            error
+        );
+
+
+        // =============================================
+        // BACKEND OFFLINE
+        // =============================================
+
+        systemStatus.textContent =
+            "● Backend Offline";
+
+
+        eventBackendStatus.textContent =
+            "Backend Offline";
+
+
+        footerStatus.textContent =
+            "Frontend • Backend Disconnected";
+
+
+        totalEvents.textContent =
+            "—";
+
+
+        pendingEvents.textContent =
+            "—";
+
+
+        syncedEvents.textContent =
+            "—";
+
+
+        mismatchEvents.textContent =
+            "—";
+
+
+        totalEventsText.textContent =
+            "Backend Offline";
+
+
+        backendNote.innerHTML = `
+
+            <strong>
+                Backend connection failed
+            </strong>
+
+            <p>
+                Unable to load business events.
+                Please make sure the Flask backend
+                is running on port 5000.
+            </p>
+
+        `;
+
+
+        eventTableBody.innerHTML = `
+
+            <tr class="empty-vehicle">
+
+                <td colspan="7">
+
+                    ⚠️ Unable to load business
+                    events from backend.
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+}
+
+
+
+// =========================================================
+// GET VEHICLE CLASS
+// =========================================================
+
+function getVehicleClass(event) {
+
+    try {
+
+        const payload =
+            typeof event.payload === "string"
+                ? JSON.parse(event.payload)
+                : event.payload;
+
+
+        if (
+            payload &&
+            payload.vehicleClass
+        ) {
+
+            return payload.vehicleClass;
+
+        }
+
+    } catch (error) {
+
+        console.warn(
+            "Unable to read vehicle class",
+            error
+        );
+
+    }
+
+    return "—";
+
+}
+
+
+
+// =========================================================
+// INITIAL LOAD
+// =========================================================
+
+loadEvents();
+
+
+
+// =========================================================
+// AUTO REFRESH
+// =========================================================
+
+setInterval(
+    loadEvents,
+    10000
+);
+
+
+</script>
+
 
 </body>
 

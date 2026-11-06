@@ -1,0 +1,410 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Camera Patrol - Vehicle Search</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .patrol-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .search-box {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .search-box h2 {
+            margin-top: 0;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .search-row input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .search-row button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .results {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .summary {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .summary-card {
+            padding: 15px 20px;
+            border-radius: 10px;
+            background: #f3f4f6;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        th {
+            background: #f3f4f6;
+        }
+
+        .status {
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        .test-status {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+        }
+
+        .error {
+            color: #b91c1c;
+            padding: 15px;
+            background: #fee2e2;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="patrol-container">
+
+        <div class="search-box">
+
+            <h2>Camera Patrol - Vehicle Search</h2>
+
+            <p>
+                Search vehicle number to view camera patrol history.
+            </p>
+
+            <div class="search-row">
+
+                <input
+                    type="text"
+                    id="vehicleNumber"
+                    placeholder="Enter vehicle number"
+                    autocomplete="off"
+                >
+
+                <button onclick="searchVehicle()">
+                    Search
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="results">
+
+            <h2>Patrol History</h2>
+
+            <div id="resultArea">
+
+                <div class="no-data">
+                    Enter a vehicle number and click Search.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const API_BASE_URL = "http://127.0.0.1:5000";
+
+
+        async function searchVehicle() {
+
+            const input =
+                document.getElementById("vehicleNumber");
+
+            const vehicleNumber =
+                input.value.trim();
+
+
+            if (!vehicleNumber) {
+
+                alert("Please enter a vehicle number.");
+
+                return;
+            }
+
+
+            const resultArea =
+                document.getElementById("resultArea");
+
+
+            resultArea.innerHTML = `
+                <div class="no-data">
+                    Searching...
+                </div>
+            `;
+
+
+            try {
+
+                const url =
+                    `${API_BASE_URL}/api/camera/patrol/vehicle/${encodeURIComponent(vehicleNumber)}`;
+
+
+                const response =
+                    await fetch(url);
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message || "Search failed."
+                    );
+                }
+
+
+                displayResults(data);
+
+
+            } catch (error) {
+
+                resultArea.innerHTML = `
+                    <div class="error">
+                        Error: ${error.message}
+                    </div>
+                `;
+
+            }
+
+        }
+
+
+        function displayResults(data) {
+
+            const resultArea =
+                document.getElementById("resultArea");
+
+
+            if (!data.records || data.records.length === 0) {
+
+                resultArea.innerHTML = `
+                    <div class="no-data">
+                        No patrol records found for
+                        <strong>${escapeHtml(data.vehicle_number)}</strong>.
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            let html = `
+
+                <div class="summary">
+
+                    <div class="summary-card">
+                        <strong>Vehicle</strong><br>
+                        ${escapeHtml(data.vehicle_number)}
+                    </div>
+
+                    <div class="summary-card">
+                        <strong>Total Patrol Records</strong><br>
+                        ${data.count}
+                    </div>
+
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Round ID</th>
+                                <th>Camera</th>
+                                <th>Vehicle</th>
+                                <th>Parking Area</th>
+                                <th>Slot</th>
+                                <th>Detected At</th>
+                                <th>Confidence</th>
+                                <th>Status</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+            `;
+
+
+            data.records.forEach(record => {
+
+                html += `
+
+                    <tr>
+
+                        <td>
+                            ${escapeHtml(record.round_id || "-")}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(record.camera_id || "-")}
+                        </td>
+
+                        <td>
+                            <strong>
+                                ${escapeHtml(record.vehicle_number || "-")}
+                            </strong>
+                        </td>
+
+                        <td>
+                            ${escapeHtml(record.parking_area || "-")}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(record.slot_number || "-")}
+                        </td>
+
+                        <td>
+                            ${formatDate(record.detected_at)}
+                        </td>
+
+                        <td>
+                            ${
+                                record.confidence !== null &&
+                                record.confidence !== undefined
+                                ? (record.confidence * 100).toFixed(2) + "%"
+                                : "-"
+                            }
+                        </td>
+
+                        <td>
+                            <span class="status test-status">
+                                ${escapeHtml(record.detection_status || "-")}
+                            </span>
+                        </td>
+
+                    </tr>
+
+                `;
+
+            });
+
+
+            html += `
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            `;
+
+
+            resultArea.innerHTML = html;
+
+        }
+
+
+        function formatDate(dateString) {
+
+            if (!dateString) {
+                return "-";
+            }
+
+
+            const date =
+                new Date(dateString);
+
+
+            return date.toLocaleString();
+
+        }
+
+
+        function escapeHtml(value) {
+
+            const div =
+                document.createElement("div");
+
+            div.textContent =
+                value ?? "";
+
+            return div.innerHTML;
+
+        }
+
+
+        document
+            .getElementById("vehicleNumber")
+            .addEventListener("keydown", function(event) {
+
+                if (event.key === "Enter") {
+
+                    searchVehicle();
+
+                }
+
+            });
+
+    </script>
+
+</body>
+
+</html>

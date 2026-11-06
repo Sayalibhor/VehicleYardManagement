@@ -103,8 +103,8 @@
 
             <div class="header-right">
 
-                <span class="demo-badge">
-                    Frontend Demo
+                <span class="demo-badge" id="connectionBadge">
+                    Connecting...
                 </span>
 
                 <a href="../index.html" class="logout-btn">
@@ -118,14 +118,13 @@
 
         <!-- ================= BACKEND NOTE ================= -->
 
-        <div class="backend-note">
+        <div class="backend-note" id="backendNote">
 
-            <strong>ℹ️ Backend Integration Pending</strong>
+            <strong>⏳ Connecting to Backend</strong>
 
             <p>
-                Driver records and mobile application activity
-                will be loaded from the backend when API integration
-                is available.
+                Loading driver records and mobile application activity
+                from the Vehicle Yard Management backend.
             </p>
 
         </div>
@@ -146,8 +145,8 @@
                         Total Drivers
                     </span>
 
-                    <h2>
-                        Backend Pending
+                    <h2 id="totalDrivers">
+                        —
                     </h2>
                 </div>
 
@@ -165,7 +164,7 @@
                         Mobile App Status
                     </span>
 
-                    <h2>
+                    <h2 id="mobileStatus">
                         Active
                     </h2>
                 </div>
@@ -184,8 +183,8 @@
                         Location Updates
                     </span>
 
-                    <h2>
-                        Backend Pending
+                    <h2 id="locationUpdates">
+                        —
                     </h2>
                 </div>
 
@@ -203,8 +202,8 @@
                         Movement Updates
                     </span>
 
-                    <h2>
-                        Backend Pending
+                    <h2 id="movementUpdates">
+                        —
                     </h2>
                 </div>
 
@@ -277,8 +276,8 @@
                     <h3>Parking Area Selection</h3>
 
                     <p>
-                        Driver selects or scans the parking
-                        area where the vehicle is parked.
+                        Driver selects the parking area where
+                        the vehicle is parked.
                     </p>
 
                 </div>
@@ -326,7 +325,7 @@
 
                     <p>
                         Movement type can indicate Parked,
-                        Shifted, Ready for Dispatch or Exited Yard.
+                        Shifted or Ready for Dispatch.
                     </p>
 
                 </div>
@@ -336,17 +335,17 @@
         </section>
 
 
-        <!-- ================= DRIVER DATA ================= -->
+        <!-- ================= DRIVER MASTER DATA ================= -->
 
         <section class="content-panel">
 
             <div class="section-header">
 
                 <div>
-                    <h2>Driver Records</h2>
+                    <h2>Driver Master Records</h2>
 
                     <p>
-                        Driver master data will be displayed here
+                        Driver information received from backend database
                     </p>
                 </div>
 
@@ -361,36 +360,107 @@
 
                         <tr>
                             <th>Driver ID</th>
-                            <th>Vehicle ID</th>
-                            <th>Parking Area</th>
-                            <th>Movement Type</th>
-                            <th>Timestamp</th>
-                            <th>GPS</th>
+                            <th>Driver Name</th>
+                            <th>License Number</th>
                             <th>Status</th>
                         </tr>
 
                     </thead>
 
 
-                    <tbody>
+                    <tbody id="driverMasterTable">
 
                         <tr>
 
-                            <td colspan="7">
+                            <td colspan="4">
 
                                 <div class="empty-driver">
 
                                     <div class="empty-icon">
-                                        👨‍✈️
+                                        ⏳
                                     </div>
 
                                     <h3>
-                                        Driver data not available
+                                        Loading driver records...
                                     </h3>
 
                                     <p>
-                                        Driver records will appear
-                                        here after backend API integration.
+                                        Please wait while data is fetched
+                                        from the backend.
+                                    </p>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DRIVER MOVEMENT DATA ================= -->
+
+        <section class="content-panel">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Driver Movement Records</h2>
+
+                    <p>
+                        Vehicle location updates submitted through
+                        the driver mobile application
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Driver ID</th>
+                            <th>Driver Name</th>
+                            <th>Vehicle ID</th>
+                            <th>Parking Area</th>
+                            <th>Movement Type</th>
+                            <th>Timestamp</th>
+                            <th>GPS</th>
+                            <th>Source</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="driverMovementTable">
+
+                        <tr>
+
+                            <td colspan="8">
+
+                                <div class="empty-driver">
+
+                                    <div class="empty-icon">
+                                        ⏳
+                                    </div>
+
+                                    <h3>
+                                        Loading movement records...
+                                    </h3>
+
+                                    <p>
+                                        Driver movement data will appear
+                                        here after backend response.
                                     </p>
 
                                 </div>
@@ -582,9 +652,9 @@
 
         <!-- ================= FOOTER ================= -->
 
-        <footer class="page-footer">
+        <footer class="page-footer" id="pageFooter">
 
-            Frontend Demo • Driver Mobile Application • Backend Integration Pending
+            Frontend • Driver Mobile Application • Connecting to Backend
 
         </footer>
 
@@ -598,329 +668,624 @@
 <style>
 
 .driver-feature-grid {
-
     display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
+    grid-template-columns: repeat(3, 1fr);
     gap: 18px;
-
     margin-top: 20px;
 }
-
 
 .driver-feature-card {
-
     background: #ffffff;
-
     border: 1px solid #e5e7eb;
-
     border-radius: 12px;
-
     padding: 20px;
-
     min-height: 170px;
-
 }
-
 
 .feature-icon {
-
     width: 45px;
-
     height: 45px;
-
     border-radius: 10px;
-
     background: #f1f5f9;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     font-size: 22px;
-
     margin-bottom: 14px;
-
 }
-
 
 .driver-feature-card h3 {
-
     margin: 0 0 8px;
-
     font-size: 15px;
-
     color: #1e293b;
-
 }
-
 
 .driver-feature-card p {
-
     margin: 0;
-
     color: #64748b;
-
     font-size: 12px;
-
     line-height: 1.6;
-
 }
-
 
 .status-badge {
-
     padding: 7px 13px;
-
     border-radius: 20px;
-
     font-size: 11px;
-
     font-weight: 600;
-
 }
-
 
 .status-badge.active {
-
     background: #dcfce7;
-
     color: #166534;
-
 }
-
 
 .empty-driver {
-
     text-align: center;
-
     padding: 45px 20px;
-
 }
-
 
 .empty-icon {
-
     font-size: 38px;
-
     margin-bottom: 10px;
-
 }
-
 
 .empty-driver h3 {
-
     margin: 0 0 7px;
-
     color: #334155;
-
     font-size: 15px;
-
 }
-
 
 .empty-driver p {
-
     margin: 0;
-
     color: #64748b;
-
     font-size: 12px;
-
 }
-
 
 .driver-flow {
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     gap: 12px;
-
     flex-wrap: wrap;
-
     margin-top: 25px;
-
 }
-
 
 .flow-step {
-
     width: 145px;
-
     min-height: 120px;
-
     padding: 16px;
-
     text-align: center;
-
     background: #f8fafc;
-
     border: 1px solid #e2e8f0;
-
     border-radius: 12px;
-
 }
-
 
 .flow-number {
-
     width: 32px;
-
     height: 32px;
-
     margin: 0 auto 10px;
-
     border-radius: 50%;
-
     background: #e2e8f0;
-
     color: #334155;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     font-size: 12px;
-
     font-weight: 700;
-
 }
-
 
 .flow-step h3 {
-
     margin: 0 0 6px;
-
     font-size: 13px;
-
     color: #1e293b;
-
 }
-
 
 .flow-step p {
-
     margin: 0;
-
     font-size: 11px;
-
     color: #64748b;
-
     line-height: 1.4;
-
 }
-
 
 .flow-arrow {
-
     font-size: 24px;
-
     color: #94a3b8;
-
 }
-
 
 .driver-data-grid {
-
     display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
+    grid-template-columns: repeat(3, 1fr);
     gap: 15px;
-
     margin-top: 20px;
-
 }
-
 
 .data-item {
-
     padding: 17px;
-
     border: 1px solid #e5e7eb;
-
     border-radius: 10px;
-
     background: #ffffff;
-
 }
-
 
 .data-item span {
-
     display: block;
-
     font-size: 11px;
-
     color: #64748b;
-
     margin-bottom: 7px;
-
 }
-
 
 .data-item strong {
-
     font-size: 13px;
-
     color: #334155;
-
 }
-
 
 @media (max-width: 1000px) {
 
     .driver-feature-grid {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .driver-data-grid {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
+        grid-template-columns: repeat(2, 1fr);
     }
 
 }
 
-
 @media (max-width: 650px) {
 
     .driver-feature-grid {
-
         grid-template-columns: 1fr;
-
     }
 
     .driver-data-grid {
-
         grid-template-columns: 1fr;
-
     }
 
     .flow-arrow {
-
         transform: rotate(90deg);
-
     }
 
 }
 
 </style>
+
+
+<!-- ================= BACKEND JAVASCRIPT ================= -->
+
+<script>
+
+const API_BASE_URL = "http://127.0.0.1:5000";
+
+let drivers = [];
+let movements = [];
+
+
+/* ================= HTML ESCAPE ================= */
+
+function escapeHTML(value) {
+
+    if (value === null || value === undefined) {
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+/* ================= DATE FORMAT ================= */
+
+function formatDateTime(value) {
+
+    if (!value) {
+        return "—";
+    }
+
+    const date = new Date(value);
+
+    if (Number.isNaN(date.getTime())) {
+        return escapeHTML(value);
+    }
+
+    return date.toLocaleString("en-IN", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+    });
+
+}
+
+
+/* ================= MOVEMENT NAME ================= */
+
+function formatMovementType(value) {
+
+    if (!value) {
+        return "—";
+    }
+
+    return String(value)
+        .replace(/_/g, " ")
+        .replace(/\b\w/g, char => char.toUpperCase());
+
+}
+
+
+/* ================= LOAD DRIVERS ================= */
+
+async function loadDrivers() {
+
+    const response = await fetch(
+        `${API_BASE_URL}/api/driver/drivers`
+    );
+
+    if (!response.ok) {
+        throw new Error("Driver API request failed");
+    }
+
+    drivers = await response.json();
+
+}
+
+
+/* ================= LOAD MOVEMENTS ================= */
+
+async function loadMovements() {
+
+    const response = await fetch(
+        `${API_BASE_URL}/api/driver/movements?limit=100`
+    );
+
+    if (!response.ok) {
+        throw new Error("Movement API request failed");
+    }
+
+    movements = await response.json();
+
+}
+
+
+/* ================= DRIVER NAME ================= */
+
+function getDriverName(driverId) {
+
+    const driver = drivers.find(
+        item => item.driver_id === driverId
+    );
+
+    return driver
+        ? driver.full_name
+        : "Unknown Driver";
+
+}
+
+
+/* ================= RENDER DRIVER MASTER ================= */
+
+function renderDriverMaster() {
+
+    const table = document.getElementById(
+        "driverMasterTable"
+    );
+
+    if (!drivers.length) {
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="4">
+                    <div class="empty-driver">
+                        <div class="empty-icon">👨‍✈️</div>
+                        <h3>No driver records found</h3>
+                        <p>No drivers are currently available in backend.</p>
+                    </div>
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+
+    table.innerHTML = drivers.map(driver => {
+
+        const status = driver.is_active
+            ? "Active"
+            : "Inactive";
+
+        return `
+            <tr>
+
+                <td>
+                    <strong>
+                        ${escapeHTML(driver.driver_id)}
+                    </strong>
+                </td>
+
+                <td>
+                    ${escapeHTML(driver.full_name)}
+                </td>
+
+                <td>
+                    ${escapeHTML(driver.license_number)}
+                </td>
+
+                <td>
+                    <span class="status-badge ${driver.is_active ? "active" : ""}">
+                        ${status}
+                    </span>
+                </td>
+
+            </tr>
+        `;
+
+    }).join("");
+
+}
+
+
+/* ================= RENDER MOVEMENTS ================= */
+
+function renderMovements() {
+
+    const table = document.getElementById(
+        "driverMovementTable"
+    );
+
+    if (!movements.length) {
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="8">
+                    <div class="empty-driver">
+                        <div class="empty-icon">📍</div>
+                        <h3>No movement records found</h3>
+                        <p>
+                            Driver movement updates will appear
+                            here after they are recorded.
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+
+    table.innerHTML = movements.map(movement => {
+
+        const gps = movement.gps;
+
+        let gpsText = "—";
+
+        if (
+            gps &&
+            gps.lat !== null &&
+            gps.lat !== undefined &&
+            gps.lng !== null &&
+            gps.lng !== undefined
+        ) {
+
+            gpsText =
+                `${gps.lat}, ${gps.lng}`;
+
+        }
+
+
+        return `
+            <tr>
+
+                <td>
+                    <strong>
+                        ${escapeHTML(movement.updated_by)}
+                    </strong>
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        getDriverName(movement.updated_by)
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(movement.vehicle_id)}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        movement.to_area_id || "Not Assigned"
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        formatMovementType(
+                            movement.movement_type
+                        )
+                    )}
+                </td>
+
+                <td>
+                    ${formatDateTime(
+                        movement.recorded_at
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(gpsText)}
+                </td>
+
+                <td>
+                    <span class="status-badge active">
+                        Driver Mobile App
+                    </span>
+                </td>
+
+            </tr>
+        `;
+
+    }).join("");
+
+}
+
+
+/* ================= UPDATE SUMMARY ================= */
+
+function updateSummary() {
+
+    document.getElementById(
+        "totalDrivers"
+    ).textContent = drivers.length;
+
+
+    document.getElementById(
+        "locationUpdates"
+    ).textContent = movements.length;
+
+
+    document.getElementById(
+        "movementUpdates"
+    ).textContent = movements.length;
+
+
+    const activeDrivers = drivers.filter(
+        driver => driver.is_active
+    ).length;
+
+
+    document.getElementById(
+        "mobileStatus"
+    ).textContent =
+        activeDrivers > 0
+            ? "Active"
+            : "Inactive";
+
+}
+
+
+/* ================= BACKEND CONNECTED ================= */
+
+function showConnected() {
+
+    const badge =
+        document.getElementById("connectionBadge");
+
+    const note =
+        document.getElementById("backendNote");
+
+    const footer =
+        document.getElementById("pageFooter");
+
+
+    badge.textContent =
+        "Backend Connected";
+
+
+    note.innerHTML = `
+        <strong>✅ Backend integration active</strong>
+
+        <p>
+            Driver master records and driver mobile
+            application movement updates are being received
+            from the Vehicle Yard Management backend.
+        </p>
+    `;
+
+
+    footer.textContent =
+        "Frontend • Driver Mobile Application • Backend Connected";
+
+}
+
+
+/* ================= BACKEND ERROR ================= */
+
+function showBackendError(error) {
+
+    console.error(error);
+
+
+    const badge =
+        document.getElementById("connectionBadge");
+
+    const note =
+        document.getElementById("backendNote");
+
+    const footer =
+        document.getElementById("pageFooter");
+
+
+    badge.textContent =
+        "Backend Error";
+
+
+    note.innerHTML = `
+        <strong>⚠️ Backend connection failed</strong>
+
+        <p>
+            Unable to load driver records.
+            Please make sure the Flask backend is running
+            on port 5000.
+        </p>
+    `;
+
+
+    footer.textContent =
+        "Frontend • Driver Mobile Application • Backend Connection Error";
+
+}
+
+
+/* ================= LOAD PAGE ================= */
+
+async function loadPage() {
+
+    try {
+
+        await Promise.all([
+            loadDrivers(),
+            loadMovements()
+        ]);
+
+
+        renderDriverMaster();
+
+        renderMovements();
+
+        updateSummary();
+
+        showConnected();
+
+    }
+    catch (error) {
+
+        showBackendError(error);
+
+    }
+
+}
+
+
+/* ================= INITIAL LOAD ================= */
+
+loadPage();
+
+
+/* ================= AUTO REFRESH ================= */
+
+setInterval(() => {
+
+    loadPage();
+
+}, 10000);
+
+</script>
 
 </body>
 
